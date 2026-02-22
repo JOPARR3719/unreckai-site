@@ -1,0 +1,108 @@
+import { Briefcase, Code2, MessageSquare, GraduationCap, Check } from "lucide-react";
+
+const personas = [
+  {
+    icon: Briefcase,
+    title: "Product Managers",
+    subtitle: "Clean PRDs directly into Notion.",
+    features: [
+      "Preserves native bulleting.",
+      "Strips ChatGPT intros.",
+    ],
+  },
+  {
+    icon: Code2,
+    title: "Engineers",
+    subtitle: "Formatted docs into GitHub.",
+    features: [
+      "Protects code block syntax.",
+      "Smart quote isolation.",
+    ],
+  },
+  {
+    icon: MessageSquare,
+    title: "Consultants",
+    subtitle: "Client-ready text in Slack.",
+    features: [
+      "Removes AI footprints.",
+      "Guarantees data privacy.",
+    ],
+  },
+  {
+    icon: GraduationCap,
+    title: "Students",
+    subtitle: "Clean drafts into Google Docs.",
+    features: [
+      "Flawless rich-text transfer.",
+      "Zero formatting glitches.",
+    ],
+  },
+];
+
+export function Personas() {
+  return (
+    <section className="py-24">
+      <div className="max-w-7xl mx-auto px-8">
+        <div className="glow-card">
+          <div className="glow-card-inner p-10 md:p-14">
+            <div className="space-y-12">
+              {/* Header */}
+              <div className="text-center space-y-4 max-w-2xl mx-auto">
+                <p className="text-xs font-semibold tracking-widest uppercase text-brand-accentFormatting">
+                  Purpose-Built
+                </p>
+                <h2 className="text-4xl md:text-5xl font-medium tracking-tight text-brand-textPrimary">
+                  Built for your workflow.
+                </h2>
+                <p className="text-brand-textSecondary text-lg leading-relaxed">
+                  No matter your role, UnreckAI ensures every paste arrives clean, formatted, and professional.
+                </p>
+              </div>
+
+              {/* Persona cards */}
+              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                {personas.map((persona) => (
+                  <div
+                    key={persona.title}
+                    className="bg-brand-itemBg rounded-xl border border-brand-borderSolid p-6 space-y-4"
+                  >
+                    <div className="p-2.5 rounded-lg bg-brand-cardBg w-fit">
+                      <persona.icon
+                        size={22}
+                        className="text-brand-accentFormatting"
+                      />
+                    </div>
+                    <div>
+                      <h3 className="text-brand-textPrimary font-medium text-[15px]">
+                        {persona.title}
+                      </h3>
+                      <p className="text-brand-textSecondary text-sm mt-1">
+                        {persona.subtitle}
+                      </p>
+                    </div>
+                    <div className="space-y-2 pt-2 border-t border-brand-border">
+                      {persona.features.map((feature) => (
+                        <div
+                          key={feature}
+                          className="flex items-start gap-2"
+                        >
+                          <Check
+                            size={14}
+                            className="text-brand-accentCleaned shrink-0 mt-0.5"
+                          />
+                          <span className="text-sm text-brand-textSecondary">
+                            {feature}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

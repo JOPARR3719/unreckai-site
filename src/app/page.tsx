@@ -1,9 +1,27 @@
+import { Nav } from "@/components/nav";
+import { Hero } from "@/components/hero";
+import { Marquee } from "@/components/marquee";
+import { InvisibleWorkflow } from "@/components/invisible-workflow";
+import { Privacy } from "@/components/privacy";
+import { VisualProof } from "@/components/visual-proof";
+import { Personas } from "@/components/personas";
+import { Pricing } from "@/components/pricing";
+import { Footer } from "@/components/footer";
+
 export default function Home() {
   return (
-    <main className="min-h-screen bg-brand-bg flex items-center justify-center">
-      <h1 className="text-4xl font-semibold text-brand-textPrimary">
-        UnreckAI
-      </h1>
-    </main>
+    <>
+      <Nav />
+      <main className="bg-brand-bg">
+        <Hero />
+        <Marquee />
+        <InvisibleWorkflow />
+        <Privacy />
+        <VisualProof />
+        <Personas />
+        <Pricing />
+      </main>
+      <Footer />
+    </>
   );
 }
