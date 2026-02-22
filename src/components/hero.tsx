@@ -1,4 +1,5 @@
 import { Download, Play } from "lucide-react";
+import { InteractiveToast } from "@/components/toast/interactive-toast";
 
 export function Hero() {
   return (
@@ -44,15 +45,9 @@ export function Hero() {
             </p>
           </div>
 
-          {/* Right column: Toast placeholder */}
+          {/* Right column: Interactive Toast */}
           <div className="flex justify-center lg:justify-end">
-            <div className="glow-card w-[360px]">
-              <div className="glow-card-inner flex items-center justify-center h-[480px] rounded-3xl">
-                <p className="text-brand-textTertiary text-sm">
-                  Interactive Toast &mdash; Coming Soon
-                </p>
-              </div>
-            </div>
+            <InteractiveToast />
           </div>
         </div>
       </div>
