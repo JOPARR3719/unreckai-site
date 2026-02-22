@@ -1,26 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap');
+
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --font-sans: "DM Sans", system-ui, -apple-system, sans-serif;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  /* Brand backgrounds */
+  --color-brand-bg: #0a0d10;
+  --color-brand-surface: #0F1318;
+  --color-brand-surfaceRaised: #151617;
+  --color-brand-cardBg: #11161A;
+  --color-brand-itemBg: #161C22;
+  --color-brand-bgSurface: #0F1318;
+  --color-brand-bgCard: #252D38;
+
+  /* Brand borders */
+  --color-brand-border: rgba(255, 255, 255, 0.06);
+  --color-brand-borderSolid: #3A4550;
+  --color-brand-borderLight: #6A7A88;
+
+  /* Brand text */
+  --color-brand-textPrimary: #E4E8EB;
+  --color-brand-textSecondary: #7B8A95;
+  --color-brand-tagLabel: #9EAAB4;
+  --color-brand-textTertiary: #4A5560;
+
+  /* Brand accents */
+  --color-brand-accentCleaned: #3be8b0;
+  --color-brand-accentFormatting: #9B8FFF;
+  --color-brand-accentAi: #fc636b;
+  --color-brand-accentDocument: #1aafd0;
+
+  /* Brand UI components */
+  --color-brand-undoBtnBg: #24181D;
+  --color-brand-undoBtnBorder: #422128;
+  --color-brand-neutralBtnBg: #1A2028;
+  --color-brand-neutralBtnBorder: #6A7A88;
+  --color-brand-fixCardBg: #1A2028;
+  --color-brand-fixCardBorder: #6A7A88;
+  --color-brand-detailsBtnBg: #1A2028;
+  --color-brand-detailsBtnBorder: #6A7A88;
+  --color-brand-iconBg: #112424;
+  --color-brand-iconBorder: #1A4139;
+  --color-brand-bubbleBg: #122727;
+  --color-brand-bubbleBorder: #1A4D41;
+  --color-brand-panelBg: #0F1318;
+  --color-brand-drillHeaderBg: #0F1318;
+
+  /* AI tool colors */
+  --color-brand-chatgpt: #9CA3AF;
+  --color-brand-claude: #F97316;
+  --color-brand-gemini: #8AB4F8;
+
+  /* Marquee animations */
+  --animate-marquee-left: marquee-left 40s linear infinite;
+  --animate-marquee-right: marquee-right 40s linear infinite;
+
+  @keyframes marquee-left {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  @keyframes marquee-right {
+    0% { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
   }
 }
 
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #0a0d10;
+  color: #E4E8EB;
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #3be8b0, #9B8FFF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.glow-card {
+  position: relative;
+  border-radius: 1.5rem;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(59, 232, 176, 0.3), rgba(155, 143, 255, 0.3));
+}
+
+.glow-card-inner {
+  background: #0a0d10;
+  border-radius: calc(1.5rem - 1px);
+}
+
+.slack-scroll::-webkit-scrollbar { width: 6px; }
+.slack-scroll::-webkit-scrollbar-track { background: transparent; }
+.slack-scroll::-webkit-scrollbar-thumb { background: #3f4347; border-radius: 10px; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }
