@@ -39,7 +39,7 @@ function MarqueeStrip({
 
 export function Marquee() {
   return (
-    <section className="py-24 space-y-12">
+    <section className="py-16 sm:py-24 space-y-8 sm:space-y-12">
       <div className="space-y-6">
         <p className="text-center text-xs font-semibold tracking-widest uppercase text-brand-textTertiary">
           Works with every tool

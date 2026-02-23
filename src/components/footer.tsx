@@ -1,7 +1,7 @@
 export function Footer() {
   return (
     <footer className="py-12 border-t border-brand-borderSolid">
-      <div className="max-w-7xl mx-auto px-8 space-y-8">
+      <div className="max-w-7xl mx-auto px-5 sm:px-8 space-y-8">
         {/* Gradient privacy text */}
         <p className="text-center text-sm font-medium">
           <span className="text-gradient">

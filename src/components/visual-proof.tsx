@@ -214,38 +214,38 @@ export function VisualProof() {
   };
 
   return (
-    <section id="visual-proof" className="py-24">
-      <div className="max-w-7xl mx-auto px-8">
-        <div className="space-y-12">
+    <section id="visual-proof" className="py-16 sm:py-24">
+      <div className="max-w-7xl mx-auto px-5 sm:px-8">
+        <div className="space-y-8 sm:space-y-12">
           {/* Header */}
           <div className="text-center space-y-4 max-w-2xl mx-auto">
             <p className="text-xs font-semibold tracking-widest uppercase text-brand-accentCleaned">
               Visual Proof
             </p>
-            <h2 className="text-4xl md:text-5xl font-medium tracking-tight text-brand-textPrimary">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight text-brand-textPrimary">
               See the difference.
             </h2>
-            <p className="text-brand-textSecondary text-lg leading-relaxed">
+            <p className="text-brand-textSecondary text-base sm:text-lg leading-relaxed">
               No raw markdown. No AI slop. Just clean, native formatting.
             </p>
           </div>
 
           {/* 3-step flow */}
-          <div className="flex items-center justify-center gap-4 md:gap-8 text-sm">
+          <div className="flex items-center justify-center gap-3 sm:gap-4 md:gap-8 text-sm">
             <div className="flex items-center gap-2 text-brand-textSecondary">
               <div className="p-2 rounded-lg bg-brand-itemBg border border-brand-borderSolid">
                 <Copy size={16} className="text-brand-accentFormatting" />
               </div>
               <span className="hidden sm:inline">Copy from AI</span>
             </div>
-            <div className="w-8 h-px bg-brand-borderSolid" />
+            <div className="w-6 sm:w-8 h-px bg-brand-borderSolid" />
             <div className="flex items-center gap-2 text-brand-textSecondary">
               <div className="p-2 rounded-lg bg-brand-itemBg border border-brand-borderSolid">
                 <Zap size={16} className="text-brand-accentCleaned" />
               </div>
               <span className="hidden sm:inline">UnreckAI Processes</span>
             </div>
-            <div className="w-8 h-px bg-brand-borderSolid" />
+            <div className="w-6 sm:w-8 h-px bg-brand-borderSolid" />
             <div className="flex items-center gap-2 text-brand-textSecondary">
               <div className="p-2 rounded-lg bg-brand-itemBg border border-brand-borderSolid">
                 <ClipboardPaste size={16} className="text-brand-accentDocument" />
@@ -256,12 +256,12 @@ export function VisualProof() {
 
           {/* Source toggle */}
           <div className="flex justify-center">
-            <div className="inline-flex bg-brand-cardBg rounded-full p-1 border border-brand-borderSolid">
+            <div className="inline-flex bg-brand-cardBg rounded-full p-1 border border-brand-borderSolid flex-wrap justify-center gap-1 sm:gap-0 sm:flex-nowrap">
               {(Object.keys(sourceLabels) as Source[]).map((key) => (
                 <button
                   key={key}
                   onClick={() => setSource(key)}
-                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+                  className={`px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-medium transition-all whitespace-nowrap ${
                     source === key
                       ? "bg-brand-itemBg text-brand-textPrimary shadow-sm"
                       : "text-brand-textSecondary hover:text-brand-textPrimary"
@@ -278,9 +278,9 @@ export function VisualProof() {
             {/* Dirty panel */}
             <div className="bg-[#1a1d21] border-b lg:border-b-0 lg:border-r border-[#3f4347]/50">
               {/* Panel header */}
-              <div className="flex items-center justify-between px-4 py-3 border-b border-[#3f4347]/50">
-                <div className="flex items-center gap-2">
-                  <span className="text-[13px] text-[#ababad] font-medium">
+              <div className="flex items-center justify-between px-3 sm:px-4 py-3 border-b border-[#3f4347]/50">
+                <div className="flex items-center gap-2 flex-wrap">
+                  <span className="text-[12px] sm:text-[13px] text-[#ababad] font-medium">
                     Paste to Slack
                   </span>
                   <span className={`text-[11px] px-2 py-0.5 rounded-full border ${sourceBadgeColors[source]}`}>
@@ -289,7 +289,7 @@ export function VisualProof() {
                 </div>
               </div>
               <SlackToolbar />
-              <div className="p-4 max-h-[480px] overflow-y-auto slack-scroll">
+              <div className="p-3 sm:p-4 max-h-[360px] sm:max-h-[480px] overflow-y-auto slack-scroll">
                 {dirtyPanels[source]}
               </div>
             </div>
@@ -297,10 +297,10 @@ export function VisualProof() {
             {/* Clean panel */}
             <div className="bg-[#1a1d21]">
               {/* Panel header */}
-              <div className="flex items-center justify-between px-4 py-3 border-b border-[#3f4347]/50">
-                <div className="flex items-center gap-2">
-                  <span className="text-[13px] text-[#ababad] font-medium">
-                    Using UnreckAI to paste into Slack
+              <div className="flex items-center justify-between px-3 sm:px-4 py-3 border-b border-[#3f4347]/50">
+                <div className="flex items-center gap-2 flex-wrap">
+                  <span className="text-[12px] sm:text-[13px] text-[#ababad] font-medium">
+                    With UnreckAI
                   </span>
                   <span className="text-[11px] px-2 py-0.5 rounded-full border border-brand-accentCleaned/30 text-brand-accentCleaned">
                     UnreckAI
@@ -308,7 +308,7 @@ export function VisualProof() {
                 </div>
               </div>
               <SlackToolbar />
-              <div className="p-4 max-h-[480px] overflow-y-auto slack-scroll">
+              <div className="p-3 sm:p-4 max-h-[360px] sm:max-h-[480px] overflow-y-auto slack-scroll">
                 <CleanPanel />
               </div>
             </div>

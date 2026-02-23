@@ -57,7 +57,7 @@ export function InteractiveToast() {
 
   return (
     <div
-      className="w-[360px] rounded-xl overflow-hidden"
+      className="w-[360px] max-w-full rounded-xl overflow-hidden"
       style={{
         padding: 1,
         background:

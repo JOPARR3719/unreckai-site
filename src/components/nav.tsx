@@ -24,7 +24,7 @@ export function Nav() {
           : "bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-8 h-16 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-5 sm:px-8 h-16 flex items-center justify-between">
         {/* Left: Logo */}
         <a href="#" className="flex items-center gap-2.5">
           <ScatterSymbol size={20} className="text-brand-textPrimary" />
@@ -34,7 +34,7 @@ export function Nav() {
         </a>
 
         {/* Center: Nav Links */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden lg:flex items-center gap-8">
           {NAV_LINKS.map((link) => (
             <a
               key={link.label}
@@ -49,7 +49,7 @@ export function Nav() {
         {/* Right: Theme + Download */}
         <div className="flex items-center gap-3">
           <button
-            className="p-2 rounded-lg text-brand-tagLabel hover:text-brand-textPrimary transition-colors"
+            className="hidden sm:block p-2 rounded-lg text-brand-tagLabel hover:text-brand-textPrimary transition-colors"
             aria-label="Toggle theme"
           >
             <Moon size={18} />
