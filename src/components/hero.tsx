@@ -5,9 +5,11 @@ export function Hero() {
   return (
     <section
       id="hero"
-      className="min-h-screen flex items-center pt-20 md:pt-16"
+      className="pt-28 sm:pt-36 pb-10 sm:pb-14"
     >
       <div className="max-w-7xl mx-auto px-5 sm:px-8 w-full">
+        <div className="glow-card">
+        <div className="glow-card-inner pt-5 sm:pt-7 md:pt-9 px-6 sm:px-10 md:px-12 pb-6 sm:pb-10 md:pb-12">
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           {/* Left column */}
           <div className="space-y-6 sm:space-y-8 text-center lg:text-left">
@@ -41,7 +43,7 @@ export function Hero() {
             </div>
 
             <p className="text-xs sm:text-sm text-brand-textTertiary">
-              macOS 13 or later &middot; No account &middot; Nothing leaves your Mac
+              Private &amp; local <span className="text-brand-accentCleaned text-base mx-1">&bull;</span> Never leaves your Mac <span className="text-brand-accentFormatting text-base mx-1">&bull;</span> macOS
             </p>
           </div>
 
@@ -49,8 +51,16 @@ export function Hero() {
           <div className="flex justify-center lg:justify-end">
             <div className="w-[360px] max-w-full">
               <InteractiveToast />
+              <div className="flex items-center justify-center gap-2 mt-3">
+                <span className="w-1.5 h-1.5 rounded-full bg-brand-accentCleaned animate-gentle-pulse" />
+                <span className="text-xs text-brand-textTertiary">
+                  Interactive: click to explore
+                </span>
+              </div>
             </div>
           </div>
+        </div>
+        </div>
         </div>
       </div>
     </section>

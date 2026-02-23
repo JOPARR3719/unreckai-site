@@ -52,7 +52,7 @@ export function ToastFooter({ sourceApp }: ToastFooterProps) {
             backgroundClip: "text",
           }}
         >
-          Private &amp; local &middot; never leaves your Mac
+          Private &amp; local &middot; Never leaves your Mac
         </span>
       </div>
     </div>

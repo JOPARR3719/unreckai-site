@@ -42,18 +42,18 @@ const personas = [
 
 export function Personas() {
   return (
-    <section className="py-16 sm:py-24">
+    <section className="py-10 sm:py-14">
       <div className="max-w-7xl mx-auto px-5 sm:px-8">
         <div className="glow-card">
-          <div className="glow-card-inner p-6 sm:p-10 md:p-14">
+          <div className="glow-card-inner pt-5 sm:pt-7 md:pt-9 px-6 sm:px-10 md:px-14 pb-6 sm:pb-10 md:pb-14">
             <div className="space-y-10 sm:space-y-12">
               {/* Header */}
               <div className="text-center space-y-4 max-w-2xl mx-auto">
-                <p className="text-xs font-semibold tracking-widest uppercase text-brand-accentFormatting">
+                <p className="text-xs font-semibold tracking-widest uppercase text-brand-accentBlue">
                   Purpose-Built
                 </p>
                 <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight text-brand-textPrimary">
-                  Built for your workflow.
+                  Engineered for your role.
                 </h2>
                 <p className="text-brand-textSecondary text-base sm:text-lg leading-relaxed">
                   No matter your role, UnreckAI ensures every paste arrives clean, formatted, and professional.

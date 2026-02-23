@@ -20,7 +20,7 @@
   --color-brand-borderLight: #6A7A88;
 
   /* Brand text */
-  --color-brand-textPrimary: #E4E8EB;
+  --color-brand-textPrimary: #D0D5D9;
   --color-brand-textSecondary: #7B8A95;
   --color-brand-tagLabel: #9EAAB4;
   --color-brand-textTertiary: #4A5560;
@@ -30,6 +30,8 @@
   --color-brand-accentFormatting: #9B8FFF;
   --color-brand-accentAi: #fc636b;
   --color-brand-accentDocument: #1aafd0;
+  --color-brand-accentTeal: #2cc4c0;
+  --color-brand-accentBlue: #5B9AE8;
 
   /* Brand UI components */
   --color-brand-undoBtnBg: #24181D;
@@ -52,9 +54,10 @@
   --color-brand-claude: #F97316;
   --color-brand-gemini: #8AB4F8;
 
-  /* Marquee animations */
+  /* Animations */
   --animate-marquee-left: marquee-left 40s linear infinite;
   --animate-marquee-right: marquee-right 40s linear infinite;
+  --animate-gentle-pulse: gentle-pulse 3s ease-in-out infinite;
 
   @keyframes marquee-left {
     0% { transform: translateX(0); }
@@ -64,6 +67,11 @@
   @keyframes marquee-right {
     0% { transform: translateX(-50%); }
     100% { transform: translateX(0); }
+  }
+
+  @keyframes gentle-pulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
   }
 }
 
@@ -85,16 +93,36 @@ body {
   background-clip: text;
 }
 
+.hover\:text-gradient-nav:hover {
+  background: linear-gradient(90deg, #3be8b0, #1aafd0, #9B8FFF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  opacity: 0.7;
+}
+
 .glow-card {
   position: relative;
   border-radius: 1.5rem;
-  padding: 1px;
-  background: linear-gradient(135deg, rgba(59, 232, 176, 0.3), rgba(155, 143, 255, 0.3));
+  padding: 1.5px;
+  background: linear-gradient(135deg, rgba(59, 232, 176, 0.4), rgba(155, 143, 255, 0.4));
 }
 
 .glow-card-inner {
   background: #0a0d10;
-  border-radius: calc(1.5rem - 1px);
+  border-radius: calc(1.5rem - 1.5px);
+}
+
+.glow-border-active {
+  border: 1.5px solid transparent !important;
+  background-image: linear-gradient(#161C22, #161C22), linear-gradient(135deg, #3be8b0, #1aafd0, #9B8FFF) !important;
+  background-origin: border-box !important;
+  background-clip: padding-box, border-box !important;
+  transition: background-image 0.2s ease;
+}
+
+.glow-border-active:hover {
+  background-image: linear-gradient(#2A3040, #2A3040), linear-gradient(135deg, #3be8b0, #1aafd0, #9B8FFF) !important;
 }
 
 .slack-scroll::-webkit-scrollbar { width: 6px; }

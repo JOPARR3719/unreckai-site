@@ -30,15 +30,15 @@ const privacyFeatures = [
 
 export function Privacy() {
   return (
-    <section className="py-16 sm:py-24">
+    <section className="py-10 sm:py-14">
       <div className="max-w-7xl mx-auto px-5 sm:px-8">
         <div className="glow-card">
-          <div className="glow-card-inner p-6 sm:p-10 md:p-14">
+          <div className="glow-card-inner pt-5 sm:pt-7 md:pt-9 px-6 sm:px-10 md:px-14 pb-6 sm:pb-10 md:pb-14">
             <div className="grid lg:grid-cols-2 gap-10 lg:gap-16">
               {/* Left column */}
               <div className="space-y-6 sm:space-y-8">
                 <div className="space-y-4">
-                  <p className="text-xs font-semibold tracking-widest uppercase text-brand-accentCleaned">
+                  <p className="text-xs font-semibold tracking-widest uppercase text-brand-accentTeal">
                     Privacy First
                   </p>
                   <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight text-brand-textPrimary">
@@ -51,17 +51,25 @@ export function Privacy() {
 
                 <div className="space-y-3">
                   {[
-                    "Zero server footprint.",
-                    "Fully offline capable.",
-                    "Absolute data privacy.",
+                    { text: "Zero server footprint", excluded: false },
+                    { text: "Fully offline capable", excluded: false },
+                    { text: "Absolute data privacy", excluded: false },
+                    { text: "Never sends data to a server", excluded: true },
                   ].map((item) => (
-                    <div key={item} className="flex items-center gap-3">
-                      <Check
-                        size={16}
-                        className="text-brand-accentCleaned shrink-0"
-                      />
-                      <span className="text-brand-textPrimary text-[15px]">
-                        {item}
+                    <div key={item.text} className="flex items-center gap-3">
+                      {item.excluded ? (
+                        <X
+                          size={16}
+                          className="text-brand-accentAi shrink-0"
+                        />
+                      ) : (
+                        <Check
+                          size={16}
+                          className="text-brand-accentCleaned shrink-0"
+                        />
+                      )}
+                      <span className={`text-[15px] ${item.excluded ? "text-brand-textSecondary" : "text-brand-textPrimary"}`}>
+                        {item.text}
                       </span>
                     </div>
                   ))}
@@ -76,7 +84,7 @@ export function Privacy() {
                     className={`flex items-start gap-4 p-5 rounded-xl border ${
                       feature.enabled
                         ? "bg-brand-itemBg border-brand-borderSolid"
-                        : "bg-brand-cardBg border-brand-borderSolid opacity-40"
+                        : "bg-brand-cardBg border-brand-borderSolid"
                     }`}
                   >
                     <div
@@ -91,7 +99,7 @@ export function Privacy() {
                         className={
                           feature.enabled
                             ? "text-brand-accentCleaned"
-                            : "text-brand-textTertiary"
+                            : "text-brand-accentAi"
                         }
                       />
                     </div>
@@ -100,7 +108,7 @@ export function Privacy() {
                         className={`font-medium text-[15px] ${
                           feature.enabled
                             ? "text-brand-textPrimary"
-                            : "text-brand-textTertiary"
+                            : "text-brand-accentAi"
                         }`}
                       >
                         {feature.title}
@@ -109,7 +117,7 @@ export function Privacy() {
                         className={`text-sm mt-0.5 ${
                           feature.enabled
                             ? "text-brand-textSecondary"
-                            : "text-brand-textTertiary"
+                            : "text-brand-textSecondary"
                         }`}
                       >
                         {feature.description}

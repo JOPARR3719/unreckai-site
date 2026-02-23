@@ -4,34 +4,45 @@ import { useState } from "react";
 import { Check, Download } from "lucide-react";
 import { Reveal } from "./reveal";
 
+type Feature = {
+  text: string;
+  included: boolean;
+  section?: string;
+};
+
 const tiers = [
   {
     name: "Free",
     monthlyPrice: 0,
     annualPrice: 0,
-    description: "Essential translation for everyday pasting.",
+    description: "Essential cleaning for everyday pasting.",
     cta: "Download Free",
     ctaStyle: "ghost" as const,
     popular: false,
     features: [
-      "Invisible character removal",
-      "Whitespace normalization",
-      "Encoding fixes (smart quotes, etc.)",
-    ],
+      { text: "Invisible character removal", included: true },
+      { text: "Whitespace normalization", included: true },
+      { text: "Encoding fixes (smart quotes, etc.)", included: true },
+      { text: "AI intro & ending removal", included: true },
+      { text: "Clean plain text output", included: true },
+    ] as Feature[],
   },
   {
     name: "Pro",
     monthlyPrice: 4.99,
     annualPrice: 3.49,
-    description: "Unlimited power for professionals.",
+    description: "Full format translation for professionals.",
     cta: "Start Pro Trial",
     ctaStyle: "primary" as const,
     popular: true,
     features: [
-      "Full format translation (HTML output)",
-      "AI slop removal + style detection",
-      "All 54 issue types detected & fixed",
-    ],
+      { text: "Everything in Free, plus:", included: true, section: "free" },
+      { text: "Format translation (native HTML)", included: true },
+      { text: "Em dash, quote & bold handling", included: true },
+      { text: "AI writing style detection", included: true },
+      { text: "All issue types fixed", included: true },
+      { text: "Emoji bullet detection", included: true },
+    ] as Feature[],
   },
   {
     name: "Lifetime",
@@ -43,10 +54,11 @@ const tiers = [
     popular: false,
     isLifetime: true,
     features: [
-      "Everything in Pro, forever",
-      "All future updates included",
-      "Priority feature requests",
-    ],
+      { text: "Everything in Pro, forever", included: true, section: "pro" },
+      { text: "All future updates included", included: true },
+      { text: "No subscription, no renewals", included: true },
+      { text: "Priority feature requests", included: true },
+    ] as Feature[],
   },
 ];
 
@@ -54,16 +66,18 @@ export function Pricing() {
   const [annual, setAnnual] = useState(false);
 
   return (
-    <section id="pricing" className="py-16 sm:py-24">
+    <section id="pricing" className="py-10 sm:py-14">
       <div className="max-w-7xl mx-auto px-5 sm:px-8">
+        <div className="glow-card">
+        <div className="glow-card-inner pt-5 sm:pt-7 md:pt-9 px-6 sm:px-10 md:px-12 pb-6 sm:pb-10 md:pb-12">
         <div className="space-y-8 sm:space-y-12">
           {/* Header */}
           <div className="text-center space-y-4 max-w-2xl mx-auto">
-            <p className="text-xs font-semibold tracking-widest uppercase text-brand-accentCleaned">
+            <p className="text-xs font-semibold tracking-widest uppercase text-brand-accentFormatting">
               Clear Pricing
             </p>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight text-brand-textPrimary">
-              Own your workflow.
+              Scale your productivity.
             </h2>
             <p className="text-brand-textSecondary text-base sm:text-lg leading-relaxed">
               Start free, upgrade when you need the full power of format translation.
@@ -100,93 +114,123 @@ export function Pricing() {
           </div>
 
           {/* Pricing cards */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 sm:gap-6 max-w-5xl mx-auto">
-            {tiers.map((tier, i) => (
-              <Reveal key={tier.name} delay={i * 100}>
-              <div
-                className={`relative rounded-2xl border p-8 space-y-6 h-full ${
-                  tier.popular
-                    ? "border-brand-accentCleaned/40 bg-brand-cardBg"
-                    : "border-brand-borderSolid bg-brand-cardBg"
-                }`}
-              >
-                {/* Popular badge */}
-                {tier.popular && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                    <span className="text-[11px] font-bold uppercase tracking-wider bg-brand-accentCleaned text-brand-bg px-3 py-1 rounded-full">
-                      Most Popular
-                    </span>
-                  </div>
-                )}
-
-                {/* Tier name & price */}
-                <div>
-                  <h3 className="text-brand-textPrimary font-semibold text-lg">
-                    {tier.name}
-                  </h3>
-                  <div className="mt-3 flex items-baseline gap-1">
-                    {tier.isLifetime ? (
-                      <>
-                        <span className="text-4xl font-semibold text-brand-textPrimary">
-                          ${tier.monthlyPrice}
-                        </span>
-                        <span className="text-brand-textSecondary text-sm">
-                          one-time
-                        </span>
-                      </>
-                    ) : tier.monthlyPrice === 0 ? (
-                      <span className="text-4xl font-semibold text-brand-textPrimary">
-                        $0
-                      </span>
-                    ) : (
-                      <>
-                        <span className="text-4xl font-semibold text-brand-textPrimary">
-                          ${annual ? tier.annualPrice : tier.monthlyPrice}
-                        </span>
-                        <span className="text-brand-textSecondary text-sm">
-                          /month
-                        </span>
-                      </>
-                    )}
-                  </div>
-                  <p className="text-brand-textSecondary text-sm mt-2">
-                    {tier.description}
-                  </p>
-                </div>
-
-                {/* CTA button */}
-                <button
-                  className={`w-full py-3 rounded-xl font-semibold text-sm transition-all flex items-center justify-center gap-2 ${
-                    tier.ctaStyle === "primary"
-                      ? "bg-white text-brand-bg hover:bg-white/90"
-                      : "border border-brand-borderSolid text-brand-textPrimary hover:border-brand-borderLight"
-                  }`}
-                >
-                  {tier.name === "Free" && <Download size={16} />}
-                  {tier.cta}
-                </button>
-
-                {/* Features */}
-                <div className="space-y-3 pt-4 border-t border-brand-border">
-                  {tier.features.map((feature) => (
-                    <div
-                      key={feature}
-                      className="flex items-start gap-3"
-                    >
-                      <Check
-                        size={16}
-                        className="text-brand-accentCleaned shrink-0 mt-0.5"
-                      />
-                      <span className="text-sm text-brand-textSecondary">
-                        {feature}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 sm:gap-6 max-w-5xl mx-auto items-center">
+            {tiers.map((tier, i) => {
+              const cardContent = (
+                <>
+                  {/* Popular badge */}
+                  {tier.popular && (
+                    <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+                      <span
+                        className="text-[11px] font-bold uppercase tracking-wider text-brand-bg px-3 py-1 rounded-full"
+                        style={{ background: "linear-gradient(90deg, #3be8b0, #1aafd0, #9B8FFF)" }}
+                      >
+                        Most Popular
                       </span>
                     </div>
-                  ))}
-                </div>
-              </div>
-              </Reveal>
-            ))}
+                  )}
+
+                  {/* Tier name & price */}
+                  <div>
+                    <h3 className="text-brand-textPrimary font-semibold text-lg">
+                      {tier.name}
+                    </h3>
+                    <div className="mt-3 flex items-baseline gap-1">
+                      {tier.isLifetime ? (
+                        <>
+                          <span className="text-4xl font-semibold text-brand-textPrimary">
+                            ${tier.monthlyPrice}
+                          </span>
+                          <span className="text-brand-textSecondary text-sm">
+                            one-time
+                          </span>
+                        </>
+                      ) : tier.monthlyPrice === 0 ? (
+                        <span className="text-4xl font-semibold text-brand-textPrimary">
+                          $0
+                        </span>
+                      ) : (
+                        <>
+                          <span className="text-4xl font-semibold text-brand-textPrimary">
+                            ${annual ? tier.annualPrice : tier.monthlyPrice}
+                          </span>
+                          <span className="text-brand-textSecondary text-sm">
+                            /month
+                          </span>
+                        </>
+                      )}
+                    </div>
+                    <p className="text-brand-textSecondary text-sm mt-2">
+                      {tier.description}
+                    </p>
+                  </div>
+
+                  {/* CTA button */}
+                  <button
+                    className={`w-full py-3 rounded-xl font-semibold text-sm transition-all duration-200 flex items-center justify-center gap-2 hover:-translate-y-px active:translate-y-px ${
+                      tier.ctaStyle === "primary"
+                        ? "bg-brand-cardBg text-brand-textPrimary glow-border-active hover:text-white hover:shadow-[0_0_16px_rgba(59,232,176,0.2)]"
+                        : "border border-brand-borderSolid text-brand-textPrimary hover:border-brand-borderLight hover:shadow-[0_0_12px_rgba(255,255,255,0.05)]"
+                    }`}
+                  >
+                    {tier.name === "Free" && <Download size={16} />}
+                    {tier.cta}
+                  </button>
+
+                  {/* Features */}
+                  <div className="space-y-3 pt-4 border-t border-brand-border">
+                    {tier.features.map((feature) => (
+                      <div
+                        key={feature.text}
+                        className="flex items-start gap-3"
+                      >
+                        {feature.section ? (
+                          <span className="text-sm text-brand-accentCleaned font-medium">
+                            {feature.text}
+                          </span>
+                        ) : (
+                          <>
+                            <Check
+                              size={16}
+                              className="text-brand-accentCleaned shrink-0 mt-0.5"
+                            />
+                            <span className="text-sm text-brand-textSecondary">
+                              {feature.text}
+                            </span>
+                          </>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </>
+              );
+
+              return (
+                <Reveal key={tier.name} delay={i * 100}>
+                  {tier.popular ? (
+                    <div
+                      className="rounded-2xl p-[1.5px]"
+                      style={{
+                        background: "linear-gradient(135deg, rgba(59, 232, 176, 0.5), rgba(155, 143, 255, 0.5))",
+                        transform: "scale(1.04)",
+                        filter: "drop-shadow(0 8px 32px rgba(59, 232, 176, 0.15)) drop-shadow(0 4px 16px rgba(155, 143, 255, 0.1))",
+                      }}
+                    >
+                      <div className="relative rounded-2xl bg-brand-cardBg p-8 space-y-6 h-full">
+                        {cardContent}
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="relative rounded-2xl border border-brand-borderSolid bg-brand-cardBg p-8 space-y-6 h-full">
+                      {cardContent}
+                    </div>
+                  )}
+                </Reveal>
+              );
+            })}
           </div>
+        </div>
+        </div>
         </div>
       </div>
     </section>
