@@ -79,7 +79,7 @@ function SettingsSectionList({ onDrill }: { onDrill: (id: string) => void }) {
                   {section.title.includes(": ") ? (
                     <>
                       {section.title.split(": ")[0]}:{" "}
-                      <span className="text-brand-textSecondary">{section.title.split(": ")[1]}</span>
+                      <span className="text-brand-accentCleaned font-bold">{section.title.split(": ")[1]}</span>
                     </>
                   ) : (
                     section.title

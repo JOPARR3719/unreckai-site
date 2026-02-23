@@ -169,8 +169,8 @@ export const SETTINGS_SECTIONS: SettingsSection[] = [
   },
   {
     id: "account",
-    title: "Account: Free",
-    subtitle: "Upgrade to Pro for format translation",
+    title: "Account: Pro",
+    subtitle: "All features unlocked",
     settings: [],
     standalone: true,
   },
