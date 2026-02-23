@@ -5,7 +5,9 @@ import { InvisibleWorkflow } from "@/components/invisible-workflow";
 import { Privacy } from "@/components/privacy";
 import { VisualProof } from "@/components/visual-proof";
 import { Personas } from "@/components/personas";
+import { ClipboardViewer } from "@/components/clipboard-viewer";
 import { Pricing } from "@/components/pricing";
+import { FaqChangelog } from "@/components/faq-changelog";
 import { Footer } from "@/components/footer";
 import { Reveal } from "@/components/reveal";
 
@@ -38,8 +40,14 @@ export default function Home() {
         </Reveal>
 
         <Reveal>
+          <ClipboardViewer />
+        </Reveal>
+
+        <Reveal>
           <Pricing />
         </Reveal>
+
+        <FaqChangelog />
       </main>
       <Reveal>
         <Footer />
