@@ -59,8 +59,8 @@ export function Nav() {
       </div>
       {/* Gradient bottom border — always visible */}
       <div
-        className="h-[0.2px] w-full opacity-60"
-        style={{ background: "linear-gradient(90deg, var(--color-brand-accentCleaned), var(--color-brand-accentDocument), var(--color-brand-accentFormatting))" }}
+        className="h-px w-full opacity-[0.08]"
+        style={{ background: "var(--color-brand-borderLight)" }}
       />
     </nav>
   );
