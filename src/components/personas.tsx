@@ -1,4 +1,5 @@
 import { Briefcase, Code2, MessageSquare, GraduationCap, Check } from "lucide-react";
+import { Reveal } from "./reveal";
 
 const personas = [
   {
@@ -41,30 +42,30 @@ const personas = [
 
 export function Personas() {
   return (
-    <section className="py-24">
-      <div className="max-w-7xl mx-auto px-8">
+    <section className="py-16 sm:py-24">
+      <div className="max-w-7xl mx-auto px-5 sm:px-8">
         <div className="glow-card">
-          <div className="glow-card-inner p-10 md:p-14">
-            <div className="space-y-12">
+          <div className="glow-card-inner p-6 sm:p-10 md:p-14">
+            <div className="space-y-10 sm:space-y-12">
               {/* Header */}
               <div className="text-center space-y-4 max-w-2xl mx-auto">
                 <p className="text-xs font-semibold tracking-widest uppercase text-brand-accentFormatting">
                   Purpose-Built
                 </p>
-                <h2 className="text-4xl md:text-5xl font-medium tracking-tight text-brand-textPrimary">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight text-brand-textPrimary">
                   Built for your workflow.
                 </h2>
-                <p className="text-brand-textSecondary text-lg leading-relaxed">
+                <p className="text-brand-textSecondary text-base sm:text-lg leading-relaxed">
                   No matter your role, UnreckAI ensures every paste arrives clean, formatted, and professional.
                 </p>
               </div>
 
               {/* Persona cards */}
-              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                {personas.map((persona) => (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+                {personas.map((persona, i) => (
+                  <Reveal key={persona.title} delay={i * 100}>
                   <div
-                    key={persona.title}
-                    className="bg-brand-itemBg rounded-xl border border-brand-borderSolid p-6 space-y-4"
+                    className="bg-brand-itemBg rounded-xl border border-brand-borderSolid p-6 space-y-4 h-full"
                   >
                     <div className="p-2.5 rounded-lg bg-brand-cardBg w-fit">
                       <persona.icon
@@ -97,6 +98,7 @@ export function Personas() {
                       ))}
                     </div>
                   </div>
+                  </Reveal>
                 ))}
               </div>
             </div>

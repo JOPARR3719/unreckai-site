@@ -1,4 +1,5 @@
 import { CheckCircle2, Fingerprint, Undo2 } from "lucide-react";
+import { Reveal } from "./reveal";
 
 const features = [
   {
@@ -26,39 +27,38 @@ const features = [
 
 export function InvisibleWorkflow() {
   return (
-    <section id="features" className="py-24">
-      <div className="max-w-7xl mx-auto px-8">
+    <section id="features" className="py-16 sm:py-24">
+      <div className="max-w-7xl mx-auto px-5 sm:px-8">
         <div className="glow-card">
-          <div className="glow-card-inner p-10 md:p-14">
-            <div className="space-y-12">
+          <div className="glow-card-inner p-6 sm:p-10 md:p-14">
+            <div className="space-y-10 sm:space-y-12">
               {/* Header */}
               <div className="space-y-4 max-w-2xl">
                 <p className="text-xs font-semibold tracking-widest uppercase text-brand-accentCleaned">
                   Invisible Workflow
                 </p>
-                <h2 className="text-4xl md:text-5xl font-medium tracking-tight text-brand-textPrimary">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight text-brand-textPrimary">
                   Instant corrections. Every paste.
                 </h2>
-                <p className="text-brand-textSecondary text-lg leading-relaxed">
+                <p className="text-brand-textSecondary text-base sm:text-lg leading-relaxed">
                   UnreckAI watches your clipboard and automatically translates AI formatting into clean, native output. You never have to think about it.
                 </p>
               </div>
 
               {/* Feature cards */}
-              <div className="grid md:grid-cols-3 gap-6">
-                {features.map((feature) => (
-                  <div
-                    key={feature.title}
-                    className="bg-brand-itemBg rounded-xl border border-brand-borderSolid p-6 space-y-4"
-                  >
-                    <feature.icon className={`${feature.color}`} size={24} />
-                    <h3 className="text-brand-textPrimary font-medium text-[15px]">
-                      {feature.title}
-                    </h3>
-                    <p className="text-brand-textSecondary text-sm leading-relaxed">
-                      {feature.description}
-                    </p>
-                  </div>
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+                {features.map((feature, i) => (
+                  <Reveal key={feature.title} delay={i * 100}>
+                    <div className="bg-brand-itemBg rounded-xl border border-brand-borderSolid p-6 space-y-4 h-full">
+                      <feature.icon className={`${feature.color}`} size={24} />
+                      <h3 className="text-brand-textPrimary font-medium text-[15px]">
+                        {feature.title}
+                      </h3>
+                      <p className="text-brand-textSecondary text-sm leading-relaxed">
+                        {feature.description}
+                      </p>
+                    </div>
+                  </Reveal>
                 ))}
               </div>
             </div>

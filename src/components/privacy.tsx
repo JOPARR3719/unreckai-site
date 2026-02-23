@@ -1,4 +1,5 @@
 import { Lock, Globe, Shield, Cloud, Check, X } from "lucide-react";
+import { Reveal } from "./reveal";
 
 const privacyFeatures = [
   {
@@ -29,21 +30,21 @@ const privacyFeatures = [
 
 export function Privacy() {
   return (
-    <section className="py-24">
-      <div className="max-w-7xl mx-auto px-8">
+    <section className="py-16 sm:py-24">
+      <div className="max-w-7xl mx-auto px-5 sm:px-8">
         <div className="glow-card">
-          <div className="glow-card-inner p-10 md:p-14">
-            <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
+          <div className="glow-card-inner p-6 sm:p-10 md:p-14">
+            <div className="grid lg:grid-cols-2 gap-10 lg:gap-16">
               {/* Left column */}
-              <div className="space-y-8">
+              <div className="space-y-6 sm:space-y-8">
                 <div className="space-y-4">
                   <p className="text-xs font-semibold tracking-widest uppercase text-brand-accentCleaned">
                     Privacy First
                   </p>
-                  <h2 className="text-4xl md:text-5xl font-medium tracking-tight text-brand-textPrimary">
+                  <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight text-brand-textPrimary">
                     Private by default.
                   </h2>
-                  <p className="text-brand-textSecondary text-lg leading-relaxed">
+                  <p className="text-brand-textSecondary text-base sm:text-lg leading-relaxed">
                     Every transformation happens on your Mac. No servers, no telemetry, no cloud calls. Your clipboard data stays exactly where it belongs.
                   </p>
                 </div>
@@ -69,9 +70,9 @@ export function Privacy() {
 
               {/* Right column */}
               <div className="space-y-4">
-                {privacyFeatures.map((feature) => (
+                {privacyFeatures.map((feature, i) => (
+                  <Reveal key={feature.title} delay={i * 80}>
                   <div
-                    key={feature.title}
                     className={`flex items-start gap-4 p-5 rounded-xl border ${
                       feature.enabled
                         ? "bg-brand-itemBg border-brand-borderSolid"
@@ -125,6 +126,7 @@ export function Privacy() {
                       )}
                     </div>
                   </div>
+                  </Reveal>
                 ))}
               </div>
             </div>

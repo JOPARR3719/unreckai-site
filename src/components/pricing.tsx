@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Check, Download } from "lucide-react";
+import { Reveal } from "./reveal";
 
 const tiers = [
   {
@@ -53,18 +54,18 @@ export function Pricing() {
   const [annual, setAnnual] = useState(false);
 
   return (
-    <section id="pricing" className="py-24">
-      <div className="max-w-7xl mx-auto px-8">
-        <div className="space-y-12">
+    <section id="pricing" className="py-16 sm:py-24">
+      <div className="max-w-7xl mx-auto px-5 sm:px-8">
+        <div className="space-y-8 sm:space-y-12">
           {/* Header */}
           <div className="text-center space-y-4 max-w-2xl mx-auto">
             <p className="text-xs font-semibold tracking-widest uppercase text-brand-accentCleaned">
               Clear Pricing
             </p>
-            <h2 className="text-4xl md:text-5xl font-medium tracking-tight text-brand-textPrimary">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight text-brand-textPrimary">
               Own your workflow.
             </h2>
-            <p className="text-brand-textSecondary text-lg leading-relaxed">
+            <p className="text-brand-textSecondary text-base sm:text-lg leading-relaxed">
               Start free, upgrade when you need the full power of format translation.
             </p>
           </div>
@@ -99,11 +100,11 @@ export function Pricing() {
           </div>
 
           {/* Pricing cards */}
-          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            {tiers.map((tier) => (
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 sm:gap-6 max-w-5xl mx-auto">
+            {tiers.map((tier, i) => (
+              <Reveal key={tier.name} delay={i * 100}>
               <div
-                key={tier.name}
-                className={`relative rounded-2xl border p-8 space-y-6 ${
+                className={`relative rounded-2xl border p-8 space-y-6 h-full ${
                   tier.popular
                     ? "border-brand-accentCleaned/40 bg-brand-cardBg"
                     : "border-brand-borderSolid bg-brand-cardBg"
@@ -183,6 +184,7 @@ export function Pricing() {
                   ))}
                 </div>
               </div>
+              </Reveal>
             ))}
           </div>
         </div>
