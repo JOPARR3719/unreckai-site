@@ -66,7 +66,7 @@ function SectionList({ onDrill }: { onDrill: (id: string) => void }) {
         <button
           key={section.id}
           onClick={() => onDrill(section.id)}
-          className="w-full text-left rounded-xl p-[1px] block"
+          className="w-full text-left rounded-xl p-[0.7px] block"
           style={{
             background:
               "linear-gradient(135deg, var(--color-brand-accentCleaned), var(--color-brand-accentFormatting))",
@@ -139,7 +139,7 @@ function ExclusionDrill({
 
       {/* App list card */}
       <div
-        className="rounded-xl p-[1px]"
+        className="rounded-xl p-[0.7px]"
         style={{
           background:
             "linear-gradient(135deg, var(--color-brand-accentCleaned), var(--color-brand-accentFormatting))",

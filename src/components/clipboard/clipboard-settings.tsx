@@ -63,42 +63,73 @@ export function ClipboardSettings({
 function SettingsSectionList({ onDrill }: { onDrill: (id: string) => void }) {
   return (
     <div className="space-y-3 px-4 pb-3">
-      {SETTINGS_SECTIONS.map((section) => (
-        <button
-          key={section.id}
-          onClick={() => onDrill(section.id)}
-          className="w-full text-left rounded-xl p-[1px] block"
-          style={{
-            background:
-              "linear-gradient(135deg, var(--color-brand-accentCleaned), var(--color-brand-accentFormatting))",
-          }}
-        >
-          <div className="rounded-[calc(0.75rem-1px)] bg-brand-cardBg p-4 flex items-center gap-3 group">
-            <div className="flex-1 min-w-0">
-              <h3 className="text-sm font-semibold" style={{ color: PURPLE }}>
-                {section.title}
-              </h3>
-              <p className="text-xs text-brand-textSecondary mt-0.5">
-                {section.subtitle}
-              </p>
-            </div>
-            <span
-              className="text-xs font-bold px-1.5 py-0.5 rounded shrink-0"
+      {SETTINGS_SECTIONS.map((section) => {
+        if (section.standalone) {
+          return (
+            <div
+              key={section.id}
+              className="rounded-xl p-[0.7px]"
               style={{
-                fontSize: 11,
-                color: PURPLE,
-                backgroundColor: `color-mix(in srgb, ${PURPLE} 12%, transparent)`,
+                background:
+                  "linear-gradient(135deg, var(--color-brand-accentCleaned), var(--color-brand-accentFormatting))",
               }}
             >
-              {section.settings.length}
-            </span>
-            <ChevronRight
-              size={14}
-              className="text-brand-tagLabel shrink-0 opacity-60 group-hover:opacity-100 transition-opacity"
-            />
-          </div>
-        </button>
-      ))}
+              <div className="rounded-[calc(0.75rem-0.7px)] bg-brand-cardBg p-4">
+                <h3 className="text-sm font-semibold" style={{ color: PURPLE }}>
+                  {section.title.includes(": ") ? (
+                    <>
+                      {section.title.split(": ")[0]}:{" "}
+                      <span className="text-brand-textSecondary">{section.title.split(": ")[1]}</span>
+                    </>
+                  ) : (
+                    section.title
+                  )}
+                </h3>
+                <p className="text-xs text-brand-textSecondary mt-0.5">
+                  {section.subtitle}
+                </p>
+              </div>
+            </div>
+          );
+        }
+
+        return (
+          <button
+            key={section.id}
+            onClick={() => onDrill(section.id)}
+            className="w-full text-left rounded-xl p-[0.7px] block"
+            style={{
+              background:
+                "linear-gradient(135deg, var(--color-brand-accentCleaned), var(--color-brand-accentFormatting))",
+            }}
+          >
+            <div className="rounded-[calc(0.75rem-0.7px)] bg-brand-cardBg p-4 flex items-center gap-3 group">
+              <div className="flex-1 min-w-0">
+                <h3 className="text-sm font-semibold" style={{ color: PURPLE }}>
+                  {section.title}
+                </h3>
+                <p className="text-xs text-brand-textSecondary mt-0.5">
+                  {section.subtitle}
+                </p>
+              </div>
+              <span
+                className="text-xs font-bold px-1.5 py-0.5 rounded shrink-0"
+                style={{
+                  fontSize: 11,
+                  color: PURPLE,
+                  backgroundColor: `color-mix(in srgb, ${PURPLE} 12%, transparent)`,
+                }}
+              >
+                {section.settings.length}
+              </span>
+              <ChevronRight
+                size={14}
+                className="text-brand-tagLabel shrink-0 opacity-60 group-hover:opacity-100 transition-opacity"
+              />
+            </div>
+          </button>
+        );
+      })}
     </div>
   );
 }
@@ -140,13 +171,13 @@ function SettingsDrill({
 
       {/* Settings card */}
       <div
-        className="rounded-xl p-[1px]"
+        className="rounded-xl p-[0.7px]"
         style={{
           background:
             "linear-gradient(135deg, var(--color-brand-accentCleaned), var(--color-brand-accentFormatting))",
         }}
       >
-        <div className="rounded-[calc(0.75rem-1px)] bg-brand-cardBg overflow-hidden">
+        <div className="rounded-[calc(0.75rem-0.7px)] bg-brand-cardBg overflow-hidden">
           {section.settings.map((setting, i) => (
             <div
               key={setting.label}
@@ -192,8 +223,8 @@ function PickerRow({ setting }: { setting: SettingRow }) {
                   : "var(--color-brand-textSecondary)",
                 fontWeight: isSelected ? 500 : 400,
                 border: isSelected
-                  ? `1.5px solid ${PURPLE}`
-                  : "1.5px solid transparent",
+                  ? `1px solid ${PURPLE}`
+                  : "0.5px solid var(--color-brand-border)",
                 backgroundColor: isSelected
                   ? "var(--color-brand-cardBg)"
                   : "transparent",

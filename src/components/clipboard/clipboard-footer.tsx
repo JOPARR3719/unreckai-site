@@ -4,7 +4,7 @@ import { Lock } from "lucide-react";
 
 export function ClipboardFooter() {
   return (
-    <div className="flex items-center justify-center gap-1.5 px-4 pb-4 pt-2">
+    <div className="flex items-center justify-center gap-1.5 px-4 pb-3 pt-1">
       <Lock size={10} className="text-brand-textTertiary" />
       <span
         className="text-[10px] font-medium"

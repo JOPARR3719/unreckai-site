@@ -33,10 +33,11 @@ export interface SettingRow {
 }
 
 export interface SettingsSection {
-  id: "cleaning" | "behavior";
+  id: "account" | "cleaning" | "behavior" | "changelog";
   title: string;
   subtitle: string;
   settings: SettingRow[];
+  standalone?: boolean; // no drill-in, just a static card
 }
 
 // --- Demo data ---
@@ -165,5 +166,19 @@ export const SETTINGS_SECTIONS: SettingsSection[] = [
         value: "top-right",
       },
     ],
+  },
+  {
+    id: "account",
+    title: "Account: Free",
+    subtitle: "Upgrade to Pro for format translation",
+    settings: [],
+    standalone: true,
+  },
+  {
+    id: "changelog",
+    title: "Changelog",
+    subtitle: "v0.9.0 \u2014 Feb 23, 2026",
+    settings: [],
+    standalone: true,
   },
 ];

@@ -87,7 +87,7 @@ function Overview({ onDrill }: { onDrill: (id: string) => void }) {
     <div className="space-y-4 px-4 pb-3">
       {/* Stats card */}
       <div
-        className="rounded-xl p-[1px]"
+        className="rounded-xl p-[0.7px]"
         style={{
           background:
             "linear-gradient(135deg, var(--color-brand-accentCleaned), var(--color-brand-accentFormatting))",
@@ -120,7 +120,7 @@ function Overview({ onDrill }: { onDrill: (id: string) => void }) {
 
       {/* Last paste card */}
       <div
-        className="rounded-xl p-[1px]"
+        className="rounded-xl p-[0.7px]"
         style={{
           background:
             "linear-gradient(135deg, var(--color-brand-accentCleaned), var(--color-brand-accentFormatting))",
@@ -164,7 +164,6 @@ function Overview({ onDrill }: { onDrill: (id: string) => void }) {
                       className="w-[3px] h-[18px] rounded-full"
                       style={{
                         backgroundColor: color,
-                        boxShadow: `0 0 6px ${color}`,
                       }}
                     />
                     <span className="text-sm text-brand-textPrimary font-medium">

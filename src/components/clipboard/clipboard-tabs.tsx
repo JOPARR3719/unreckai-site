@@ -54,7 +54,7 @@ export function ClipboardTabs({ activeTab, onTabChange }: ClipboardTabsProps) {
 
       {/* Gradient underline — transitions between tabs */}
       <div
-        className="absolute bottom-0 h-[2px] rounded-full transition-all duration-300 ease-in-out"
+        className="absolute bottom-0 h-px rounded-full transition-all duration-300 ease-in-out"
         style={{
           background: "linear-gradient(90deg, var(--color-brand-accentCleaned), var(--color-brand-accentFormatting))",
           // Each tab is roughly equal width; position based on index

@@ -91,12 +91,18 @@ export function InteractiveClipboard() {
 
   return (
     <div
-      className="w-[360px] max-w-full rounded-2xl overflow-hidden"
+      className="w-[360px] max-w-full rounded-2xl p-[0.7px]"
+      style={{
+        background:
+          "linear-gradient(135deg, rgba(59, 232, 176, 0.3), rgba(155, 143, 255, 0.3))",
+      }}
+    >
+    <div
+      className="rounded-[calc(1rem-0.7px)] overflow-hidden"
       style={{
         backgroundColor: "var(--color-brand-panelBg)",
         boxShadow:
           "0 25px 60px -12px rgba(0, 0, 0, 0.6), 0 0 40px rgba(59, 232, 176, 0.04), 0 0 80px rgba(155, 143, 255, 0.03)",
-        border: "1px solid var(--color-brand-borderSolid)",
       }}
     >
       <ClipboardHeader />
@@ -137,10 +143,8 @@ export function InteractiveClipboard() {
         )}
       </div>
 
-      {/* Thin divider */}
-      <div className="h-px bg-brand-borderSolid mx-4 opacity-40" />
-
       <ClipboardFooter />
+    </div>
     </div>
   );
 }
