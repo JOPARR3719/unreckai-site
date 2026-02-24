@@ -9,6 +9,9 @@ import { TOAST_DATA, type CategoryData } from "./toast-data";
 
 type ToastView = "categories" | "drill";
 
+const GLOW_GRADIENT =
+  "linear-gradient(135deg, var(--color-brand-accentCleaned), var(--color-brand-accentFormatting))";
+
 export function InteractiveToast() {
   const [view, setView] = useState<ToastView>("categories");
   const [activeCategory, setActiveCategory] = useState<CategoryData | null>(
@@ -47,7 +50,6 @@ export function InteractiveToast() {
   const handleToggleDetails = useCallback(() => {
     setDetailsOpen((prev) => !prev);
     if (detailsOpen) {
-      // Collapsing — reset drill state
       setView("categories");
       setActiveCategory(null);
       setCompareType(null);
@@ -71,72 +73,86 @@ export function InteractiveToast() {
           maxHeight: 560,
         }}
       >
-        {/* Header — always visible */}
-        <ToastHeader
-          issueCount={TOAST_DATA.issueCount}
-          detailsOpen={detailsOpen}
-          onToggleDetails={handleToggleDetails}
-        />
+        {/* Header card with gradient border */}
+        <div
+          className="mx-2.5 mt-1.5 rounded-xl p-[0.7px]"
+          style={{ background: GLOW_GRADIENT }}
+        >
+          <div className="rounded-[calc(0.75rem-1px)] bg-brand-cardBg">
+            <ToastHeader
+              issueCount={TOAST_DATA.issueCount}
+              detailsOpen={detailsOpen}
+              onToggleDetails={handleToggleDetails}
+            />
+          </div>
+        </div>
 
-        {/* Scrollable content area with slide transitions */}
+        {/* Categories / Drill card with gradient border */}
         {detailsOpen && (
-          <div className="flex-1 overflow-y-auto overflow-x-hidden slack-scroll relative">
-            {/* Categories view */}
-            <div
-              className="transition-all duration-300 ease-in-out"
-              style={{
-                transform:
-                  view === "categories"
-                    ? "translateX(0)"
-                    : "translateX(-100%)",
-                opacity: view === "categories" ? 1 : 0,
-                position: view === "categories" ? "relative" : "absolute",
-                top: 0,
-                left: 0,
-                width: "100%",
-                pointerEvents: view === "categories" ? "auto" : "none",
-              }}
-            >
-              <ToastCategories
-                categories={TOAST_DATA.categories}
-                onDrill={handleDrill}
-              />
-            </div>
+          <div
+            className="mx-2.5 mt-3 rounded-xl p-[0.7px]"
+            style={{ background: GLOW_GRADIENT }}
+          >
+            <div className="rounded-[calc(0.75rem-1px)] bg-brand-cardBg overflow-hidden">
+              <div className="flex-1 overflow-y-auto overflow-x-hidden slack-scroll relative">
+                {/* Categories view */}
+                <div
+                  className="transition-all duration-300 ease-in-out"
+                  style={{
+                    transform:
+                      view === "categories"
+                        ? "translateX(0)"
+                        : "translateX(-100%)",
+                    opacity: view === "categories" ? 1 : 0,
+                    position:
+                      view === "categories" ? "relative" : "absolute",
+                    top: 0,
+                    left: 0,
+                    width: "100%",
+                    pointerEvents:
+                      view === "categories" ? "auto" : "none",
+                  }}
+                >
+                  <ToastCategories
+                    categories={TOAST_DATA.categories}
+                    onDrill={handleDrill}
+                  />
+                </div>
 
-            {/* Drill view */}
-            <div
-              className="transition-all duration-300 ease-in-out"
-              style={{
-                transform:
-                  view === "drill"
-                    ? "translateX(0)"
-                    : "translateX(100%)",
-                opacity: view === "drill" ? 1 : 0,
-                position: view === "drill" ? "relative" : "absolute",
-                top: 0,
-                left: 0,
-                width: "100%",
-                pointerEvents: view === "drill" ? "auto" : "none",
-              }}
-            >
-              {activeCategory && (
-                <ToastDrill
-                  category={activeCategory}
-                  compareType={compareType}
-                  previewIndex={previewIndex}
-                  onBack={handleBack}
-                  onToggleCompare={handleToggleCompare}
-                  onSetPreviewIndex={setPreviewIndex}
-                />
-              )}
+                {/* Drill view */}
+                <div
+                  className="transition-all duration-300 ease-in-out"
+                  style={{
+                    transform:
+                      view === "drill"
+                        ? "translateX(0)"
+                        : "translateX(100%)",
+                    opacity: view === "drill" ? 1 : 0,
+                    position:
+                      view === "drill" ? "relative" : "absolute",
+                    top: 0,
+                    left: 0,
+                    width: "100%",
+                    pointerEvents: view === "drill" ? "auto" : "none",
+                  }}
+                >
+                  {activeCategory && (
+                    <ToastDrill
+                      category={activeCategory}
+                      compareType={compareType}
+                      previewIndex={previewIndex}
+                      onBack={handleBack}
+                      onToggleCompare={handleToggleCompare}
+                      onSetPreviewIndex={setPreviewIndex}
+                    />
+                  )}
+                </div>
+              </div>
             </div>
           </div>
         )}
 
-        {/* Divider */}
-        <div className="h-px bg-brand-borderSolid mx-3 opacity-30" />
-
-        {/* Footer — always visible */}
+        {/* Footer: source + undo + privacy (on bgSurface, no card) */}
         <ToastFooter sourceApp={TOAST_DATA.sourceApp} />
       </div>
     </div>

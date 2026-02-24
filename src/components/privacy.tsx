@@ -81,7 +81,7 @@ export function Privacy() {
                 {privacyFeatures.map((feature, i) => (
                   <Reveal key={feature.title} delay={i * 80}>
                   <div
-                    className={`flex items-start gap-4 p-5 rounded-xl border ${
+                    className={`flex items-start gap-4 p-5 rounded-xl border transition-transform duration-300 hover:-translate-y-2 hover:scale-[1.02] ${
                       feature.enabled
                         ? "bg-brand-itemBg border-brand-borderSolid"
                         : "bg-brand-cardBg border-brand-borderSolid"

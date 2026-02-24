@@ -15,9 +15,18 @@ export function ToastHeader({
   onToggleDetails,
 }: ToastHeaderProps) {
   return (
-    <div className="px-4 pt-3.5 pb-0">
+    <div>
+      {/* Top accent bar */}
+      <div
+        className="h-[2px] rounded-t-xl opacity-55"
+        style={{
+          background:
+            "linear-gradient(90deg, var(--color-brand-accentCleaned), var(--color-brand-accentFormatting))",
+        }}
+      />
+
       {/* Row 1: Logo + title + badge + undo + close */}
-      <div className="flex items-center gap-1.5">
+      <div className="flex items-center gap-1.5 px-4 pt-3.5">
         <ScatterSymbol size={20} className="text-brand-textPrimary shrink-0" />
         <span className="font-semibold text-sm text-brand-textPrimary">
           UnreckAI
@@ -60,7 +69,7 @@ export function ToastHeader({
       </div>
 
       {/* Progress bar */}
-      <div className="mt-2.5 h-[2px] rounded-full bg-brand-borderSolid overflow-hidden">
+      <div className="mt-2.5 mx-4 h-[2px] rounded-full bg-brand-borderSolid overflow-hidden">
         <div
           className="h-full rounded-full bg-brand-accentCleaned"
           style={{ width: "70%" }}
@@ -68,7 +77,7 @@ export function ToastHeader({
       </div>
 
       {/* Row 2: Timer + Details */}
-      <div className="flex items-center mt-3 pb-2.5">
+      <div className="flex items-center mt-3 px-4 pb-3">
         <span className="text-xs text-brand-textSecondary">
           timer paused while viewing
         </span>
@@ -78,8 +87,10 @@ export function ToastHeader({
           className="text-xs font-normal text-brand-tagLabel rounded-md px-3 py-1"
           style={{
             width: 92,
-            backgroundColor: "var(--color-brand-detailsBtnBg)",
-            border: "1px solid var(--color-brand-detailsBtnBorder)",
+            backgroundImage: `linear-gradient(var(--color-brand-cardBg), var(--color-brand-cardBg)), linear-gradient(135deg, var(--color-brand-accentCleaned), var(--color-brand-accentFormatting))`,
+            backgroundOrigin: "border-box",
+            backgroundClip: "padding-box, border-box",
+            border: "1px solid transparent",
           }}
         >
           Details {detailsOpen ? "\u2303" : "\u2304"}

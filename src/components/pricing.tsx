@@ -167,7 +167,7 @@ export function Pricing() {
 
                   {/* CTA button */}
                   <button
-                    className={`w-full py-3 rounded-xl font-semibold text-sm transition-all duration-200 flex items-center justify-center gap-2 hover:-translate-y-px active:translate-y-px ${
+                    className={`w-full py-3 rounded-xl font-semibold text-sm transition-all duration-300 flex items-center justify-center gap-2 hover:-translate-y-1 hover:scale-[1.02] active:translate-y-0 active:scale-100 ${
                       tier.ctaStyle === "primary"
                         ? "bg-brand-cardBg text-brand-textPrimary glow-border-active hover:text-white hover:shadow-[0_0_16px_rgba(59,232,176,0.2)]"
                         : "border border-brand-borderSolid text-brand-textPrimary hover:border-brand-borderLight hover:shadow-[0_0_12px_rgba(255,255,255,0.05)]"
@@ -209,7 +209,7 @@ export function Pricing() {
                 <Reveal key={tier.name} delay={i * 100}>
                   {tier.popular ? (
                     <div
-                      className="rounded-2xl p-[1.5px]"
+                      className="rounded-2xl p-[1.5px] transition-transform duration-300 hover:-translate-y-2"
                       style={{
                         background: "linear-gradient(135deg, rgba(59, 232, 176, 0.5), rgba(155, 143, 255, 0.5))",
                         transform: "scale(1.04)",
@@ -221,7 +221,7 @@ export function Pricing() {
                       </div>
                     </div>
                   ) : (
-                    <div className="relative rounded-2xl border border-brand-borderSolid bg-brand-cardBg p-8 space-y-6 h-full">
+                    <div className="relative rounded-2xl border border-brand-borderSolid bg-brand-cardBg p-8 space-y-6 h-full transition-transform duration-300 hover:-translate-y-2 hover:scale-[1.02]">
                       {cardContent}
                     </div>
                   )}

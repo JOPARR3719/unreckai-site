@@ -81,7 +81,7 @@ export function ClipboardViewer() {
                       return (
                         <div
                           key={cat.title}
-                          className="bg-brand-cardBg border border-brand-border rounded-[1.5rem] p-6 flex flex-col gap-4"
+                          className="bg-brand-cardBg border border-brand-border rounded-[1.5rem] p-6 flex flex-col gap-4 transition-transform duration-300 hover:-translate-y-2 hover:scale-[1.02]"
                         >
                           {/* Icon + Title */}
                           <div className="flex items-center gap-3">

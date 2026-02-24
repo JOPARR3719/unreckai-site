@@ -65,7 +65,7 @@ export function Personas() {
                 {personas.map((persona, i) => (
                   <Reveal key={persona.title} delay={i * 100}>
                   <div
-                    className="bg-brand-itemBg rounded-xl border border-brand-borderSolid p-6 space-y-4 h-full"
+                    className="bg-brand-itemBg rounded-xl border border-brand-borderSolid p-6 space-y-4 h-full transition-transform duration-300 hover:-translate-y-2 hover:scale-[1.02]"
                   >
                     <div className="p-2.5 rounded-lg bg-brand-cardBg w-fit">
                       <persona.icon

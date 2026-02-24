@@ -28,14 +28,14 @@ export function Hero() {
             <div className="flex flex-wrap gap-3 sm:gap-4 justify-center lg:justify-start">
               <a
                 href="#pricing"
-                className="flex items-center gap-2.5 bg-brand-accentCleaned text-brand-bg font-semibold px-5 sm:px-6 py-3 rounded-xl hover:opacity-90 transition-opacity text-sm sm:text-[15px]"
+                className="flex items-center gap-2.5 bg-brand-accentCleaned text-brand-bg font-semibold px-5 sm:px-6 py-3 rounded-xl transition-all duration-300 hover:brightness-110 hover:shadow-[0_0_20px_rgba(59,232,176,0.3)] hover:-translate-y-1 active:translate-y-0 text-sm sm:text-[15px]"
               >
                 <Download size={18} />
                 Download for macOS
               </a>
               <a
                 href="#visual-proof"
-                className="flex items-center gap-2.5 border border-brand-borderSolid text-brand-textPrimary font-medium px-5 sm:px-6 py-3 rounded-xl hover:border-brand-borderLight transition-colors text-sm sm:text-[15px]"
+                className="flex items-center gap-2.5 border border-brand-borderSolid text-brand-textPrimary font-medium px-5 sm:px-6 py-3 rounded-xl transition-all duration-300 hover:border-brand-borderLight hover:-translate-y-1 hover:shadow-[0_0_16px_rgba(255,255,255,0.05)] active:translate-y-0 text-sm sm:text-[15px]"
               >
                 <Play size={16} />
                 See how it works

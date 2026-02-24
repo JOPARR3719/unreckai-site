@@ -49,7 +49,7 @@ export function InvisibleWorkflow() {
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                 {features.map((feature, i) => (
                   <Reveal key={feature.title} delay={i * 100}>
-                    <div className="bg-brand-itemBg rounded-xl border border-brand-borderSolid p-6 space-y-4 h-full">
+                    <div className="bg-brand-itemBg rounded-xl border border-brand-borderSolid p-6 space-y-4 h-full transition-transform duration-300 hover:-translate-y-2 hover:scale-[1.02]">
                       <feature.icon className={`${feature.color}`} size={24} />
                       <h3 className="text-brand-textPrimary font-medium text-[15px]">
                         {feature.title}

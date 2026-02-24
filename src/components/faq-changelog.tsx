@@ -60,7 +60,7 @@ function FaqAccordion() {
             return (
               <div
                 key={category.title}
-                className="bg-brand-cardBg border border-brand-border rounded-2xl overflow-hidden"
+                className="bg-brand-cardBg border border-brand-border rounded-2xl overflow-hidden transition-transform duration-300 hover:-translate-y-1.5 hover:scale-[1.01]"
               >
                 {/* Category header (clickable) */}
                 <button
@@ -176,7 +176,7 @@ function ChangelogTimeline() {
               const isLatest = idx === 0;
 
               return (
-                <div key={entry.version} className="relative pl-8">
+                <div key={entry.version} className="relative pl-8 transition-transform duration-300 hover:-translate-y-1.5 hover:scale-[1.01]">
                   {/* Timeline line + dot */}
                   <div className="absolute left-0 top-0 bottom-0">
                     {/* Dot */}
