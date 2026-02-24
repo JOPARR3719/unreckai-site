@@ -42,7 +42,7 @@ export function Hero() {
               </a>
             </div>
 
-            <p className="text-xs sm:text-sm text-brand-textTertiary">
+            <p className="text-xs sm:text-sm text-brand-textSecondary">
               Private &amp; local <span className="text-brand-accentCleaned text-base mx-1">&bull;</span> Never leaves your Mac <span className="text-brand-accentFormatting text-base mx-1">&bull;</span> macOS
             </p>
           </div>

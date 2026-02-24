@@ -75,7 +75,7 @@ export function InteractiveToast() {
       >
         {/* Header card with gradient border */}
         <div
-          className="mx-2.5 mt-1.5 rounded-xl p-[0.7px]"
+          className="mx-2.5 mt-2.5 rounded-xl p-[0.7px]"
           style={{ background: GLOW_GRADIENT }}
         >
           <div className="rounded-[calc(0.75rem-1px)] bg-brand-cardBg">

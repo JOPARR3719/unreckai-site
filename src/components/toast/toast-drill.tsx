@@ -10,6 +10,9 @@ const ACCENT_CSS: Record<string, string> = {
   "brand-accentDocument": "var(--color-brand-accentDocument)",
 };
 
+const GLOW_GRADIENT =
+  "linear-gradient(135deg, var(--color-brand-accentCleaned), var(--color-brand-accentFormatting))";
+
 interface ToastDrillProps {
   category: CategoryData;
   compareType: string | null;
@@ -29,30 +32,53 @@ export function ToastDrill({
 }: ToastDrillProps) {
   const accent = ACCENT_CSS[category.accentColor];
 
+  const totalCount = category.issues.reduce((sum, i) => sum + i.count, 0);
+
   return (
-    <div className="px-3 py-1">
-      {/* Back button */}
-      <button
-        onClick={onBack}
-        className="flex items-center gap-1.5 mb-2 px-2 py-1.5 rounded-md transition-colors hover:bg-white/[0.03]"
-        style={{
-          border: "1px solid transparent",
-          backgroundImage: `linear-gradient(var(--color-brand-bgSurface), var(--color-brand-bgSurface)), linear-gradient(135deg, var(--color-brand-accentCleaned), var(--color-brand-accentFormatting))`,
-          backgroundOrigin: "border-box",
-          backgroundClip: "padding-box, border-box",
-        }}
+    <div>
+      {/* Drill header: back chevron + category name + count */}
+      <div
+        className="flex items-center gap-2 px-3 py-2.5"
+        style={{ backgroundColor: "var(--color-brand-drillHeaderBg, rgba(0,0,0,0.15))" }}
       >
-        <ChevronLeft size={14} className="text-brand-tagLabel" />
+        <button
+          onClick={onBack}
+          className="shrink-0 flex items-center justify-center rounded-md transition-colors hover:bg-white/[0.05]"
+          style={{
+            width: 22,
+            height: 22,
+            backgroundColor: "var(--color-brand-cardBg)",
+            border: "1px solid transparent",
+            backgroundImage: `linear-gradient(var(--color-brand-cardBg), var(--color-brand-cardBg)), ${GLOW_GRADIENT}`,
+            backgroundOrigin: "border-box",
+            backgroundClip: "padding-box, border-box",
+          }}
+        >
+          <ChevronLeft size={10} className="text-brand-textSecondary" />
+        </button>
+
         <span
-          className="text-xs font-semibold"
-          style={{ color: accent }}
+          className="font-semibold"
+          style={{ fontSize: 12.5, color: accent }}
         >
           {category.name}
         </span>
-      </button>
+
+        <div className="flex-1" />
+
+        <span
+          className="font-bold"
+          style={{ fontSize: 13, color: accent }}
+        >
+          {totalCount}
+        </span>
+      </div>
+
+      {/* Divider */}
+      <div className="h-px bg-white/[0.10]" />
 
       {/* Issue cards */}
-      <div className="space-y-2">
+      <div className="p-2 space-y-1.5">
         {category.issues.map((issue) => (
           <IssueCard
             key={issue.type}
@@ -101,8 +127,9 @@ function IssueCard({
 
   return (
     <div
-      className="rounded-lg px-3 py-2.5 transition-colors"
+      className="rounded-lg transition-colors"
       style={{
+        padding: "9px 11px",
         backgroundColor: "var(--color-brand-fixCardBg)",
         border: isComparing
           ? `1px solid ${accent}`
@@ -111,13 +138,16 @@ function IssueCard({
     >
       {/* Card header: label + count + compare */}
       <div className="flex items-center gap-2">
-        <span className="text-xs text-brand-textSecondary flex-1">
+        <span
+          className="text-brand-textSecondary flex-1"
+          style={{ fontSize: 12 }}
+        >
           {issue.label}
         </span>
 
         {issue.count > 1 && (
           <span
-            className="text-xs font-bold px-1.5 py-0.5 rounded shrink-0"
+            className="font-bold px-1.5 py-0.5 rounded shrink-0"
             style={{
               fontSize: 11,
               color: accent,
@@ -130,16 +160,23 @@ function IssueCard({
 
         <button
           onClick={onToggleCompare}
-          className="shrink-0 px-2 py-0.5 rounded transition-colors"
+          className="shrink-0 rounded transition-colors"
           style={{
             fontSize: 10,
             fontWeight: 500,
-            color: isComparing ? accent : "var(--color-brand-tagLabel)",
+            padding: "0 9px",
+            height: 22,
+            display: "flex",
+            alignItems: "center",
+            color: isComparing ? accent : "var(--color-brand-textSecondary)",
             border: isComparing
               ? `1px solid ${accent}`
               : undefined,
+            backgroundColor: isComparing
+              ? `color-mix(in srgb, ${accent} 10%, transparent)`
+              : "var(--color-brand-cardBg)",
             backgroundImage: !isComparing
-              ? `linear-gradient(var(--color-brand-fixCardBg), var(--color-brand-fixCardBg)), linear-gradient(135deg, var(--color-brand-accentCleaned), var(--color-brand-accentFormatting))`
+              ? `linear-gradient(var(--color-brand-cardBg), var(--color-brand-cardBg)), ${GLOW_GRADIENT}`
               : undefined,
             backgroundOrigin: !isComparing ? "border-box" : undefined,
             backgroundClip: !isComparing
@@ -156,7 +193,7 @@ function IssueCard({
 
       {/* Compare content (shown when active) */}
       {isComparing && (
-        <div className="mt-2.5">
+        <div className="mt-2">
           {hasPreviews && currentPreview ? (
             <>
               <PreviewBox
@@ -167,7 +204,7 @@ function IssueCard({
 
               {/* Paginator */}
               {totalPreviews > 1 && (
-                <div className="flex items-center justify-center gap-2 mt-2">
+                <div className="flex items-center justify-center gap-3 mt-1.5">
                   <button
                     onClick={() =>
                       onSetPreviewIndex(Math.max(0, previewIndex - 1))
@@ -176,7 +213,7 @@ function IssueCard({
                     className="p-0.5 rounded transition-colors disabled:opacity-30"
                   >
                     <ChevronLeft
-                      size={12}
+                      size={10}
                       className="text-brand-tagLabel"
                     />
                   </button>
@@ -196,7 +233,7 @@ function IssueCard({
                     className="p-0.5 rounded transition-colors disabled:opacity-30"
                   >
                     <ChevronRight
-                      size={12}
+                      size={10}
                       className="text-brand-tagLabel"
                     />
                   </button>
@@ -205,7 +242,13 @@ function IssueCard({
 
               {/* Em dash replacement buttons */}
               {isEmDash && (
-                <div className="flex gap-1.5 mt-2">
+                <div className="flex items-center gap-1.5 mt-1.5">
+                  <span
+                    className="text-brand-textTertiary"
+                    style={{ fontSize: 10 }}
+                  >
+                    Or replace:
+                  </span>
                   {[
                     { label: "- hyphen", value: "-" },
                     { label: "; semi", value: ";" },
@@ -213,11 +256,18 @@ function IssueCard({
                   ].map((opt) => (
                     <button
                       key={opt.value}
-                      className="text-brand-tagLabel px-2 py-0.5 rounded transition-colors hover:bg-white/[0.05]"
+                      className="text-brand-textSecondary rounded transition-colors hover:bg-white/[0.05]"
                       style={{
                         fontSize: 10,
+                        fontWeight: 500,
+                        padding: "0 8px",
+                        height: 22,
+                        display: "flex",
+                        alignItems: "center",
+                        backgroundColor: "var(--color-brand-cardBg)",
                         border:
-                          "1px solid var(--color-brand-borderSolid)",
+                          "1px solid var(--color-brand-accentFormatting)",
+                        borderWidth: 0.5,
                       }}
                     >
                       {opt.label}
@@ -227,8 +277,11 @@ function IssueCard({
               )}
             </>
           ) : (
-            <p className="text-xs text-brand-textTertiary italic">
-              Applied automatically
+            <p
+              className="text-brand-textTertiary"
+              style={{ fontSize: 11 }}
+            >
+              {issue.fixed === false ? "AI pattern detected" : "Applied automatically"}
             </p>
           )}
         </div>
@@ -246,8 +299,10 @@ interface PreviewBoxProps {
 }
 
 function PreviewBox({ preview, accent }: PreviewBoxProps) {
+  const isRemoved = preview.after === "";
+
   return (
-    <div className="space-y-1.5">
+    <div className="space-y-1">
       {/* Before */}
       <div>
         <span
@@ -261,10 +316,11 @@ function PreviewBox({ preview, accent }: PreviewBoxProps) {
           Before
         </span>
         <div
-          className="mt-1 px-2.5 py-1.5 rounded-md text-xs text-brand-textSecondary"
+          className="mt-0.5 px-2.5 py-1.5 rounded-md text-brand-textSecondary"
           style={{
+            fontSize: 12,
             backgroundColor: "var(--color-brand-bgSurface)",
-            backgroundImage: `linear-gradient(var(--color-brand-bgSurface), var(--color-brand-bgSurface)), linear-gradient(135deg, var(--color-brand-accentCleaned), var(--color-brand-accentFormatting))`,
+            backgroundImage: `linear-gradient(var(--color-brand-bgSurface), var(--color-brand-bgSurface)), ${GLOW_GRADIENT}`,
             backgroundOrigin: "border-box",
             backgroundClip: "padding-box, border-box",
             border: "1px solid transparent",
@@ -286,31 +342,32 @@ function PreviewBox({ preview, accent }: PreviewBoxProps) {
           style={{
             fontSize: 9,
             letterSpacing: "0.05em",
-            color: accent,
+            color: "var(--color-brand-accentCleaned)",
           }}
         >
           After
         </span>
         <div
-          className="mt-1 px-2.5 py-1.5 rounded-md text-xs text-brand-textSecondary"
+          className="mt-0.5 px-2.5 py-1.5 rounded-md text-brand-textSecondary"
           style={{
+            fontSize: 12,
             backgroundColor: "var(--color-brand-bgSurface)",
-            backgroundImage: `linear-gradient(var(--color-brand-bgSurface), var(--color-brand-bgSurface)), linear-gradient(135deg, var(--color-brand-accentCleaned), var(--color-brand-accentFormatting))`,
+            backgroundImage: `linear-gradient(var(--color-brand-bgSurface), var(--color-brand-bgSurface)), ${GLOW_GRADIENT}`,
             backgroundOrigin: "border-box",
             backgroundClip: "padding-box, border-box",
             border: "1px solid transparent",
           }}
         >
-          {preview.after === "" ? (
-            <span className="text-brand-textTertiary italic">
-              (removed)
+          {isRemoved ? (
+            <span className="text-brand-accentCleaned">
+              Removed entirely
             </span>
           ) : (
             <DiffText
               before={preview.before}
               after={preview.after}
               type="after"
-              accent={accent}
+              accent="var(--color-brand-accentCleaned)"
             />
           )}
         </div>
@@ -368,8 +425,6 @@ function computeDiffSegments(
   source: string,
   target: string
 ): DiffSegment[] {
-  // Use simple LCS-based approach to highlight differences
-  // For the demo, we use a pragmatic approach: find common prefix/suffix, mark middle as changed
   if (source === target) {
     return [{ text: source, changed: false }];
   }

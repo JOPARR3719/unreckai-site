@@ -16,15 +16,6 @@ export function ToastHeader({
 }: ToastHeaderProps) {
   return (
     <div>
-      {/* Top accent bar */}
-      <div
-        className="h-[2px] rounded-t-xl opacity-55"
-        style={{
-          background:
-            "linear-gradient(90deg, var(--color-brand-accentCleaned), var(--color-brand-accentFormatting))",
-        }}
-      />
-
       {/* Row 1: Logo + title + badge + undo + close */}
       <div className="flex items-center gap-1.5 px-4 pt-3.5">
         <ScatterSymbol size={20} className="text-brand-textPrimary shrink-0" />
@@ -71,8 +62,11 @@ export function ToastHeader({
       {/* Progress bar */}
       <div className="mt-2.5 mx-4 h-[2px] rounded-full bg-brand-borderSolid overflow-hidden">
         <div
-          className="h-full rounded-full bg-brand-accentCleaned"
-          style={{ width: "70%" }}
+          className="h-full rounded-full"
+          style={{
+            width: "70%",
+            background: "linear-gradient(to right, var(--color-brand-accentCleaned), var(--color-brand-accentFormatting))",
+          }}
         />
       </div>
 

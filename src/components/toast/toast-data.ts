@@ -10,6 +10,7 @@ export interface IssueGroupData {
   type: string;
   label: string;
   count: number;
+  fixed?: boolean;
   previews?: PreviewData[];
 }
 

@@ -1,3 +1,7 @@
+"use client";
+
+import { useState, useCallback } from "react";
+import { SplashIntro } from "@/components/splash-intro";
 import { Nav } from "@/components/nav";
 import { Hero } from "@/components/hero";
 import { Marquee } from "@/components/marquee";
@@ -12,11 +16,14 @@ import { Footer } from "@/components/footer";
 import { Reveal } from "@/components/reveal";
 
 export default function Home() {
+  const [splashDone, setSplashDone] = useState(false);
+  const handleSplashComplete = useCallback(() => setSplashDone(true), []);
+
   return (
     <>
-      <Nav />
+      {!splashDone && <SplashIntro onComplete={handleSplashComplete} />}
+      {splashDone && <Nav />}
       <main className="bg-brand-bg">
-        {/* Hero: no reveal — visible immediately */}
         <Hero />
 
         <Reveal>
