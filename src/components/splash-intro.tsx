@@ -71,7 +71,11 @@ function ensureKeyframes() {
 }
 @keyframes splash-reveal {
   from { opacity: 1; }
-  to   { opacity: 0; }
+  to   { opacity: 0; pointer-events: none; }
+}
+@keyframes splash-site-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }`;
   document.head.appendChild(style);
 }
@@ -157,20 +161,14 @@ export function SplashIntro({ onComplete }: { onComplete: () => void }) {
   return (
     <div
       className="fixed inset-0 z-60 flex items-center justify-center overflow-hidden"
-      style={{ backgroundColor: "#0a0d10" }}
+      style={{
+        backgroundColor: "#0a0d10",
+        animation: phase === "reveal"
+          ? "splash-reveal 900ms ease-out forwards"
+          : undefined,
+      }}
+      onAnimationEnd={phase === "reveal" ? handleRevealEnd : undefined}
     >
-      {/* Reveal fade-out */}
-      {phase === "reveal" && (
-        <div
-          className="absolute inset-0"
-          style={{
-            animation: "splash-reveal 900ms ease-out forwards",
-            backgroundColor: "#0a0d10",
-            zIndex: 1,
-          }}
-          onAnimationEnd={handleRevealEnd}
-        />
-      )}
 
       {/* "Welcome to" — absolutely positioned above center, out of layout flow */}
       {showWelcome && (

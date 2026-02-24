@@ -21,44 +21,51 @@ export default function Home() {
 
   return (
     <>
-      {!splashDone && <SplashIntro onComplete={handleSplashComplete} />}
-      {splashDone && <Nav />}
-      <main className="bg-brand-bg">
-        <Hero />
+      <SplashIntro onComplete={handleSplashComplete} />
+      <div
+        style={{
+          opacity: splashDone ? 1 : 0,
+          animation: splashDone ? "splash-site-in 800ms ease-out forwards" : undefined,
+        }}
+      >
+        <Nav />
+        <main className="bg-brand-bg">
+          <Hero />
 
+          <Reveal>
+            <Marquee />
+          </Reveal>
+
+          <Reveal>
+            <InvisibleWorkflow />
+          </Reveal>
+
+          <Reveal>
+            <Privacy />
+          </Reveal>
+
+          <Reveal>
+            <VisualProof />
+          </Reveal>
+
+          <Reveal>
+            <Personas />
+          </Reveal>
+
+          <Reveal>
+            <ClipboardViewer />
+          </Reveal>
+
+          <Reveal>
+            <Pricing />
+          </Reveal>
+
+          <FaqChangelog />
+        </main>
         <Reveal>
-          <Marquee />
+          <Footer />
         </Reveal>
-
-        <Reveal>
-          <InvisibleWorkflow />
-        </Reveal>
-
-        <Reveal>
-          <Privacy />
-        </Reveal>
-
-        <Reveal>
-          <VisualProof />
-        </Reveal>
-
-        <Reveal>
-          <Personas />
-        </Reveal>
-
-        <Reveal>
-          <ClipboardViewer />
-        </Reveal>
-
-        <Reveal>
-          <Pricing />
-        </Reveal>
-
-        <FaqChangelog />
-      </main>
-      <Reveal>
-        <Footer />
-      </Reveal>
+      </div>
     </>
   );
 }
