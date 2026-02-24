@@ -261,7 +261,7 @@ export function SplashIntro({ onComplete }: { onComplete: () => void }) {
           {/* "UnreckAI" — max-width expansion causes flex re-center → blocks slide left */}
           {showBlocks && (
             <span
-              className="text-6xl sm:text-7xl md:text-8xl font-bold text-brand-textPrimary tracking-tight whitespace-nowrap overflow-hidden"
+              className="text-6xl sm:text-7xl md:text-8xl font-semibold text-brand-textPrimary tracking-tight whitespace-nowrap overflow-hidden"
               style={{
                 maxWidth: isBrandOrReveal ? 600 : 0,
                 opacity: isBrandOrReveal ? 1 : 0,
