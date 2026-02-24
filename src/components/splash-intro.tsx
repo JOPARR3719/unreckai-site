@@ -144,7 +144,7 @@ export function SplashIntro({ onComplete }: { onComplete: () => void }) {
   // Brand ends → hold → reveal
   const handleBrandEnd = useCallback((e: React.AnimationEvent) => {
     if (e.animationName === "splash-brand-in") {
-      setTimeout(() => setPhase("reveal"), 1000);
+      setTimeout(() => setPhase("reveal"), 1800);
     }
   }, []);
 
@@ -212,8 +212,6 @@ export function SplashIntro({ onComplete }: { onComplete: () => void }) {
                 let animation: string | undefined;
                 let transform: string | undefined;
                 let opacity: number | undefined;
-
-                // Gradient border during scatter/assemble, solid white when assembled
                 const isAssembled = phase === "brand" || phase === "reveal";
 
                 if (phase === "scatter") {
@@ -226,15 +224,6 @@ export function SplashIntro({ onComplete }: { onComplete: () => void }) {
                   opacity = 1;
                 }
 
-                const borderStyle: React.CSSProperties = isAssembled
-                  ? { border: "2.5px solid #E4E8EB", backgroundColor: "transparent" }
-                  : {
-                      border: "2.5px solid transparent",
-                      backgroundImage: "linear-gradient(#0a0d10, #0a0d10), linear-gradient(135deg, #3be8b0, #1aafd0, #9B8FFF)",
-                      backgroundOrigin: "border-box",
-                      backgroundClip: "padding-box, border-box",
-                    };
-
                 return (
                   <div
                     key={i}
@@ -244,7 +233,12 @@ export function SplashIntro({ onComplete }: { onComplete: () => void }) {
                       width: 56,
                       height: 56,
                       borderRadius: 8,
-                      ...borderStyle,
+                      border: "2.5px solid",
+                      borderColor: isAssembled ? "#E4E8EB" : "transparent",
+                      backgroundImage: "linear-gradient(#0a0d10, #0a0d10), linear-gradient(135deg, #3be8b0, #1aafd0, #9B8FFF)",
+                      backgroundOrigin: "border-box",
+                      backgroundClip: "padding-box, border-box",
+                      transition: "border-color 600ms ease-out",
                       ...cssVars,
                       animation,
                       transform,
