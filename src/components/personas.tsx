@@ -48,7 +48,7 @@ export function Personas() {
           <div className="glow-card-inner pt-5 sm:pt-7 md:pt-9 px-6 sm:px-10 md:px-14 pb-6 sm:pb-10 md:pb-14">
             <div className="space-y-10 sm:space-y-12">
               {/* Header */}
-              <div className="text-center space-y-4 max-w-2xl mx-auto">
+              <div className="text-center space-y-4 max-w-3xl mx-auto">
                 <p className="text-xs font-semibold tracking-widest uppercase text-brand-accentBlue">
                   Purpose-Built
                 </p>

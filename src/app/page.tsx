@@ -6,6 +6,7 @@ import { Nav } from "@/components/nav";
 import { Hero } from "@/components/hero";
 import { Marquee } from "@/components/marquee";
 import { InvisibleWorkflow } from "@/components/invisible-workflow";
+import { DetectionEngine } from "@/components/detection-engine";
 import { Privacy } from "@/components/privacy";
 import { VisualProof } from "@/components/visual-proof";
 import { Personas } from "@/components/personas";
@@ -38,6 +39,10 @@ export default function Home() {
 
           <Reveal>
             <InvisibleWorkflow />
+          </Reveal>
+
+          <Reveal>
+            <DetectionEngine />
           </Reveal>
 
           <Reveal>

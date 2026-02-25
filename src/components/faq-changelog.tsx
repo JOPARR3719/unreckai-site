@@ -40,8 +40,8 @@ function FaqAccordion() {
     <div className="glow-card">
       <div className="glow-card-inner rounded-[calc(2rem-1.5px)] p-8 shadow-2xl">
         <div className="mb-10">
-          <p className="text-brand-accentFormatting font-semibold tracking-[0.15em] text-xs uppercase mb-3">
-            Clear Answers
+          <p className="text-brand-accentPurpleDark font-semibold tracking-[0.15em] text-xs uppercase mb-3">
+            Quick Answers
           </p>
           <h2 className="text-4xl font-medium tracking-tight text-brand-textPrimary mb-4">
             Frequently asked questions.
@@ -157,7 +157,7 @@ function ChangelogTimeline() {
       <div className="glow-card-inner rounded-[calc(2rem-1.5px)] p-8 shadow-2xl relative">
         {/* Header */}
         <div className="mb-4">
-          <p className="text-brand-accentFormatting font-semibold tracking-[0.15em] text-xs uppercase mb-3">
+          <p className="text-brand-accentPurpleDark font-semibold tracking-[0.15em] text-xs uppercase mb-3">
             Changelog
           </p>
           <h3 className="text-4xl font-medium tracking-tight text-brand-textPrimary mb-4">

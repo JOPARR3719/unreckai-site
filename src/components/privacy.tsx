@@ -49,7 +49,7 @@ export function Privacy() {
                   </p>
                 </div>
 
-                <div className="space-y-3">
+                <div className="space-y-4">
                   {[
                     { text: "Zero server footprint", excluded: false },
                     { text: "Fully offline capable", excluded: false },
@@ -59,16 +59,16 @@ export function Privacy() {
                     <div key={item.text} className="flex items-center gap-3">
                       {item.excluded ? (
                         <X
-                          size={16}
+                          size={18}
                           className="text-brand-accentAi shrink-0"
                         />
                       ) : (
                         <Check
-                          size={16}
+                          size={18}
                           className="text-brand-accentCleaned shrink-0"
                         />
                       )}
-                      <span className={`text-[15px] ${item.excluded ? "text-brand-textSecondary" : "text-brand-textPrimary"}`}>
+                      <span className={`text-base ${item.excluded ? "text-brand-textSecondary" : "text-brand-textPrimary"}`}>
                         {item.text}
                       </span>
                     </div>

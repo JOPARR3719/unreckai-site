@@ -7,7 +7,7 @@ const features = [
     color: "text-brand-accentCleaned",
     title: "Zero workflow friction",
     description:
-      "Copy from any AI tool, paste anywhere. UnreckAI runs silently in the background — no extra steps, no popups, no context switching.",
+      "Copy from any AI tool, paste anywhere. UnreckAI runs silently in the background. No extra steps, no popups, no context switching.",
   },
   {
     icon: Fingerprint,
@@ -41,7 +41,7 @@ export function InvisibleWorkflow() {
                   Instant corrections. Every paste.
                 </h2>
                 <p className="text-brand-textSecondary text-base sm:text-lg leading-relaxed">
-                  UnreckAI watches your clipboard and automatically translates AI formatting into clean, native output. You never have to think about it.
+                  Copy once, paste clean. Formatting is fixed silently in the background. You never have to think about it.
                 </p>
               </div>
 

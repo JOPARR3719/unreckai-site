@@ -80,7 +80,7 @@ export function Pricing() {
               Scale your productivity.
             </h2>
             <p className="text-brand-textSecondary text-base sm:text-lg leading-relaxed">
-              Start free, upgrade when you need the full power of format translation.
+              Start free. Upgrade when AI formatting fights back.
             </p>
           </div>
 
