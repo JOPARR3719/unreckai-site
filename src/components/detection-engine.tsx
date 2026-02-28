@@ -4,7 +4,7 @@ import { Reveal } from "./reveal";
 const nodes = [
   {
     icon: TextSearch,
-    iconSize: 26,
+    iconSize: 24,
     accent: "var(--color-brand-accentDocument)",
     accentClass: "text-brand-accentDocument",
     title: "Hidden Signatures",
@@ -17,7 +17,7 @@ const nodes = [
   },
   {
     icon: ShieldCheck,
-    iconSize: 28,
+    iconSize: 26,
     accent: "var(--color-brand-accentFormatting)",
     accentClass: "text-brand-accentFormatting",
     title: "Strict Rules",
@@ -30,7 +30,7 @@ const nodes = [
   },
   {
     icon: Settings2,
-    iconSize: 26,
+    iconSize: 24,
     accent: "var(--color-brand-accentCleaned)",
     accentClass: "text-brand-accentCleaned",
     title: "Pure Formatting",
@@ -71,7 +71,7 @@ export function DetectionEngine() {
                   <div
                     className="absolute h-[2px] z-0"
                     style={{
-                      top: 28,
+                      top: 24,
                       left: "calc(100% / 6.6)",
                       right: "calc(100% / 6.6)",
                       background:
@@ -83,11 +83,11 @@ export function DetectionEngine() {
                     <Reveal key={node.title} delay={i * 120}>
                       <div className="flex flex-col items-center">
                         <div
-                          className="w-14 h-14 rounded-full flex items-center justify-center shrink-0 relative z-10 mb-5 transition-all duration-300 hover:scale-110"
+                          className="w-12 h-12 rounded-full flex items-center justify-center shrink-0 relative z-10 mb-5 transition-all duration-300 hover:scale-110"
                           style={{
                             backgroundColor: "#0a0d10",
                             border: `1.5px solid ${node.accent}`,
-                            boxShadow: `0 0 25px -5px color-mix(in srgb, ${node.accent} 40%, transparent)`,
+                            boxShadow: `0 0 30px 0px color-mix(in srgb, ${node.accent} 50%, transparent)`,
                           }}
                         >
                           <node.icon size={node.iconSize} style={{ color: node.accent }} />
@@ -133,11 +133,11 @@ export function DetectionEngine() {
                     <Reveal key={node.title} delay={i * 120}>
                       <div className="flex flex-col items-start text-left">
                         <div
-                          className="w-14 h-14 rounded-full flex items-center justify-center mb-5 shrink-0 transition-all duration-300 hover:scale-110"
+                          className="w-12 h-12 rounded-full flex items-center justify-center mb-5 shrink-0 transition-all duration-300 hover:scale-110"
                           style={{
                             backgroundColor: "#0a0d10",
                             border: `1.5px solid ${node.accent}`,
-                            boxShadow: `0 0 25px -5px color-mix(in srgb, ${node.accent} 40%, transparent)`,
+                            boxShadow: `0 0 30px 0px color-mix(in srgb, ${node.accent} 50%, transparent)`,
                           }}
                         >
                           <node.icon size={node.iconSize} style={{ color: node.accent }} />
