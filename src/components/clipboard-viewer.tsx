@@ -6,7 +6,7 @@ import { InteractiveClipboard } from "./clipboard/interactive-clipboard";
 
 const categories = [
   {
-    title: "Cleaned",
+    title: "Deep Clean",
     accent: "var(--color-brand-accentCleaned)",
     icon: CheckCircle2,
     description:
@@ -30,7 +30,7 @@ const categories = [
     tags: ['"Sure! Here\'s..."', '"Let me know..."', "filler phrases", "AI vocabulary"],
   },
   {
-    title: "Document",
+    title: "Structure",
     accent: "var(--color-brand-accentDocument)",
     icon: FileText,
     description:
@@ -44,7 +44,7 @@ export function ClipboardViewer() {
     <section className="py-10 sm:py-14">
       <div className="max-w-7xl mx-auto px-5 sm:px-8">
         <div className="glow-card">
-          <div className="glow-card-inner pt-5 sm:pt-7 md:pt-9 px-6 sm:px-10 md:px-12 pb-6 sm:pb-10 md:pb-12">
+          <div className="glow-card-inner dot-tl pt-5 sm:pt-7 md:pt-9 px-6 sm:px-10 md:px-12 pb-6 sm:pb-10 md:pb-12">
             <div className="space-y-8 sm:space-y-10">
               {/* Header */}
               <div className="space-y-3 max-w-2xl">

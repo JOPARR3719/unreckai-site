@@ -25,18 +25,16 @@ export interface CategoryData {
 }
 
 export interface ToastData {
-  issueCount: number;
   sourceApp: string;
   categories: CategoryData[];
 }
 
 export const TOAST_DATA: ToastData = {
-  issueCount: 32,
   sourceApp: "ChatGPT",
   categories: [
     {
       id: "cleaned",
-      name: "Cleaned",
+      name: "Deep Clean",
       accentColor: "brand-accentCleaned",
       icon: "CheckCircle2",
       fixCount: 7,
@@ -181,7 +179,7 @@ export const TOAST_DATA: ToastData = {
     },
     {
       id: "document",
-      name: "Document",
+      name: "Structure",
       accentColor: "brand-accentDocument",
       icon: "FileText",
       fixCount: 8,
