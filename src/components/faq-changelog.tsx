@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronDown, Lock, Settings, CreditCard, Zap } from "lucide-react";
+import { ChevronDown, Lock, KeyRound, CreditCard, Zap } from "lucide-react";
 import {
   FAQ_CATEGORIES,
   CHANGELOG_ENTRIES,
@@ -15,7 +15,7 @@ import { Reveal } from "./reveal";
 
 const CATEGORY_ICONS: Record<FAQCategory["icon"], React.ElementType> = {
   lock: Lock,
-  gear: Settings,
+  gear: KeyRound,
   card: CreditCard,
 };
 
@@ -38,7 +38,7 @@ function FaqAccordion() {
 
   return (
     <div className="glow-card">
-      <div className="glow-card-inner rounded-[calc(2rem-1.5px)] p-8 shadow-2xl">
+      <div className="glow-card-inner dot-br rounded-[calc(2rem-1.5px)] p-8 shadow-2xl">
         <div className="mb-10">
           <p className="text-brand-accentPurpleDark font-semibold tracking-[0.15em] text-xs uppercase mb-3">
             Quick Answers
@@ -68,7 +68,7 @@ function FaqAccordion() {
                   onClick={() => toggleCategory(catIdx)}
                   className="w-full px-5 py-4 flex items-center cursor-pointer"
                 >
-                  <Icon className={`w-[18px] h-[18px] mr-3 flex-shrink-0 ${category.color}`} />
+                  <Icon className={`w-[22px] h-[22px] mr-3 flex-shrink-0 ${category.color}${category.icon === "lock" ? " animate-wiggle" : ""}`} />
                   <span className="font-medium text-[15px] text-brand-textPrimary">
                     {category.title}
                   </span>
@@ -154,7 +154,7 @@ function ChangelogTimeline() {
 
   return (
     <div className="glow-card">
-      <div className="glow-card-inner rounded-[calc(2rem-1.5px)] p-8 shadow-2xl relative">
+      <div className="glow-card-inner dot-tl rounded-[calc(2rem-1.5px)] p-8 shadow-2xl relative">
         {/* Header */}
         <div className="mb-4">
           <p className="text-brand-accentPurpleDark font-semibold tracking-[0.15em] text-xs uppercase mb-3">

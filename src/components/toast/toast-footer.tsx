@@ -45,33 +45,29 @@ export function ToastFooter({ sourceApp }: ToastFooterProps) {
       </div>
 
       {/* Undo all changes button */}
-      <button
-        className="w-full py-2 rounded-lg font-semibold text-brand-textSecondary transition-colors hover:bg-white/[0.03]"
+      <div
+        className="rounded-lg p-px"
         style={{
-          fontSize: "11.5px",
-          backgroundColor: "var(--color-brand-neutralBtnBg)",
-          backgroundImage: `linear-gradient(var(--color-brand-neutralBtnBg), var(--color-brand-neutralBtnBg)), linear-gradient(135deg, var(--color-brand-accentCleaned), var(--color-brand-accentFormatting))`,
-          backgroundOrigin: "border-box",
-          backgroundClip: "padding-box, border-box",
-          border: "1px solid transparent",
+          background: "linear-gradient(135deg, var(--color-brand-accentCleaned), var(--color-brand-accentFormatting))",
         }}
       >
-        Undo all changes
-      </button>
+        <button
+          className="w-full py-2 rounded-[calc(0.5rem-1px)] font-semibold text-brand-textSecondary transition-colors hover:bg-white/[0.03]"
+          style={{
+            fontSize: "11.5px",
+            backgroundColor: "var(--color-brand-neutralBtnBg)",
+          }}
+        >
+          Undo all changes
+        </button>
+      </div>
 
       {/* Privacy line */}
       <div className="flex items-center justify-center gap-1.5 mt-3">
         <Lock size={10} className="text-brand-textTertiary" />
         <span
-          className="text-xs font-medium bg-clip-text"
-          style={{
-            fontSize: 10,
-            background:
-              "linear-gradient(135deg, var(--color-brand-accentCleaned), var(--color-brand-accentFormatting))",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            backgroundClip: "text",
-          }}
+          className="text-xs font-medium text-brand-tagLabel"
+          style={{ fontSize: 10 }}
         >
           Private &amp; local &middot; Never leaves your Mac
         </span>

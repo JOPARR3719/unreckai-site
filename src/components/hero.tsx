@@ -9,7 +9,7 @@ export function Hero() {
     >
       <div className="max-w-7xl mx-auto px-5 sm:px-8 w-full">
         <div className="glow-card">
-        <div className="glow-card-inner pt-5 sm:pt-7 md:pt-9 px-6 sm:px-10 md:px-12 pb-6 sm:pb-10 md:pb-12">
+        <div className="glow-card-inner dot-br pt-5 sm:pt-7 md:pt-9 px-6 sm:px-10 md:px-12 pb-6 sm:pb-10 md:pb-12">
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           {/* Left column */}
           <div className="space-y-6 sm:space-y-8 text-center lg:text-left">

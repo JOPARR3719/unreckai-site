@@ -1,6 +1,6 @@
 "use client";
 
-import { X } from "lucide-react";
+import { X, ChevronDown, ChevronUp } from "lucide-react";
 import { ScatterSymbol } from "@/components/scatter-symbol";
 
 interface ToastHeaderProps {
@@ -18,7 +18,7 @@ export function ToastHeader({
     <div>
       {/* Row 1: Logo + title + badge + undo + close */}
       <div className="flex items-center gap-1.5 px-4 pt-3.5">
-        <ScatterSymbol size={20} className="text-brand-textPrimary shrink-0" />
+        <ScatterSymbol size={20} mono className="text-brand-textPrimary shrink-0" />
         <span className="font-semibold text-sm text-brand-textPrimary">
           UnreckAI
         </span>
@@ -81,13 +81,18 @@ export function ToastHeader({
           className="text-xs font-normal text-brand-tagLabel rounded-md px-3 py-1"
           style={{
             width: 92,
-            backgroundImage: `linear-gradient(var(--color-brand-cardBg), var(--color-brand-cardBg)), linear-gradient(135deg, var(--color-brand-accentCleaned), var(--color-brand-accentFormatting))`,
-            backgroundOrigin: "border-box",
-            backgroundClip: "padding-box, border-box",
-            border: "1px solid transparent",
+            backgroundColor: "var(--color-brand-cardBg)",
+            border: "1px solid var(--color-brand-borderLight)",
           }}
         >
-          Details {detailsOpen ? "\u2303" : "\u2304"}
+          <span className="flex items-center justify-center gap-1.5">
+            Details
+            {detailsOpen ? (
+              <ChevronUp size={12} strokeWidth={2.5} className="ml-0.5" />
+            ) : (
+              <ChevronDown size={12} strokeWidth={2.5} className="ml-0.5" />
+            )}
+          </span>
         </button>
       </div>
     </div>

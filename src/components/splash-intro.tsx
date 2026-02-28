@@ -234,7 +234,7 @@ export function SplashIntro({ onComplete }: { onComplete: () => void }) {
                       height: 56,
                       borderRadius: 8,
                       border: "2.5px solid",
-                      borderColor: isAssembled ? "#E4E8EB" : "transparent",
+                      borderColor: "transparent",
                       backgroundImage: "linear-gradient(#0a0d10, #0a0d10), linear-gradient(135deg, #3be8b0, #1aafd0, #9B8FFF)",
                       backgroundOrigin: "border-box",
                       backgroundClip: "padding-box, border-box",

@@ -69,7 +69,7 @@ export function Pricing() {
     <section id="pricing" className="py-10 sm:py-14">
       <div className="max-w-7xl mx-auto px-5 sm:px-8">
         <div className="glow-card">
-        <div className="glow-card-inner pt-5 sm:pt-7 md:pt-9 px-6 sm:px-10 md:px-12 pb-6 sm:pb-10 md:pb-12">
+        <div className="glow-card-inner dot-bl pt-5 sm:pt-7 md:pt-9 px-6 sm:px-10 md:px-12 pb-6 sm:pb-10 md:pb-12">
         <div className="space-y-8 sm:space-y-12">
           {/* Header */}
           <div className="text-center space-y-4 max-w-2xl mx-auto">

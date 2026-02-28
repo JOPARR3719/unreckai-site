@@ -1,6 +1,7 @@
 "use client";
 
-import { CheckCircle2, Type, Sparkles, FileText } from "lucide-react";
+import { Wand2, Type, Layers } from "lucide-react";
+import { RobotIcon } from "./robot-icon";
 import { Reveal } from "./reveal";
 import { InteractiveClipboard } from "./clipboard/interactive-clipboard";
 
@@ -8,7 +9,8 @@ const categories = [
   {
     title: "Deep Clean",
     accent: "var(--color-brand-accentCleaned)",
-    icon: CheckCircle2,
+    icon: Wand2,
+    iconSize: 20,
     description:
       "Removes hidden junk that causes weird spacing and copy-paste glitches.",
     tags: ["hidden characters", "broken spacing", "encoding fixes", "whitespace"],
@@ -17,6 +19,7 @@ const categories = [
     title: "Formatting",
     accent: "var(--color-brand-accentFormatting)",
     icon: Type,
+    iconSize: 20,
     description:
       "Fixes annoying dashes, weird quotes, and overdone bold that AI tools add.",
     tags: ["smart quotes", "em dashes", "bold cleanup", "title case"],
@@ -24,7 +27,8 @@ const categories = [
   {
     title: "AI Content",
     accent: "var(--color-brand-accentAi)",
-    icon: Sparkles,
+    icon: RobotIcon,
+    iconSize: 18,
     description:
       'Strips the "Sure! Here\'s..." openers that scream AI-generated.',
     tags: ['"Sure! Here\'s..."', '"Let me know..."', "filler phrases", "AI vocabulary"],
@@ -32,7 +36,8 @@ const categories = [
   {
     title: "Structure",
     accent: "var(--color-brand-accentDocument)",
-    icon: FileText,
+    icon: Layers,
+    iconSize: 20,
     description:
       "Repairs words that got split or mangled when you copied from PDFs.",
     tags: ["split words", "broken hyphens", "garbled text", "line breaks"],
@@ -86,14 +91,14 @@ export function ClipboardViewer() {
                           {/* Icon + Title */}
                           <div className="flex items-center gap-3">
                             <div
-                              className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0"
+                              className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0"
                               style={{
                                 backgroundColor: `color-mix(in srgb, ${cat.accent} 10%, transparent)`,
                                 border: `1px solid color-mix(in srgb, ${cat.accent} 20%, transparent)`,
                               }}
                             >
                               <Icon
-                                size={20}
+                                size={cat.iconSize}
                                 style={{ color: cat.accent }}
                               />
                             </div>

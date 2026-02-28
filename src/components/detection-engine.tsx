@@ -1,9 +1,10 @@
-import { Code2, ShieldCheck, Check } from "lucide-react";
+import { TextSearch, ShieldCheck, Check, Settings2 } from "lucide-react";
 import { Reveal } from "./reveal";
 
 const nodes = [
   {
-    icon: Code2,
+    icon: TextSearch,
+    iconSize: 26,
     accent: "var(--color-brand-accentDocument)",
     accentClass: "text-brand-accentDocument",
     title: "Hidden Signatures",
@@ -16,6 +17,7 @@ const nodes = [
   },
   {
     icon: ShieldCheck,
+    iconSize: 28,
     accent: "var(--color-brand-accentFormatting)",
     accentClass: "text-brand-accentFormatting",
     title: "Strict Rules",
@@ -27,7 +29,8 @@ const nodes = [
     ],
   },
   {
-    icon: Check,
+    icon: Settings2,
+    iconSize: 26,
     accent: "var(--color-brand-accentCleaned)",
     accentClass: "text-brand-accentCleaned",
     title: "Pure Formatting",
@@ -45,7 +48,7 @@ export function DetectionEngine() {
     <section className="py-10 sm:py-14">
       <div className="max-w-7xl mx-auto px-5 sm:px-8">
         <div className="glow-card">
-          <div className="glow-card-inner pt-5 sm:pt-7 md:pt-9 px-6 sm:px-10 md:px-14 pb-6 sm:pb-10 md:pb-14">
+          <div className="glow-card-inner dot-br pt-5 sm:pt-7 md:pt-9 px-6 sm:px-10 md:px-14 pb-6 sm:pb-10 md:pb-14">
             <div className="space-y-10 sm:space-y-12">
               {/* Header */}
               <div className="space-y-4 max-w-4xl mx-auto text-center">
@@ -87,31 +90,31 @@ export function DetectionEngine() {
                             boxShadow: `0 0 25px -5px color-mix(in srgb, ${node.accent} 40%, transparent)`,
                           }}
                         >
-                          <node.icon size={22} style={{ color: node.accent }} />
+                          <node.icon size={node.iconSize} style={{ color: node.accent }} />
                         </div>
 
-                        <h3 className="text-brand-textPrimary font-medium text-xl mb-2 text-center">
+                        <h3 className="text-brand-textPrimary font-medium text-xl mb-2 text-center pl-3">
                           {node.title}
                         </h3>
-                        <p className="text-brand-textSecondary text-[0.95rem] mb-4 text-center">
+                        <p className="text-brand-textSecondary text-[0.95rem] mb-4 text-center pl-3">
                           {node.description}
                         </p>
 
                         <div
-                          className="w-[220px] h-px mb-4"
+                          className="w-[220px] h-px mb-4 ml-3"
                           style={{
                             background: `color-mix(in srgb, ${node.accent} 25%, transparent)`,
                           }}
                         />
 
-                        <ul className="space-y-3">
+                        <ul className="space-y-3 pl-3">
                           {node.items.map((item) => (
                             <li
                               key={item}
                               className="flex items-center text-[0.95rem] text-brand-textSecondary"
                             >
                               <Check
-                                size={17}
+                                size={18}
                                 className={`${node.accentClass} mr-3 shrink-0`}
                                 strokeWidth={2.5}
                               />
@@ -137,7 +140,7 @@ export function DetectionEngine() {
                             boxShadow: `0 0 25px -5px color-mix(in srgb, ${node.accent} 40%, transparent)`,
                           }}
                         >
-                          <node.icon size={22} style={{ color: node.accent }} />
+                          <node.icon size={node.iconSize} style={{ color: node.accent }} />
                         </div>
 
                         <h3 className="text-brand-textPrimary font-medium text-xl mb-2">
@@ -161,7 +164,7 @@ export function DetectionEngine() {
                               className="flex items-center text-sm text-brand-textSecondary"
                             >
                               <Check
-                                size={16}
+                                size={17}
                                 className={`${node.accentClass} mr-3 shrink-0`}
                                 strokeWidth={2.5}
                               />

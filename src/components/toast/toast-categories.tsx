@@ -1,19 +1,19 @@
 "use client";
 
 import {
-  CheckCircle2,
-  AlertCircle,
-  Sparkles,
-  FileText,
+  Wand2,
+  Type,
+  Layers,
   ChevronRight,
 } from "lucide-react";
+import { RobotIcon } from "../robot-icon";
 import type { CategoryData } from "./toast-data";
 
 const ICON_MAP: Record<string, React.ElementType> = {
-  CheckCircle2,
-  AlertCircle,
-  Sparkles,
-  FileText,
+  Wand2,
+  Type,
+  RobotIcon,
+  Layers,
 };
 
 const ACCENT_CSS: Record<string, string> = {
@@ -44,9 +44,9 @@ export function ToastCategories({
               onClick={() => onDrill(cat)}
               className="w-full flex items-center gap-2.5 px-3 py-2.5 rounded-lg transition-colors hover:bg-white/[0.03] group text-left"
             >
-              {/* Icon */}
-              <div className="shrink-0" style={{ color: accent }}>
-                {Icon && <Icon size={14} strokeWidth={2.2} />}
+              {/* Icon — offset up to align with title, not subtitle */}
+              <div className="shrink-0 -translate-y-[6px] -translate-x-[3px]" style={{ color: accent }}>
+                {Icon && <Icon size={cat.icon === "RobotIcon" ? 14 : 16} strokeWidth={2.2} />}
               </div>
 
               {/* Name + subtitle */}

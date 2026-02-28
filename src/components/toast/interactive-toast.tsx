@@ -75,12 +75,12 @@ export function InteractiveToast() {
       >
         {/* Header card with gradient border */}
         <div
-          className="mx-2.5 mt-2.5 rounded-xl p-[0.7px]"
+          className="mx-2.5 mt-2.5 rounded-xl p-px"
           style={{ background: GLOW_GRADIENT }}
         >
           <div className="rounded-[calc(0.75rem-1px)] bg-brand-cardBg">
             <ToastHeader
-              issueCount={TOAST_DATA.issueCount}
+              issueCount={TOAST_DATA.categories.reduce((sum, cat) => sum + cat.fixCount, 0)}
               detailsOpen={detailsOpen}
               onToggleDetails={handleToggleDetails}
             />
@@ -90,7 +90,7 @@ export function InteractiveToast() {
         {/* Categories / Drill card with gradient border */}
         {detailsOpen && (
           <div
-            className="mx-2.5 mt-3 rounded-xl p-[0.7px]"
+            className="mx-2.5 mt-3 rounded-xl p-px"
             style={{ background: GLOW_GRADIENT }}
           >
             <div className="rounded-[calc(0.75rem-1px)] bg-brand-cardBg overflow-hidden">

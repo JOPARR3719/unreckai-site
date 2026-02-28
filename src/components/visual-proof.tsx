@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { Copy, Zap, ClipboardPaste } from "lucide-react";
+import { Files, ClipboardCopy } from "lucide-react";
+import { ScatterSymbol } from "./scatter-symbol";
 
 type Source = "chatgpt" | "claude" | "gemini";
 type Destination = "slack" | "gmail";
@@ -446,7 +447,7 @@ export function VisualProof() {
     <section id="visual-proof" className="py-10 sm:py-14">
       <div className="max-w-7xl mx-auto px-5 sm:px-8">
         <div className="glow-card">
-        <div className="glow-card-inner pt-5 sm:pt-7 md:pt-9 px-6 sm:px-10 md:px-12 pb-6 sm:pb-10 md:pb-12">
+        <div className="glow-card-inner dot-tr pt-5 sm:pt-7 md:pt-9 px-6 sm:px-10 md:px-12 pb-6 sm:pb-10 md:pb-12">
         <div className="space-y-8 sm:space-y-12">
           {/* Header */}
           <div className="text-center space-y-4 max-w-2xl mx-auto">
@@ -462,33 +463,33 @@ export function VisualProof() {
           </div>
 
           {/* 3-step flow */}
-          <div className="flex items-center justify-center gap-3 sm:gap-4 md:gap-8 text-sm">
-            <div className="flex items-center gap-2 text-brand-textSecondary">
-              <div className="p-2 rounded-lg bg-brand-itemBg border border-brand-borderSolid">
-                <Copy size={16} className="text-brand-accentFormatting" />
+          <div className="grid grid-cols-[1fr_auto_auto_auto_1fr] items-center gap-0 text-sm max-w-3xl mx-auto w-full">
+            <div className="flex items-center gap-2.5 text-brand-textSecondary justify-self-end">
+              <div className="p-2.5 rounded-lg bg-brand-itemBg border border-white/[0.06]">
+                <Files size={20} className="text-brand-accentFormatting" />
               </div>
-              <span className="hidden sm:inline">Copy from AI</span>
+              <span className="hidden sm:inline whitespace-nowrap">Copy from AI</span>
             </div>
-            <div className="w-6 sm:w-8 h-px bg-brand-borderSolid" />
-            <div className="flex items-center gap-2 text-brand-textSecondary">
-              <div className="p-2 rounded-lg bg-brand-itemBg border border-brand-borderSolid">
-                <Zap size={16} className="text-brand-accentCleaned" />
+            <div className="w-12 sm:w-20 md:w-28 h-px bg-brand-border mx-3 sm:mx-4" />
+            <div className="flex items-center gap-2.5 text-brand-textSecondary">
+              <div className="p-2.5 rounded-lg bg-brand-itemBg border border-white/[0.06]">
+                <ScatterSymbol size={20} />
               </div>
-              <span className="hidden sm:inline">UnreckAI Processes</span>
+              <span className="hidden sm:inline whitespace-nowrap">UnreckAI Processes</span>
             </div>
-            <div className="w-6 sm:w-8 h-px bg-brand-borderSolid" />
-            <div className="flex items-center gap-2 text-brand-textSecondary">
-              <div className="p-2 rounded-lg bg-brand-itemBg border border-brand-borderSolid">
-                <ClipboardPaste size={16} className="text-brand-accentDocument" />
+            <div className="w-12 sm:w-20 md:w-28 h-px bg-brand-border mx-3 sm:mx-4" />
+            <div className="flex items-center gap-2.5 text-brand-textSecondary justify-self-start">
+              <div className="p-2.5 rounded-lg bg-brand-itemBg border border-white/[0.06]">
+                <ClipboardCopy size={20} className="text-brand-accentCleaned" />
               </div>
-              <span className="hidden sm:inline">Paste anywhere</span>
+              <span className="hidden sm:inline whitespace-nowrap">Paste anywhere</span>
             </div>
           </div>
 
           {/* Destination + Source toggles */}
           <div className="relative w-full flex flex-col items-center gap-3">
             {/* Destination toggle — pinned left on desktop */}
-            <div className="sm:absolute sm:left-0 sm:top-1/2 sm:-translate-y-1/2 inline-flex bg-brand-cardBg rounded-full p-1.5 border border-brand-borderLight gap-2.5">
+            <div className="sm:absolute sm:left-0 sm:top-1/2 sm:-translate-y-1/2 inline-flex bg-brand-cardBg rounded-full p-1.5 border border-white/[0.06] gap-2.5">
               {(["slack", "gmail"] as Destination[]).map((d) => (
                 <button
                   key={d}
@@ -496,7 +497,7 @@ export function VisualProof() {
                   className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium transition-all whitespace-nowrap ${
                     dest === d
                       ? "text-white shadow-sm glow-border-active"
-                      : "text-white/80 hover:text-white border border-brand-borderSolid"
+                      : "text-white/80 hover:text-white border border-white/[0.12]"
                   }`}
                 >
                   <img
@@ -510,7 +511,7 @@ export function VisualProof() {
             </div>
 
             {/* Source toggle — true center */}
-            <div className="inline-flex bg-brand-cardBg rounded-full p-1.5 border border-brand-borderLight gap-2.5 flex-wrap justify-center sm:flex-nowrap">
+            <div className="inline-flex bg-brand-cardBg rounded-full p-1.5 border border-white/[0.06] gap-2.5 flex-wrap justify-center sm:flex-nowrap">
               {(Object.keys(sourceNames) as Source[]).map((key) => (
                 <button
                   key={key}
@@ -518,7 +519,7 @@ export function VisualProof() {
                   className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium transition-all whitespace-nowrap ${
                     source === key
                       ? "text-white shadow-sm glow-border-active"
-                      : "text-white/80 hover:text-white border border-brand-borderSolid"
+                      : "text-white/80 hover:text-white border border-white/[0.12]"
                   }`}
                 >
                   <img src={sourceIcons[key].src} alt="" className={`w-4 h-4 shrink-0 object-contain ${sourceIcons[key].mono ? "brightness-0 invert" : ""}`} />

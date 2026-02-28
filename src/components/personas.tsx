@@ -1,9 +1,10 @@
-import { Briefcase, Code2, MessageSquare, GraduationCap, Check } from "lucide-react";
+import { Briefcase, DraftingCompass, MessagesSquare, GraduationCap, Check } from "lucide-react";
 import { Reveal } from "./reveal";
 
 const personas = [
   {
     icon: Briefcase,
+    color: "text-brand-accentFormatting",
     title: "Product Managers",
     subtitle: "Clean PRDs directly into Notion.",
     features: [
@@ -12,7 +13,8 @@ const personas = [
     ],
   },
   {
-    icon: Code2,
+    icon: DraftingCompass,
+    color: "text-brand-accentDocument",
     title: "Engineers",
     subtitle: "Formatted docs into GitHub.",
     features: [
@@ -21,7 +23,8 @@ const personas = [
     ],
   },
   {
-    icon: MessageSquare,
+    icon: MessagesSquare,
+    color: "text-brand-accentAi",
     title: "Consultants",
     subtitle: "Client-ready text in Slack.",
     features: [
@@ -31,6 +34,7 @@ const personas = [
   },
   {
     icon: GraduationCap,
+    color: "text-brand-accentCleaned",
     title: "Students",
     subtitle: "Clean drafts into Google Docs.",
     features: [
@@ -45,7 +49,7 @@ export function Personas() {
     <section className="py-10 sm:py-14">
       <div className="max-w-7xl mx-auto px-5 sm:px-8">
         <div className="glow-card">
-          <div className="glow-card-inner pt-5 sm:pt-7 md:pt-9 px-6 sm:px-10 md:px-14 pb-6 sm:pb-10 md:pb-14">
+          <div className="glow-card-inner dot-tr pt-5 sm:pt-7 md:pt-9 px-6 sm:px-10 md:px-14 pb-6 sm:pb-10 md:pb-14">
             <div className="space-y-10 sm:space-y-12">
               {/* Header */}
               <div className="text-center space-y-4 max-w-3xl mx-auto">
@@ -69,8 +73,8 @@ export function Personas() {
                   >
                     <div className="p-2.5 rounded-lg bg-brand-cardBg w-fit">
                       <persona.icon
-                        size={22}
-                        className="text-brand-accentFormatting"
+                        size={26}
+                        className={persona.color}
                       />
                     </div>
                     <div>

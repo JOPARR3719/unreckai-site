@@ -36,7 +36,7 @@ export const TOAST_DATA: ToastData = {
       id: "cleaned",
       name: "Deep Clean",
       accentColor: "brand-accentCleaned",
-      icon: "CheckCircle2",
+      icon: "Wand2",
       fixCount: 7,
       subtitle: "7 fixes applied",
       issues: [
@@ -56,7 +56,7 @@ export const TOAST_DATA: ToastData = {
       id: "formatting",
       name: "Formatting",
       accentColor: "brand-accentFormatting",
-      icon: "AlertCircle",
+      icon: "Type",
       fixCount: 22,
       subtitle: "22 fixes applied",
       issues: [
@@ -133,7 +133,7 @@ export const TOAST_DATA: ToastData = {
       id: "ai-content",
       name: "AI Content",
       accentColor: "brand-accentAi",
-      icon: "Sparkles",
+      icon: "RobotIcon",
       fixCount: 7,
       subtitle: "7 fixes applied",
       issues: [
@@ -181,7 +181,7 @@ export const TOAST_DATA: ToastData = {
       id: "document",
       name: "Structure",
       accentColor: "brand-accentDocument",
-      icon: "FileText",
+      icon: "Layers",
       fixCount: 8,
       subtitle: "8 fixes applied",
       issues: [

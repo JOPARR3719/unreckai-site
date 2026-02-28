@@ -1,21 +1,21 @@
-import { Lock, Globe, Shield, Cloud, Check, X } from "lucide-react";
+import { LockKeyhole, Leaf, Search, Cloud, Check, X } from "lucide-react";
 import { Reveal } from "./reveal";
 
 const privacyFeatures = [
   {
-    icon: Lock,
+    icon: LockKeyhole,
     title: "On-device processing",
     description: "Your clipboard never leaves your Mac",
     enabled: true,
   },
   {
-    icon: Globe,
+    icon: Leaf,
     title: "Works entirely offline",
     description: "No internet required to clean your text",
     enabled: true,
   },
   {
-    icon: Shield,
+    icon: Search,
     title: "No content tracking",
     description: "We never read, store, or share your pastes",
     enabled: true,
@@ -33,7 +33,7 @@ export function Privacy() {
     <section className="py-10 sm:py-14">
       <div className="max-w-7xl mx-auto px-5 sm:px-8">
         <div className="glow-card">
-          <div className="glow-card-inner pt-5 sm:pt-7 md:pt-9 px-6 sm:px-10 md:px-14 pb-6 sm:pb-10 md:pb-14">
+          <div className="glow-card-inner dot-bl pt-5 sm:pt-7 md:pt-9 px-6 sm:px-10 md:px-14 pb-6 sm:pb-10 md:pb-14">
             <div className="grid lg:grid-cols-2 gap-10 lg:gap-16">
               {/* Left column */}
               <div className="space-y-6 sm:space-y-8">
@@ -95,7 +95,7 @@ export function Privacy() {
                       }`}
                     >
                       <feature.icon
-                        size={20}
+                        size={24}
                         className={
                           feature.enabled
                             ? "text-brand-accentCleaned"
