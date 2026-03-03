@@ -29,7 +29,7 @@ export function ClipboardTabs({ activeTab, onTabChange }: ClipboardTabsProps) {
   const activeIndex = TABS.findIndex((t) => t.id === activeTab);
 
   return (
-    <div className="relative px-4 border-b border-brand-border">
+    <div className="px-4 border-b border-brand-border">
       <div className="flex">
         {TABS.map((tab) => {
           const isActive = activeTab === tab.id;
@@ -47,23 +47,19 @@ export function ClipboardTabs({ activeTab, onTabChange }: ClipboardTabsProps) {
               {tab.id === "excluded" && <EyeOff size={13} />}
               {tab.id === "settings" && <Sliders size={13} />}
               {tab.label}
+              {/* Gradient underline under active tab */}
+              {isActive && (
+                <span
+                  className="absolute bottom-0 left-2 right-2 h-[1.5px] rounded-full"
+                  style={{
+                    background: "linear-gradient(90deg, var(--color-brand-accentCleaned), var(--color-brand-accentFormatting))",
+                  }}
+                />
+              )}
             </button>
           );
         })}
       </div>
-
-      {/* Gradient underline — transitions between tabs */}
-      <div
-        className="absolute bottom-0 h-px rounded-full transition-all duration-300 ease-in-out"
-        style={{
-          background: "linear-gradient(90deg, var(--color-brand-accentCleaned), var(--color-brand-accentFormatting))",
-          // Each tab is roughly equal width; position based on index
-          left: `calc(1rem + ${activeIndex} * 33.33%)`,
-          width: "calc(33.33% - 0.5rem)",
-          // Use transform for smoother animation
-          transform: `translateX(${activeIndex * 0.25}rem)`,
-        }}
-      />
     </div>
   );
 }
