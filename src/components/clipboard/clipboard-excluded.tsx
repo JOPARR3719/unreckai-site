@@ -61,7 +61,7 @@ export function ClipboardExcluded({
 
 function SectionList({ onDrill }: { onDrill: (id: string) => void }) {
   return (
-    <div className="space-y-3 px-4 pb-3">
+    <div className="space-y-4 px-4 pb-3">
       {EXCLUSION_SECTIONS.map((section) => (
         <button
           key={section.id}

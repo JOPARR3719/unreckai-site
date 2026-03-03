@@ -62,7 +62,7 @@ export function ClipboardSettings({
 
 function SettingsSectionList({ onDrill }: { onDrill: (id: string) => void }) {
   return (
-    <div className="space-y-3 px-4 pb-3">
+    <div className="space-y-4 px-4 pb-3">
       {SETTINGS_SECTIONS.map((section) => {
         if (section.standalone) {
           return (

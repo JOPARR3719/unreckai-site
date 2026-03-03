@@ -139,7 +139,7 @@ export function ClipboardViewer() {
                       <div className="inline-flex items-center bg-brand-cardBg rounded-full p-1 border border-brand-borderSolid">
                         <button
                           onClick={() => setPlatform("macos")}
-                          className={`px-4 py-1.5 rounded-full text-xs font-medium transition-all ${
+                          className={`w-16 py-1.5 rounded-full text-xs font-medium transition-all text-center ${
                             platform === "macos"
                               ? "text-brand-textPrimary"
                               : "text-brand-textSecondary hover:text-brand-textPrimary border border-transparent"
@@ -155,7 +155,7 @@ export function ClipboardViewer() {
                         </button>
                         <button
                           onClick={() => setPlatform("ios")}
-                          className={`px-4 py-1.5 rounded-full text-xs font-medium transition-all ${
+                          className={`w-16 py-1.5 rounded-full text-xs font-medium transition-all text-center ${
                             platform === "ios"
                               ? "text-brand-textPrimary"
                               : "text-brand-textSecondary hover:text-brand-textPrimary border border-transparent"
@@ -178,7 +178,7 @@ export function ClipboardViewer() {
                         <div className="inline-flex items-center bg-brand-cardBg rounded-full p-1 border border-brand-borderSolid">
                           <button
                             onClick={() => setPlatform("macos")}
-                            className={`px-4 py-1.5 rounded-full text-xs font-medium transition-all ${
+                            className={`w-16 py-1.5 rounded-full text-xs font-medium transition-all text-center ${
                               platform === "macos"
                                 ? "text-brand-textPrimary"
                                 : "text-brand-textSecondary hover:text-brand-textPrimary border border-transparent"
@@ -194,7 +194,7 @@ export function ClipboardViewer() {
                           </button>
                           <button
                             onClick={() => setPlatform("ios")}
-                            className={`px-4 py-1.5 rounded-full text-xs font-medium transition-all ${
+                            className={`w-16 py-1.5 rounded-full text-xs font-medium transition-all text-center ${
                               platform === "ios"
                                 ? "text-brand-textPrimary"
                                 : "text-brand-textSecondary hover:text-brand-textPrimary border border-transparent"

@@ -97,7 +97,7 @@ function Overview({ onDrill }: { onDrill: (id: string) => void }) {
           <div className="grid grid-cols-2 divide-x divide-brand-border">
             <div className="text-center pr-4">
               <p className="text-[26px] font-semibold text-brand-textPrimary leading-tight">
-                {CLIPBOARD_STATS.pastesCleaned}
+                {CLIPBOARD_STATS.pastesCleaned.toLocaleString()}
               </p>
               <p className="text-xs text-brand-accentCleaned mt-1">
                 pastes cleaned
@@ -105,7 +105,7 @@ function Overview({ onDrill }: { onDrill: (id: string) => void }) {
             </div>
             <div className="text-center pl-4">
               <p className="text-[26px] font-semibold text-brand-textPrimary leading-tight">
-                {CLIPBOARD_STATS.issuesFixed}
+                {CLIPBOARD_STATS.issuesFixed.toLocaleString()}
               </p>
               <p
                 className="text-xs mt-1"

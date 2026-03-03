@@ -108,10 +108,10 @@ export function InteractiveClipboard() {
       <ClipboardHeader />
       <ClipboardTabs activeTab={activeTab} onTabChange={handleTabChange} />
 
-      {/* Scrollable content */}
+      {/* Scrollable content — fixed height so popup never jumps between tabs */}
       <div
         className="overflow-y-auto overflow-x-hidden slack-scroll pt-4"
-        style={{ minHeight: 280, maxHeight: 480 }}
+        style={{ height: 400 }}
       >
         {activeTab === "clipboard" && (
           <ClipboardContent
