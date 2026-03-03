@@ -44,11 +44,43 @@ export const TOAST_DATA: ToastData = {
           type: "zero-width-space",
           label: "Zero-width spaces",
           count: 3,
+          previews: [
+            {
+              before: "specific\u200B hours to deep",
+              after: "specific hours to deep",
+            },
+            {
+              before: "yesterday\u2019s\u200B progress",
+              after: "yesterday's progress",
+            },
+            {
+              before: "Document decisions\u200B in writing",
+              after: "Document decisions in writing",
+            },
+          ],
         },
         {
           type: "non-breaking-space",
           label: "Non-breaking spaces",
           count: 4,
+          previews: [
+            {
+              before: "the\u00A0most effective way",
+              after: "the most effective way",
+            },
+            {
+              before: "that\u2019s\u00A0free from distractions",
+              after: "that's free from distractions",
+            },
+            {
+              before: "for\u00A0many people",
+              after: "for many people",
+            },
+            {
+              before: "could\u00A0potentially be",
+              after: "could potentially be",
+            },
+          ],
         },
       ],
     },
@@ -81,6 +113,26 @@ export const TOAST_DATA: ToastData = {
               before: "don\u2019t rely on memory",
               after: "don't rely on memory",
             },
+            {
+              before: "Here\u2019s a comprehensive guide",
+              after: "Here's a comprehensive guide",
+            },
+            {
+              before: "tomorrow\u2019s priorities",
+              after: "tomorrow's priorities",
+            },
+            {
+              before: "it\u2019s based on the idea",
+              after: "it's based on the idea",
+            },
+            {
+              before: "Here\u2019s a quick overview",
+              after: "Here's a quick overview",
+            },
+            {
+              before: "Newport\u2019s book \u201CDeep Work\u201D",
+              after: "Newport's book \"Deep Work\"",
+            },
           ],
         },
         {
@@ -95,6 +147,14 @@ export const TOAST_DATA: ToastData = {
             {
               before: "Cal Newport\u2019s book \u201CDeep Work\u201D",
               after: 'Cal Newport\'s book "Deep Work"',
+            },
+            {
+              before: "\u201CDeep Work\u201D at calnewport.com",
+              after: '"Deep Work" at calnewport.com',
+            },
+            {
+              before: "workspace that\u2019s free from",
+              after: "workspace that's free from",
             },
           ],
         },
@@ -124,6 +184,22 @@ export const TOAST_DATA: ToastData = {
             {
               before: "many people \u2014 it\u2019s based on",
               after: "many people it's based on",
+            },
+            {
+              before: "deep work \u2014 it\u2019s the most",
+              after: "deep work it's the most",
+            },
+            {
+              before: "Work Phase \u2014 Focus for 25",
+              after: "Work Phase Focus for 25",
+            },
+            {
+              before: "Break Phase \u2014 Take a 5\u201310",
+              after: "Break Phase Take a 5-10",
+            },
+            {
+              before: "Long Break \u2014 After 4 cycles",
+              after: "Long Break After 4 cycles",
             },
           ],
         },
@@ -168,12 +244,30 @@ export const TOAST_DATA: ToastData = {
               before: "\uD83C\uDF05 Start with a morning review",
               after: "Start with a morning review",
             },
+            {
+              before: "\uD83D\uDCAA Tackle your hardest task",
+              after: "Tackle your hardest task",
+            },
+            {
+              before: "\uD83D\uDCDD Document decisions in writing",
+              after: "Document decisions in writing",
+            },
+            {
+              before: "\uD83C\uDFAF End each day by setting",
+              after: "End each day by setting",
+            },
           ],
         },
         {
           type: "title-case-heading",
           label: "Title case heading",
           count: 1,
+          previews: [
+            {
+              before: "Key Strategies for Success",
+              after: "Key strategies for success",
+            },
+          ],
         },
       ],
     },
@@ -194,12 +288,30 @@ export const TOAST_DATA: ToastData = {
               before: "## **Key Strategies for Success**",
               after: "Key Strategies for Success",
             },
+            {
+              before: "## **Daily Routine Essentials**",
+              after: "Daily Routine Essentials",
+            },
           ],
         },
         {
           type: "numbered-list",
           label: "Numbered list",
           count: 3,
+          previews: [
+            {
+              before: "1. **Time Blocking** \u2014 Dedicate...",
+              after: "Time Blocking \u2014 Dedicate...",
+            },
+            {
+              before: "2. **Environment Design** \u2014 Create...",
+              after: "Environment Design \u2014 Create...",
+            },
+            {
+              before: "3. **Communication Tools** \u2014 Use...",
+              after: "Communication Tools \u2014 Use...",
+            },
+          ],
         },
         {
           type: "link-translated",
@@ -210,12 +322,22 @@ export const TOAST_DATA: ToastData = {
               before: "[Slack](https://slack.com)",
               after: "Slack (linked)",
             },
+            {
+              before: "[Notion](https://notion.so)",
+              after: "Notion (linked)",
+            },
           ],
         },
         {
           type: "bullet-list",
           label: "Bullet list",
           count: 1,
+          previews: [
+            {
+              before: "- **Work Phase** \u2014 Focus for 25...",
+              after: "Work Phase \u2014 Focus for 25...",
+            },
+          ],
         },
       ],
     },

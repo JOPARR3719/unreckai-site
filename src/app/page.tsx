@@ -14,6 +14,7 @@ import { ClipboardViewer } from "@/components/clipboard-viewer";
 import { Pricing } from "@/components/pricing";
 import { FaqChangelog } from "@/components/faq-changelog";
 import { Footer } from "@/components/footer";
+import { PlatformShowcase } from "@/components/platform-showcase";
 import { Reveal } from "@/components/reveal";
 
 export default function Home() {
@@ -39,6 +40,10 @@ export default function Home() {
 
           <Reveal>
             <InvisibleWorkflow />
+          </Reveal>
+
+          <Reveal>
+            <PlatformShowcase />
           </Reveal>
 
           <Reveal>

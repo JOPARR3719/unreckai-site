@@ -7,7 +7,7 @@ export function Footer() {
         {/* Gradient privacy text */}
         <p className="text-center text-sm font-medium">
           <span className="text-gradient">
-            Private &amp; local <span className="inline-block text-brand-accentCleaned">&bull;</span> Never leaves your Mac <span className="inline-block text-brand-accentFormatting">&bull;</span> macOS
+            Local Intelligence. Total Privacy. One app for Mac &amp; iOS.
           </span>
         </p>
 

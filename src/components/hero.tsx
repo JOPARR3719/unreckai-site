@@ -1,4 +1,4 @@
-import { Download, Play } from "lucide-react";
+import { Download, Play, Smartphone } from "lucide-react";
 import { InteractiveToast } from "@/components/toast/interactive-toast";
 
 export function Hero() {
@@ -34,6 +34,13 @@ export function Hero() {
                 Download for macOS
               </a>
               <a
+                href="#pricing"
+                className="flex items-center gap-2.5 border border-brand-borderSolid text-brand-textPrimary font-medium px-5 sm:px-6 py-3 rounded-xl transition-all duration-300 hover:border-brand-borderLight hover:-translate-y-1 hover:shadow-[0_0_16px_rgba(255,255,255,0.05)] active:translate-y-0 text-sm sm:text-[15px]"
+              >
+                <Smartphone size={16} />
+                Get on iOS
+              </a>
+              <a
                 href="#visual-proof"
                 className="flex items-center gap-2.5 border border-brand-borderSolid text-brand-textPrimary font-medium px-5 sm:px-6 py-3 rounded-xl transition-all duration-300 hover:border-brand-borderLight hover:-translate-y-1 hover:shadow-[0_0_16px_rgba(255,255,255,0.05)] active:translate-y-0 text-sm sm:text-[15px]"
               >
@@ -43,7 +50,7 @@ export function Hero() {
             </div>
 
             <p className="text-xs sm:text-sm text-brand-textSecondary">
-              Private &amp; local <span className="text-brand-accentCleaned text-base mx-1">&bull;</span> Never leaves your Mac <span className="text-brand-accentFormatting text-base mx-1">&bull;</span> macOS
+              Local Intelligence. Total Privacy. One app for Mac &amp; iOS.
             </p>
           </div>
 

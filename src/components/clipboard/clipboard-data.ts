@@ -76,7 +76,7 @@ export const EXCLUSION_SECTIONS: ExclusionSection[] = [
 export const SETTINGS_SECTIONS: SettingsSection[] = [
   {
     id: "cleaning",
-    title: "Cleaning Rules",
+    title: "UnreckAI Rules",
     subtitle: "How UnreckAI processes your clipboard",
     settings: [
       {

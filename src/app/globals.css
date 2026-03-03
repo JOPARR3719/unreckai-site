@@ -160,7 +160,8 @@ body {
   background-image: linear-gradient(#161C22, #161C22), linear-gradient(135deg, #3be8b0, #1aafd0, #9B8FFF) !important;
   background-origin: border-box !important;
   background-clip: padding-box, border-box !important;
-  transition: background-image 0.2s ease;
+  transition: background-image 0.2s ease, box-shadow 0.3s ease;
+  box-shadow: 0 0 12px rgba(59, 232, 176, 0.12), 0 0 4px rgba(155, 143, 255, 0.08);
 }
 
 .glow-border-active:hover {

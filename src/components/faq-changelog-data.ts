@@ -28,7 +28,7 @@ export const FAQ_CATEGORIES: FAQCategory[] = [
       {
         question: "Does UnreckAI send my clipboard to a server?",
         answer:
-          "Never. Everything runs locally on your Mac. Your text is processed entirely on-device. No internet connection needed, no data ever leaves your machine.",
+          "Never. Everything runs locally on your device. Your text is processed entirely on-device. No internet connection needed, no data ever leaves your machine.",
       },
       {
         question: "Is UnreckAI reading everything I type?",
@@ -72,7 +72,7 @@ export const FAQ_CATEGORIES: FAQCategory[] = [
       {
         question: "Do I need internet access to use it?",
         answer:
-          "No. The app works completely offline. All text processing happens on your Mac, so it works anywhere.",
+          "No. The app works completely offline. All text processing happens on your device, so it works anywhere.",
       },
       {
         question: "What is the difference between Free and Pro?",
@@ -80,9 +80,9 @@ export const FAQ_CATEGORIES: FAQCategory[] = [
           "Free cleans up invisible characters, broken spacing, encoding issues, and removes AI chatbot filler like 'Sure! Here is...'. Pro adds format translation so your bullet points, headings, and tables paste as native formatting in Slack, Gmail, and more.",
       },
       {
-        question: "How does the Lifetime license work?",
+        question: "Why should I choose Pro Annual?",
         answer:
-          "One payment, yours forever. You get every Pro feature plus all future updates. No subscriptions, no renewals.",
+          "Pro Annual gives you the same full Pro experience at 30% off — $41.88 per year ($3.49/month) instead of $4.99/month. Same features, same format translation, just a better price.",
       },
     ],
   },
@@ -90,9 +90,19 @@ export const FAQ_CATEGORIES: FAQCategory[] = [
 
 export const CHANGELOG_ENTRIES: ChangelogEntry[] = [
   {
+    version: "v1.0.0",
+    date: "Mar 2, 2026",
+    isLatest: true,
+    items: [
+      "iOS keyboard extension for cleaning pastes on iPhone and iPad.",
+      "New platform showcase section with macOS and iOS side-by-side.",
+      "Pricing simplified to Free, Pro Monthly, and Pro Annual.",
+    ],
+  },
+  {
     version: "v0.9.0",
     date: "Feb 23, 2026",
-    isLatest: true,
+    isLatest: false,
     items: [
       "Detects AI writing patterns like filler phrases and generic conclusions.",
       "New configurable cleaning modes: Standard and Aggressive.",
