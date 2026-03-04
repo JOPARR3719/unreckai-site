@@ -268,7 +268,7 @@ export function PlatformShowcase() {
                       pointerEvents: isMac ? "auto" : "none",
                     }}
                   >
-                    <div className="w-full" style={{ height: 480, marginTop: 30 }}>
+                    <div className="w-full" style={{ height: 540, marginTop: 0 }}>
                       <MacWindowChrome className="h-full">
                         <VideoPlaceholder label="macOS demo coming soon" />
                       </MacWindowChrome>
