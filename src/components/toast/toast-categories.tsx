@@ -8,6 +8,7 @@ import {
 } from "lucide-react";
 import { RobotIcon } from "../robot-icon";
 import type { CategoryData } from "./toast-data";
+import type { ClickTarget } from "./interactive-toast";
 
 const ICON_MAP: Record<string, React.ElementType> = {
   Wand2,
@@ -26,11 +27,13 @@ const ACCENT_CSS: Record<string, string> = {
 interface ToastCategoriesProps {
   categories: CategoryData[];
   onDrill: (category: CategoryData) => void;
+  clickTarget?: ClickTarget;
 }
 
 export function ToastCategories({
   categories,
   onDrill,
+  clickTarget,
 }: ToastCategoriesProps) {
   return (
     <div className="px-3 py-1">
@@ -43,6 +46,9 @@ export function ToastCategories({
             <button
               onClick={() => onDrill(cat)}
               className="w-full flex items-center gap-2.5 px-3 py-2.5 rounded-lg transition-colors hover:bg-white/[0.03] group text-left"
+              style={{
+                animation: clickTarget === `category-${cat.id}` ? "toast-click-pulse 900ms ease-out" : undefined,
+              }}
             >
               {/* Icon — offset up to align with title, not subtitle */}
               <div className="shrink-0 -translate-y-[6px] -translate-x-[3px]" style={{ color: accent }}>

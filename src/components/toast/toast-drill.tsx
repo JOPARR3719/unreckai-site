@@ -2,6 +2,7 @@
 
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import type { CategoryData, IssueGroupData, PreviewData } from "./toast-data";
+import type { ClickTarget } from "./interactive-toast";
 
 const ACCENT_CSS: Record<string, string> = {
   "brand-accentCleaned": "var(--color-brand-accentCleaned)",
@@ -13,6 +14,9 @@ const ACCENT_CSS: Record<string, string> = {
 const GLOW_GRADIENT =
   "linear-gradient(135deg, var(--color-brand-accentCleaned), var(--color-brand-accentFormatting))";
 
+const GLOW_GRADIENT_FADED =
+  "linear-gradient(135deg, color-mix(in srgb, var(--color-brand-accentCleaned) 35%, transparent), color-mix(in srgb, var(--color-brand-accentFormatting) 35%, transparent))";
+
 interface ToastDrillProps {
   category: CategoryData;
   compareType: string | null;
@@ -20,6 +24,7 @@ interface ToastDrillProps {
   onBack: () => void;
   onToggleCompare: (type: string) => void;
   onSetPreviewIndex: (index: number) => void;
+  clickTarget?: ClickTarget;
 }
 
 export function ToastDrill({
@@ -29,6 +34,7 @@ export function ToastDrill({
   onBack,
   onToggleCompare,
   onSetPreviewIndex,
+  clickTarget,
 }: ToastDrillProps) {
   const accent = ACCENT_CSS[category.accentColor];
 
@@ -52,6 +58,7 @@ export function ToastDrill({
             backgroundImage: `linear-gradient(var(--color-brand-cardBg), var(--color-brand-cardBg)), ${GLOW_GRADIENT}`,
             backgroundOrigin: "border-box",
             backgroundClip: "padding-box, border-box",
+            animation: clickTarget === "back" ? "toast-click-pulse 900ms ease-out" : undefined,
           }}
         >
           <ChevronLeft size={10} className="text-brand-textSecondary" />
@@ -59,7 +66,7 @@ export function ToastDrill({
 
         <span
           className="font-semibold"
-          style={{ fontSize: 12.5, color: accent }}
+          style={{ fontSize: 12.5, color: `color-mix(in srgb, ${accent} 75%, var(--color-brand-textSecondary))` }}
         >
           {category.name}
         </span>
@@ -68,7 +75,7 @@ export function ToastDrill({
 
         <span
           className="font-bold"
-          style={{ fontSize: 13, color: accent }}
+          style={{ fontSize: 13, color: `color-mix(in srgb, ${accent} 65%, var(--color-brand-textSecondary))` }}
         >
           {totalCount}
         </span>
@@ -91,6 +98,7 @@ export function ToastDrill({
             onToggleCompare={() => onToggleCompare(issue.type)}
             onSetPreviewIndex={onSetPreviewIndex}
             isEmDash={issue.type === "em-dash"}
+            clickTarget={clickTarget}
           />
         ))}
       </div>
@@ -108,6 +116,7 @@ interface IssueCardProps {
   onToggleCompare: () => void;
   onSetPreviewIndex: (index: number) => void;
   isEmDash: boolean;
+  clickTarget?: ClickTarget;
 }
 
 function IssueCard({
@@ -118,6 +127,7 @@ function IssueCard({
   onToggleCompare,
   onSetPreviewIndex,
   isEmDash,
+  clickTarget,
 }: IssueCardProps) {
   const hasPreviews = issue.previews && issue.previews.length > 0;
   const currentPreview = hasPreviews
@@ -127,13 +137,14 @@ function IssueCard({
 
   return (
     <div
-      className="rounded-lg transition-colors"
+      className="rounded-lg"
       style={{
         padding: "9px 11px",
         backgroundColor: "var(--color-brand-fixCardBg)",
         border: isComparing
-          ? `1px solid ${accent}`
+          ? `1px solid color-mix(in srgb, ${accent} 40%, transparent)`
           : "1px solid rgba(0, 0, 0, 0.3)",
+        transition: "border-color 400ms ease",
       }}
     >
       {/* Card header: label + count + compare */}
@@ -150,8 +161,8 @@ function IssueCard({
             className="font-bold px-1.5 py-0.5 rounded shrink-0"
             style={{
               fontSize: 11,
-              color: accent,
-              backgroundColor: `color-mix(in srgb, ${accent} 12%, transparent)`,
+              color: `color-mix(in srgb, ${accent} 70%, var(--color-brand-textSecondary))`,
+              backgroundColor: `color-mix(in srgb, ${accent} 8%, transparent)`,
             }}
           >
             {issue.count}
@@ -160,7 +171,7 @@ function IssueCard({
 
         <button
           onClick={onToggleCompare}
-          className="shrink-0 rounded transition-colors"
+          className="shrink-0 rounded"
           style={{
             fontSize: 10,
             fontWeight: 500,
@@ -168,12 +179,15 @@ function IssueCard({
             height: 22,
             display: "flex",
             alignItems: "center",
-            color: isComparing ? accent : "var(--color-brand-textSecondary)",
+            transition: "all 400ms ease",
+            color: isComparing
+              ? `color-mix(in srgb, ${accent} 80%, white)`
+              : "var(--color-brand-textSecondary)",
             border: isComparing
-              ? `1px solid ${accent}`
+              ? `1px solid color-mix(in srgb, ${accent} 45%, transparent)`
               : undefined,
             backgroundColor: isComparing
-              ? `color-mix(in srgb, ${accent} 10%, transparent)`
+              ? `color-mix(in srgb, ${accent} 8%, transparent)`
               : "var(--color-brand-cardBg)",
             backgroundImage: !isComparing
               ? `linear-gradient(var(--color-brand-cardBg), var(--color-brand-cardBg)), ${GLOW_GRADIENT}`
@@ -185,107 +199,115 @@ function IssueCard({
             borderWidth: !isComparing ? 1 : undefined,
             borderStyle: !isComparing ? "solid" : undefined,
             borderColor: !isComparing ? "transparent" : undefined,
+            animation: isEmDash && clickTarget === "compare-em-dash" ? "toast-click-pulse 900ms ease-out" : undefined,
           }}
         >
           Compare
         </button>
       </div>
 
-      {/* Compare content (shown when active) */}
-      {isComparing && (
-        <div className="mt-2">
-          {hasPreviews && currentPreview ? (
-            <>
-              <PreviewBox
-                preview={currentPreview}
-                accent={accent}
-                isEmDash={isEmDash}
-              />
+      {/* Compare content — smooth height via grid-rows */}
+      <div
+        style={{
+          display: "grid",
+          gridTemplateRows: isComparing ? "1fr" : "0fr",
+          transition: "grid-template-rows 500ms cubic-bezier(0.4, 0, 0.2, 1)",
+        }}
+      >
+        <div style={{ overflow: "hidden" }}>
+          <div className="pt-2">
+            {hasPreviews && currentPreview ? (
+              <>
+                <PreviewBox
+                  preview={currentPreview}
+                  accent={accent}
+                  isEmDash={isEmDash}
+                />
 
-              {/* Paginator */}
-              {totalPreviews > 1 && (
-                <div className="flex items-center justify-center gap-3 mt-1.5">
-                  <button
-                    onClick={() =>
-                      onSetPreviewIndex(Math.max(0, previewIndex - 1))
-                    }
-                    disabled={previewIndex === 0}
-                    className="p-0.5 rounded transition-colors disabled:opacity-30"
-                  >
-                    <ChevronLeft
-                      size={10}
-                      className="text-brand-tagLabel"
-                    />
-                  </button>
-                  <span
-                    className="text-brand-textSecondary tabular-nums"
-                    style={{ fontSize: 11 }}
-                  >
-                    {previewIndex + 1} of {totalPreviews}
-                  </span>
-                  <button
-                    onClick={() =>
-                      onSetPreviewIndex(
-                        Math.min(totalPreviews - 1, previewIndex + 1)
-                      )
-                    }
-                    disabled={previewIndex === totalPreviews - 1}
-                    className="p-0.5 rounded transition-colors disabled:opacity-30"
-                  >
-                    <ChevronRight
-                      size={10}
-                      className="text-brand-tagLabel"
-                    />
-                  </button>
-                </div>
-              )}
-
-              {/* Em dash replacement buttons */}
-              {isEmDash && (
-                <div className="flex items-center gap-1.5 mt-1.5">
-                  <span
-                    className="text-brand-textTertiary"
-                    style={{ fontSize: 10 }}
-                  >
-                    Or replace:
-                  </span>
-                  {[
-                    { label: "- hyphen", value: "-" },
-                    { label: "; semi", value: ";" },
-                    { label: ", comma", value: "," },
-                  ].map((opt) => (
+                {/* Paginator */}
+                {totalPreviews > 1 && (
+                  <div className="flex items-center justify-center gap-3 mt-1.5">
                     <button
-                      key={opt.value}
-                      className="text-brand-textSecondary rounded transition-colors hover:bg-white/[0.05]"
-                      style={{
-                        fontSize: 10,
-                        fontWeight: 500,
-                        padding: "0 8px",
-                        height: 22,
-                        display: "flex",
-                        alignItems: "center",
-                        backgroundColor: "var(--color-brand-cardBg)",
-                        border:
-                          "1px solid var(--color-brand-accentFormatting)",
-                        borderWidth: 0.5,
-                      }}
+                      onClick={() =>
+                        onSetPreviewIndex(Math.max(0, previewIndex - 1))
+                      }
+                      disabled={previewIndex === 0}
+                      className="p-0.5 rounded transition-colors disabled:opacity-30"
                     >
-                      {opt.label}
+                      <ChevronLeft
+                        size={10}
+                        className="text-brand-tagLabel"
+                      />
                     </button>
-                  ))}
-                </div>
-              )}
-            </>
-          ) : (
-            <p
-              className="text-brand-textTertiary"
-              style={{ fontSize: 11 }}
-            >
-              {issue.fixed === false ? "AI pattern detected" : "Applied automatically"}
-            </p>
-          )}
+                    <span
+                      className="text-brand-textSecondary tabular-nums"
+                      style={{ fontSize: 11 }}
+                    >
+                      {previewIndex + 1} of {totalPreviews}
+                    </span>
+                    <button
+                      onClick={() =>
+                        onSetPreviewIndex(
+                          Math.min(totalPreviews - 1, previewIndex + 1)
+                        )
+                      }
+                      disabled={previewIndex === totalPreviews - 1}
+                      className="p-0.5 rounded transition-colors disabled:opacity-30"
+                    >
+                      <ChevronRight
+                        size={10}
+                        className="text-brand-tagLabel"
+                      />
+                    </button>
+                  </div>
+                )}
+
+                {/* Em dash replacement buttons */}
+                {isEmDash && (
+                  <div className="flex items-center gap-1.5 mt-1.5">
+                    <span
+                      className="text-brand-textTertiary"
+                      style={{ fontSize: 10 }}
+                    >
+                      Or replace:
+                    </span>
+                    {[
+                      { label: "- hyphen", value: "-" },
+                      { label: "; semi", value: ";" },
+                      { label: ", comma", value: "," },
+                    ].map((opt) => (
+                      <button
+                        key={opt.value}
+                        className="text-brand-textSecondary rounded transition-colors hover:bg-white/[0.05]"
+                        style={{
+                          fontSize: 10,
+                          fontWeight: 500,
+                          padding: "0 8px",
+                          height: 22,
+                          display: "flex",
+                          alignItems: "center",
+                          backgroundColor: "var(--color-brand-cardBg)",
+                          border:
+                            "0.5px solid color-mix(in srgb, var(--color-brand-accentFormatting) 40%, transparent)",
+                        }}
+                      >
+                        {opt.label}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </>
+            ) : (
+              <p
+                className="text-brand-textTertiary"
+                style={{ fontSize: 11 }}
+              >
+                {issue.fixed === false ? "AI pattern detected" : "Applied automatically"}
+              </p>
+            )}
+          </div>
         </div>
-      )}
+      </div>
     </div>
   );
 }
@@ -310,7 +332,7 @@ function PreviewBox({ preview, accent }: PreviewBoxProps) {
           style={{
             fontSize: 9,
             letterSpacing: "0.05em",
-            color: accent,
+            color: `color-mix(in srgb, ${accent} 70%, var(--color-brand-textSecondary))`,
           }}
         >
           Before
@@ -320,7 +342,7 @@ function PreviewBox({ preview, accent }: PreviewBoxProps) {
           style={{
             fontSize: 12,
             backgroundColor: "var(--color-brand-bgSurface)",
-            backgroundImage: `linear-gradient(var(--color-brand-bgSurface), var(--color-brand-bgSurface)), ${GLOW_GRADIENT}`,
+            backgroundImage: `linear-gradient(var(--color-brand-bgSurface), var(--color-brand-bgSurface)), ${GLOW_GRADIENT_FADED}`,
             backgroundOrigin: "border-box",
             backgroundClip: "padding-box, border-box",
             border: "1px solid transparent",
@@ -342,7 +364,7 @@ function PreviewBox({ preview, accent }: PreviewBoxProps) {
           style={{
             fontSize: 9,
             letterSpacing: "0.05em",
-            color: "var(--color-brand-accentCleaned)",
+            color: "color-mix(in srgb, var(--color-brand-accentCleaned) 70%, var(--color-brand-textSecondary))",
           }}
         >
           After
@@ -352,7 +374,7 @@ function PreviewBox({ preview, accent }: PreviewBoxProps) {
           style={{
             fontSize: 12,
             backgroundColor: "var(--color-brand-bgSurface)",
-            backgroundImage: `linear-gradient(var(--color-brand-bgSurface), var(--color-brand-bgSurface)), ${GLOW_GRADIENT}`,
+            backgroundImage: `linear-gradient(var(--color-brand-bgSurface), var(--color-brand-bgSurface)), ${GLOW_GRADIENT_FADED}`,
             backgroundOrigin: "border-box",
             backgroundClip: "padding-box, border-box",
             border: "1px solid transparent",

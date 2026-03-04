@@ -10,9 +10,9 @@ export function Hero() {
       <div className="max-w-7xl mx-auto px-5 sm:px-8 w-full">
         <div className="glow-card">
         <div className="glow-card-inner dot-bl pt-5 sm:pt-7 md:pt-9 px-6 sm:px-10 md:px-12 pb-6 sm:pb-10 md:pb-12">
-        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-          {/* Left column */}
-          <div className="space-y-6 sm:space-y-8 text-center lg:text-left">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+          {/* Left column — vertically centered within the fixed-height right column */}
+          <div className="space-y-6 sm:space-y-8 text-center lg:text-left lg:self-center">
             <div>
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[64px] font-medium tracking-tight leading-[1.1]">
                 <span className="text-brand-textPrimary">Paste Once.</span>
@@ -59,16 +59,11 @@ export function Hero() {
             </p>
           </div>
 
-          {/* Right column: Interactive Toast */}
-          <div className="flex justify-center lg:justify-end">
+          {/* Right column: Interactive Toast — fixed min-height so the hero card
+              never bounces when the toast expands/collapses */}
+          <div className="flex justify-center items-center" style={{ minHeight: 580 }}>
             <div className="w-[360px] max-w-full">
               <InteractiveToast />
-              <div className="flex items-center justify-center gap-2 mt-3">
-                <span className="w-1.5 h-1.5 rounded-full bg-brand-accentCleaned animate-gentle-pulse" />
-                <span className="text-xs text-brand-textTertiary">
-                  Interactive: click to explore
-                </span>
-              </div>
             </div>
           </div>
         </div>

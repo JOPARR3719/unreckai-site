@@ -3,16 +3,20 @@
 import { X, ChevronDown, ChevronUp } from "lucide-react";
 import { ScatterSymbol } from "@/components/scatter-symbol";
 
+import type { ClickTarget } from "./interactive-toast";
+
 interface ToastHeaderProps {
   issueCount: number;
   detailsOpen: boolean;
   onToggleDetails: () => void;
+  clickTarget?: ClickTarget;
 }
 
 export function ToastHeader({
   issueCount,
   detailsOpen,
   onToggleDetails,
+  clickTarget,
 }: ToastHeaderProps) {
   return (
     <div>
@@ -83,6 +87,7 @@ export function ToastHeader({
             width: 92,
             backgroundColor: "var(--color-brand-cardBg)",
             border: "1px solid var(--color-brand-borderLight)",
+            animation: clickTarget === "details" ? "toast-click-pulse 900ms ease-out" : undefined,
           }}
         >
           <span className="flex items-center justify-center gap-1.5">

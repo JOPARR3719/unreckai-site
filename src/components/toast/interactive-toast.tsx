@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import { ToastHeader } from "./toast-header";
 import { ToastCategories } from "./toast-categories";
 import { ToastDrill } from "./toast-drill";
@@ -12,31 +12,175 @@ type ToastView = "categories" | "drill";
 const GLOW_GRADIENT =
   "linear-gradient(135deg, var(--color-brand-accentCleaned), var(--color-brand-accentFormatting))";
 
+/* ── Click targets ──
+   These IDs tell child components which element to pulse before a
+   simulated click. null = no pulse visible. */
+export type ClickTarget =
+  | "details"              // Details button in header
+  | "category-formatting"  // Formatting row in categories
+  | "compare-em-dash"      // Compare button on em-dash card
+  | "back"                 // Back chevron in drill header
+  | null;
+
+/* ── Auto-cycle steps ── */
+interface CycleStep {
+  detailsOpen: boolean;
+  view: ToastView;
+  categoryId: string | null;
+  compareType: string | null;
+  clickTarget: ClickTarget;  // which element to pulse
+  dwell: number; // ms
+}
+
+const FORMATTING_CATEGORY = TOAST_DATA.categories.find(
+  (c) => c.id === "formatting"
+)!;
+
+// Each step changes only ONE thing. "Click" steps show a pulse on the target
+// element, then the next step performs the actual state change.
+const CYCLE_STEPS: CycleStep[] = [
+  // ── Display: categories visible (initial state on refresh) ──
+  { detailsOpen: true,  view: "categories", categoryId: null,         compareType: null,     clickTarget: null, dwell: 7000 },
+  // ── Click: pulse Formatting row ──
+  { detailsOpen: true,  view: "categories", categoryId: null,         compareType: null,     clickTarget: "category-formatting", dwell: 900 },
+  // ── Transition: slide into Formatting drill ──
+  { detailsOpen: true,  view: "drill",      categoryId: "formatting", compareType: null,     clickTarget: null, dwell: 900 },
+  // ── Display: drill view ──
+  { detailsOpen: true,  view: "drill",      categoryId: "formatting", compareType: null,     clickTarget: null, dwell: 7000 },
+  // ── Click: pulse Compare button on em-dash ──
+  { detailsOpen: true,  view: "drill",      categoryId: "formatting", compareType: null,     clickTarget: "compare-em-dash", dwell: 900 },
+  // ── Display: compare open on em-dash ──
+  { detailsOpen: true,  view: "drill",      categoryId: "formatting", compareType: "em-dash", clickTarget: null, dwell: 10000 },
+  // ── Click: pulse Compare again to close ──
+  { detailsOpen: true,  view: "drill",      categoryId: "formatting", compareType: "em-dash", clickTarget: "compare-em-dash", dwell: 900 },
+  // ── Unwind: close compare ──
+  { detailsOpen: true,  view: "drill",      categoryId: "formatting", compareType: null,     clickTarget: null, dwell: 900 },
+  // ── Click: pulse back button ──
+  { detailsOpen: true,  view: "drill",      categoryId: "formatting", compareType: null,     clickTarget: "back", dwell: 900 },
+  // ── Unwind: slide back to categories ──
+  { detailsOpen: true,  view: "categories", categoryId: null,         compareType: null,     clickTarget: null, dwell: 900 },
+  // ── Click: pulse Details button to collapse ──
+  { detailsOpen: true,  view: "categories", categoryId: null,         compareType: null,     clickTarget: "details", dwell: 900 },
+  // ── Unwind: collapse details ──
+  { detailsOpen: false, view: "categories", categoryId: null,         compareType: null,     clickTarget: null, dwell: 900 },
+  // ── Display: collapsed ──
+  { detailsOpen: false, view: "categories", categoryId: null,         compareType: null,     clickTarget: null, dwell: 6000 },
+  // ── Click: pulse Details button to open ──
+  { detailsOpen: false, view: "categories", categoryId: null,         compareType: null,     clickTarget: "details", dwell: 900 },
+  // ── Transition: open details ──
+  { detailsOpen: true,  view: "categories", categoryId: null,         compareType: null,     clickTarget: null, dwell: 900 },
+  // → loops back to step 0
+];
+
+const START_STEP = 0; // categories visible
+
 export function InteractiveToast() {
   const [view, setView] = useState<ToastView>("categories");
-  const [activeCategory, setActiveCategory] = useState<CategoryData | null>(
-    null
-  );
+  const [activeCategory, setActiveCategory] = useState<CategoryData | null>(null);
   const [compareType, setCompareType] = useState<string | null>(null);
   const [previewIndex, setPreviewIndex] = useState(0);
   const [detailsOpen, setDetailsOpen] = useState(true);
+  const [isFloating, setIsFloating] = useState(false);
+  const [floatPaused, setFloatPaused] = useState(false);
+  const [clickTarget, setClickTarget] = useState<ClickTarget>(null);
 
-  const handleDrill = useCallback((category: CategoryData) => {
-    setActiveCategory(category);
-    setView("drill");
-    setCompareType(null);
+  // Auto-cycle refs
+  const stepIndexRef = useRef(START_STEP);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const stepStartedAtRef = useRef(0);
+  const pausedRef = useRef(false);
+  const isUserControlledRef = useRef(false);
+  const remainingRef = useRef(CYCLE_STEPS[START_STEP].dwell);
+
+  const clearTimer = () => {
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+      timerRef.current = null;
+    }
+  };
+
+  const applyStep = (step: CycleStep) => {
+    setDetailsOpen(step.detailsOpen);
+    setView(step.view);
+    setActiveCategory(step.categoryId ? FORMATTING_CATEGORY : null);
+    setCompareType(step.compareType);
+    setClickTarget(step.clickTarget);
     setPreviewIndex(0);
+  };
+
+  const scheduleNext = (delayMs: number) => {
+    clearTimer();
+    stepStartedAtRef.current = Date.now();
+    remainingRef.current = delayMs;
+
+    timerRef.current = setTimeout(() => {
+      if (pausedRef.current || isUserControlledRef.current) return;
+      const nextIndex = (stepIndexRef.current + 1) % CYCLE_STEPS.length;
+      stepIndexRef.current = nextIndex;
+      const nextStep = CYCLE_STEPS[nextIndex];
+      applyStep(nextStep);
+      scheduleNext(nextStep.dwell);
+    }, delayMs);
+  };
+
+  /* ── Start cycle + float on mount ── */
+  useEffect(() => {
+    setIsFloating(true);
+    applyStep(CYCLE_STEPS[START_STEP]);
+    scheduleNext(CYCLE_STEPS[START_STEP].dwell);
+    return clearTimer;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  /* ── Hover handlers ── */
+  const handlePointerEnter = useCallback(() => {
+    if (isUserControlledRef.current) return;
+    pausedRef.current = true;
+    setFloatPaused(true);
+    const elapsed = Date.now() - stepStartedAtRef.current;
+    remainingRef.current = Math.max(remainingRef.current - elapsed, 500);
+    clearTimer();
+  }, []);
+
+  const handlePointerLeave = useCallback(() => {
+    if (isUserControlledRef.current) return;
+    pausedRef.current = false;
+    setFloatPaused(false);
+    scheduleNext(remainingRef.current);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  /* ── User interaction override ── */
+  const markUserControlled = useCallback(() => {
+    if (isUserControlledRef.current) return;
+    isUserControlledRef.current = true;
+    setClickTarget(null);
+    clearTimer();
+  }, []);
+
+  /* ── User-controlled handlers ── */
+  const handleDrill = useCallback(
+    (category: CategoryData) => {
+      markUserControlled();
+      setActiveCategory(category);
+      setView("drill");
+      setCompareType(null);
+      setPreviewIndex(0);
+    },
+    [markUserControlled]
+  );
+
   const handleBack = useCallback(() => {
+    markUserControlled();
     setView("categories");
     setActiveCategory(null);
     setCompareType(null);
     setPreviewIndex(0);
-  }, []);
+  }, [markUserControlled]);
 
   const handleToggleCompare = useCallback(
     (type: string) => {
+      markUserControlled();
       if (compareType === type) {
         setCompareType(null);
       } else {
@@ -44,116 +188,146 @@ export function InteractiveToast() {
         setPreviewIndex(0);
       }
     },
-    [compareType]
+    [compareType, markUserControlled]
   );
 
   const handleToggleDetails = useCallback(() => {
-    setDetailsOpen((prev) => !prev);
-    if (detailsOpen) {
-      setView("categories");
-      setActiveCategory(null);
-      setCompareType(null);
-      setPreviewIndex(0);
-    }
-  }, [detailsOpen]);
+    markUserControlled();
+    setDetailsOpen((prev) => {
+      if (prev) {
+        setView("categories");
+        setActiveCategory(null);
+        setCompareType(null);
+        setPreviewIndex(0);
+      }
+      return !prev;
+    });
+  }, [markUserControlled]);
 
   return (
     <div
-      className="w-[360px] max-w-full rounded-xl overflow-hidden"
+      onPointerEnter={handlePointerEnter}
+      onPointerLeave={handlePointerLeave}
       style={{
-        padding: 1,
-        background:
-          "linear-gradient(135deg, rgba(59, 232, 176, 0.3), rgba(155, 143, 255, 0.3))",
+        animationName: isFloating ? "toast-float" : "none",
+        animationDuration: "4s",
+        animationTimingFunction: "ease-in-out",
+        animationIterationCount: "infinite",
+        animationPlayState: floatPaused ? "paused" : "running",
       }}
     >
       <div
-        className="rounded-[calc(0.75rem-1px)] overflow-hidden flex flex-col"
+        className="w-[360px] max-w-full rounded-xl overflow-hidden"
         style={{
-          backgroundColor: "var(--color-brand-bgSurface)",
-          maxHeight: 560,
+          padding: 1,
+          background:
+            "linear-gradient(135deg, rgba(59, 232, 176, 0.3), rgba(155, 143, 255, 0.3))",
         }}
       >
-        {/* Header card with gradient border */}
         <div
-          className="mx-2.5 mt-2.5 rounded-xl p-px"
-          style={{ background: GLOW_GRADIENT }}
+          className="rounded-[calc(0.75rem-1px)] overflow-hidden flex flex-col"
+          style={{
+            backgroundColor: "var(--color-brand-bgSurface)",
+            maxHeight: 560,
+          }}
         >
-          <div className="rounded-[calc(0.75rem-1px)] bg-brand-cardBg">
-            <ToastHeader
-              issueCount={TOAST_DATA.categories.reduce((sum, cat) => sum + cat.fixCount, 0)}
-              detailsOpen={detailsOpen}
-              onToggleDetails={handleToggleDetails}
-            />
-          </div>
-        </div>
-
-        {/* Categories / Drill card with gradient border */}
-        {detailsOpen && (
+          {/* Header card with gradient border */}
           <div
-            className="mx-2.5 mt-3 rounded-xl p-px"
+            className="mx-2.5 mt-2.5 rounded-xl p-px"
             style={{ background: GLOW_GRADIENT }}
           >
-            <div className="rounded-[calc(0.75rem-1px)] bg-brand-cardBg overflow-hidden">
-              <div className="flex-1 overflow-y-auto overflow-x-hidden slack-scroll relative">
-                {/* Categories view */}
-                <div
-                  className="transition-all duration-300 ease-in-out"
-                  style={{
-                    transform:
-                      view === "categories"
-                        ? "translateX(0)"
-                        : "translateX(-100%)",
-                    opacity: view === "categories" ? 1 : 0,
-                    position:
-                      view === "categories" ? "relative" : "absolute",
-                    top: 0,
-                    left: 0,
-                    width: "100%",
-                    pointerEvents:
-                      view === "categories" ? "auto" : "none",
-                  }}
-                >
-                  <ToastCategories
-                    categories={TOAST_DATA.categories}
-                    onDrill={handleDrill}
-                  />
-                </div>
+            <div className="rounded-[calc(0.75rem-1px)] bg-brand-cardBg">
+              <ToastHeader
+                issueCount={TOAST_DATA.categories.reduce(
+                  (sum, cat) => sum + cat.fixCount,
+                  0
+                )}
+                detailsOpen={detailsOpen}
+                onToggleDetails={handleToggleDetails}
+                clickTarget={clickTarget}
+              />
+            </div>
+          </div>
 
-                {/* Drill view */}
-                <div
-                  className="transition-all duration-300 ease-in-out"
-                  style={{
-                    transform:
-                      view === "drill"
-                        ? "translateX(0)"
-                        : "translateX(100%)",
-                    opacity: view === "drill" ? 1 : 0,
-                    position:
-                      view === "drill" ? "relative" : "absolute",
-                    top: 0,
-                    left: 0,
-                    width: "100%",
-                    pointerEvents: view === "drill" ? "auto" : "none",
-                  }}
-                >
-                  {activeCategory && (
-                    <ToastDrill
-                      category={activeCategory}
-                      compareType={compareType}
-                      previewIndex={previewIndex}
-                      onBack={handleBack}
-                      onToggleCompare={handleToggleCompare}
-                      onSetPreviewIndex={setPreviewIndex}
-                    />
-                  )}
+          {/* Categories / Drill — animated height via grid-rows */}
+          <div
+            style={{
+              display: "grid",
+              gridTemplateRows: detailsOpen ? "1fr" : "0fr",
+              transition:
+                "grid-template-rows 700ms cubic-bezier(0.4, 0, 0.2, 1)",
+            }}
+          >
+            <div style={{ overflow: "hidden" }}>
+              <div
+                className="mx-2.5 mt-3 rounded-xl p-px"
+                style={{ background: GLOW_GRADIENT }}
+              >
+                <div className="rounded-[calc(0.75rem-1px)] bg-brand-cardBg overflow-hidden">
+                  <div className="flex-1 overflow-y-auto overflow-x-hidden slack-scroll relative">
+                    {/* Categories view */}
+                    <div
+                      className="transition-all duration-700 ease-in-out"
+                      style={{
+                        transform:
+                          view === "categories"
+                            ? "translateX(0)"
+                            : "translateX(-100%)",
+                        opacity: view === "categories" ? 1 : 0,
+                        position:
+                          view === "categories" ? "relative" : "absolute",
+                        top: 0,
+                        left: 0,
+                        width: "100%",
+                        pointerEvents:
+                          view === "categories" ? "auto" : "none",
+                      }}
+                    >
+                      <ToastCategories
+                        categories={TOAST_DATA.categories}
+                        onDrill={handleDrill}
+                        clickTarget={clickTarget}
+                      />
+                    </div>
+
+                    {/* Drill view */}
+                    <div
+                      className="transition-all duration-700 ease-in-out"
+                      style={{
+                        transform:
+                          view === "drill"
+                            ? "translateX(0)"
+                            : "translateX(100%)",
+                        opacity: view === "drill" ? 1 : 0,
+                        position:
+                          view === "drill" ? "relative" : "absolute",
+                        top: 0,
+                        left: 0,
+                        width: "100%",
+                        pointerEvents: view === "drill" ? "auto" : "none",
+                      }}
+                    >
+                      {activeCategory && (
+                        <ToastDrill
+                          category={activeCategory}
+                          compareType={compareType}
+                          previewIndex={previewIndex}
+                          onBack={handleBack}
+                          onToggleCompare={handleToggleCompare}
+                          onSetPreviewIndex={setPreviewIndex}
+                          clickTarget={clickTarget}
+                        />
+                      )}
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        )}
 
-        {/* Footer: source + undo + privacy (on bgSurface, no card) */}
-        <ToastFooter sourceApp={TOAST_DATA.sourceApp} />
+          {/* Footer */}
+          <ToastFooter sourceApp={TOAST_DATA.sourceApp} />
+        </div>
       </div>
     </div>
   );
