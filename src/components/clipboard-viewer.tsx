@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Wand2, Type, Layers } from "lucide-react";
+import { Wand2, Type, Layers, Sparkles } from "lucide-react";
 import { RobotIcon } from "./robot-icon";
 import { Reveal } from "./reveal";
 import { InteractiveClipboard } from "./clipboard/interactive-clipboard";
@@ -56,7 +56,7 @@ export function ClipboardViewer() {
     <section className="py-16 sm:py-24 lg:pt-32">
       <div className="max-w-7xl mx-auto px-5 sm:px-8">
         <div className="glow-card overflow-visible">
-          <div className="glow-card-inner dot-tl pt-5 sm:pt-7 md:pt-9 px-6 sm:px-10 md:px-12 pb-6 sm:pb-10 md:pb-12 overflow-visible">
+          <div className="glow-card-inner dot-tl pt-4 sm:pt-5 md:pt-6 px-6 sm:px-10 md:px-12 pb-4 sm:pb-6 md:pb-8 overflow-visible">
             <div className="space-y-8 sm:space-y-12">
               {/* Header */}
               <div className="space-y-3">
@@ -76,13 +76,13 @@ export function ClipboardViewer() {
               <Reveal>
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                   {/* Left: 2x2 category cards */}
-                  <div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-[68px]">
+                  <div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-5">
                     {categories.map((cat) => {
                       const Icon = cat.icon;
                       return (
                         <div
                           key={cat.title}
-                          className="bg-brand-cardBg border border-brand-border rounded-[1.5rem] p-6 sm:p-7 flex flex-col gap-4 transition-transform duration-300 hover:-translate-y-2 hover:scale-[1.02]"
+                          className="bg-brand-cardBg border border-brand-border rounded-[1.5rem] p-4 flex flex-col gap-2 transition-transform duration-300 hover:-translate-y-2 hover:scale-[1.02]"
                         >
                           {/* Icon + Title */}
                           <div className="flex items-center gap-3">
@@ -108,7 +108,7 @@ export function ClipboardViewer() {
                           </div>
 
                           {/* Description */}
-                          <p className="text-brand-textSecondary text-[0.95rem] leading-relaxed min-h-[3rem]">
+                          <p className="text-brand-textSecondary text-[0.95rem] leading-relaxed">
                             {cat.description}
                           </p>
 
@@ -130,6 +130,59 @@ export function ClipboardViewer() {
                         </div>
                       );
                     })}
+                    {/* Apple Intelligence highlight card */}
+                    <div
+                      className="md:col-span-2 bg-brand-cardBg border border-brand-border rounded-[1.5rem] p-4 flex flex-col gap-2 transition-transform duration-300 hover:-translate-y-2 hover:scale-[1.02]"
+                    >
+                          <div className="flex items-center gap-3">
+                            <div
+                              className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0"
+                              style={{
+                                backgroundColor: "color-mix(in srgb, #1aafd0 10%, transparent)",
+                                border: "1px solid color-mix(in srgb, #1aafd0 20%, transparent)",
+                              }}
+                            >
+                              {/* Hidden SVG gradient def for icon stroke */}
+                              <svg width="0" height="0" style={{ position: "absolute" }}>
+                                <defs>
+                                  <linearGradient id="cv-brand-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stopColor="#3be8b0" />
+                                    <stop offset="50%" stopColor="#1aafd0" />
+                                    <stop offset="100%" stopColor="#9B8FFF" />
+                                  </linearGradient>
+                                </defs>
+                              </svg>
+                              <Sparkles
+                                size={20}
+                                strokeWidth={1.5}
+                                style={{ stroke: "url(#cv-brand-grad)" }}
+                              />
+                            </div>
+                            <span
+                              className="font-semibold text-[15px]"
+                              style={{
+                                background: "linear-gradient(135deg, #3be8b0, #1aafd0, #9B8FFF)",
+                                WebkitBackgroundClip: "text",
+                                WebkitTextFillColor: "transparent",
+                              }}
+                            >
+                              Apple Intelligence
+                            </span>
+                            <span
+                              className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full"
+                              style={{
+                                color: "var(--color-brand-accentCleaned)",
+                                border: "1px solid color-mix(in srgb, var(--color-brand-accentCleaned) 30%, transparent)",
+                              }}
+                            >
+                              PRO
+                            </span>
+                          </div>
+                          <p className="text-brand-textSecondary text-[0.95rem] leading-relaxed">
+                            Refine pasted text with on-device AI. Choose Concise, Professional,
+                            or Friendly tone — then UnreckAI cleans the output automatically.
+                          </p>
+                    </div>
                   </div>
 
                   {/* Right: Interactive popup / keyboard */}
@@ -172,7 +225,7 @@ export function ClipboardViewer() {
                       </div>
                     </div>
                     {/* Absolute on desktop: bottom-aligns with cards, overflows upward. Cards determine row height. */}
-                    <div className="flex flex-col items-center lg:absolute lg:bottom-0 lg:right-0">
+                    <div className={`flex flex-col items-center lg:absolute lg:right-0 ${platform === "macos" ? "lg:top-[42%] lg:-translate-y-1/2" : "lg:top-[36%] lg:-translate-y-1/2"}`}>
                       {/* Toggle (desktop only — mobile version above) */}
                       <div className="hidden lg:flex flex-col items-center gap-2 mb-3">
                         <div className="inline-flex items-center bg-brand-cardBg rounded-full p-1 border border-brand-borderSolid">

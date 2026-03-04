@@ -295,9 +295,9 @@ const CATEGORIES: CategoryRow[] = [
 
 function DashboardView() {
   return (
-    <div className="flex flex-col gap-4 mt-2">
+    <div className="flex flex-col gap-2.5 mt-2">
       {/* Header */}
-      <div className="flex items-center gap-1.5 mt-1">
+      <div className="flex items-center gap-1.5 mt-5">
         <ScatterDots size={16} />
         <span className="font-semibold text-sm text-brand-textPrimary">
           UnreckAI
@@ -356,19 +356,52 @@ function DashboardView() {
         </GradientCard>
       </div>
 
+      {/* Apple Intelligence badge */}
+      <GradientCard>
+        <div className="flex items-center gap-2 px-3 py-2.5">
+          {/* Hidden SVG gradient def for icon stroke */}
+          <svg width="0" height="0" style={{ position: "absolute" }}>
+            <defs>
+              <linearGradient id="ios-brand-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#3be8b0" />
+                <stop offset="50%" stopColor="#1aafd0" />
+                <stop offset="100%" stopColor="#9B8FFF" />
+              </linearGradient>
+            </defs>
+          </svg>
+          <Sparkles
+            size={14}
+            strokeWidth={2}
+            className="flex-shrink-0"
+            style={{ stroke: "url(#ios-brand-grad)" }}
+          />
+          <span className="text-[12px] font-medium text-brand-textPrimary flex-1">
+            Apple Intelligence
+          </span>
+          <span
+            className="text-[12px] font-bold bg-clip-text text-transparent"
+            style={{
+              backgroundImage: "linear-gradient(135deg, var(--color-brand-accentCleaned), var(--color-brand-accentFormatting))",
+            }}
+          >
+            23
+          </span>
+        </div>
+      </GradientCard>
+
       {/* Category Breakdown */}
-      <div>
+      <div className="mt-1.5">
         <h3 className="text-xs font-semibold text-brand-textPrimary mb-3">
           Category Breakdown
         </h3>
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-1.5">
           {CATEGORIES.map((cat) => {
             const Icon = cat.icon;
             const isRobot = cat.id === "ai-content";
             return (
               <div
                 key={cat.id}
-                className="flex items-center gap-2 px-3 py-3 rounded-lg"
+                className="flex items-center gap-2 px-3 py-2 rounded-lg"
                 style={{
                   backgroundColor: `color-mix(in srgb, ${cat.color} 6%, transparent)`,
                   border: `1px solid color-mix(in srgb, ${cat.color} 20%, transparent)`,
@@ -596,7 +629,7 @@ function FloatingTabBar({
   ];
 
   return (
-    <div className="px-4 pt-1 pb-0">
+    <div className="px-4 pt-0 pb-0">
       <div className="flex justify-center">
         <div
           className="inline-flex items-center gap-2 rounded-full px-1.5 py-1.5"
@@ -638,7 +671,7 @@ function FloatingTabBar({
 
 // Fixed content height so Dashboard and Settings render identically tall —
 // the phone frame never jumps when switching tabs.
-const CONTENT_HEIGHT = 540;
+const CONTENT_HEIGHT = 570;
 
 export function IosDashboard() {
   const [activeTab, setActiveTab] = useState<"dashboard" | "settings">(
@@ -646,8 +679,8 @@ export function IosDashboard() {
   );
 
   return (
-    <div className="flex flex-col" style={{ backgroundColor: "#0d1114" }}>
-      <div className="px-3 pt-1 pb-1 overflow-y-auto" style={{ height: CONTENT_HEIGHT }}>
+    <div className="flex flex-col">
+      <div className="px-3 pt-1 pb-0 overflow-hidden" style={{ height: CONTENT_HEIGHT }}>
         {activeTab === "dashboard" ? <DashboardView /> : <SettingsView />}
       </div>
 

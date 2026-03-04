@@ -1,8 +1,27 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  MinusCircle,
+  Quote,
+  Code2,
+  TextSearch,
+  FileText,
+  Sparkles,
+  Wand2,
+} from "lucide-react";
 import { SETTINGS_SECTIONS, type SettingsSection, type SettingRow } from "./clipboard-data";
+
+const SETTING_ICONS: Record<string, React.ElementType> = {
+  "minus-circle": MinusCircle,
+  "quote": Quote,
+  "code-2": Code2,
+  "text-search": TextSearch,
+  "file-text": FileText,
+  "sparkles": Sparkles,
+};
 
 const PURPLE = "var(--color-brand-accentFormatting)";
 
@@ -169,6 +188,20 @@ function SettingsDrill({
         </span>
       </button>
 
+      {/* Section label with icon — matches iOS dashboard */}
+      {section.id === "cleaning" && (
+        <div className="flex items-center gap-1.5 mb-2">
+          <Wand2
+            size={14}
+            style={{ color: PURPLE }}
+            strokeWidth={2}
+          />
+          <span className="text-xs font-semibold" style={{ color: PURPLE }}>
+            {section.title}
+          </span>
+        </div>
+      )}
+
       {/* Settings card */}
       <div
         className="rounded-xl p-[0.7px]"
@@ -177,11 +210,11 @@ function SettingsDrill({
             "linear-gradient(135deg, var(--color-brand-accentCleaned), var(--color-brand-accentFormatting))",
         }}
       >
-        <div className="rounded-[calc(0.75rem-0.7px)] bg-brand-cardBg overflow-hidden">
+        <div className="rounded-[calc(0.75rem-0.7px)] bg-brand-cardBg overflow-hidden py-1">
           {section.settings.map((setting, i) => (
             <div
               key={setting.label}
-              className={`px-4 py-3 ${
+              className={`px-3 py-2.5 ${
                 i < section.settings.length - 1 ? "border-b border-brand-border" : ""
               }`}
             >
@@ -198,42 +231,65 @@ function SettingsDrill({
   );
 }
 
+function SettingLabel({ setting }: { setting: SettingRow }) {
+  const Icon = setting.icon ? SETTING_ICONS[setting.icon] : null;
+  return (
+    <div className="flex-1 min-w-0">
+      <div className="flex items-center gap-1.5">
+        {Icon && (
+          <Icon
+            size={11}
+            style={{ color: PURPLE }}
+            strokeWidth={2}
+            className="flex-shrink-0"
+          />
+        )}
+        <span className="text-[11px] font-medium text-brand-textPrimary whitespace-nowrap">
+          {setting.label}
+        </span>
+      </div>
+      {setting.subtitle && (
+        <span className="text-[9px] text-brand-textTertiary mt-0.5 block pl-[17px]">
+          {setting.subtitle}
+        </span>
+      )}
+    </div>
+  );
+}
+
 function PickerRow({ setting }: { setting: SettingRow }) {
   const [selected, setSelected] = useState(setting.value as string);
 
   return (
-    <div className="flex items-center justify-between gap-3">
-      <span className="text-xs text-brand-textSecondary shrink-0">
-        {setting.label}
-      </span>
-      <div
-        className="flex rounded-md p-0.5"
-        style={{ backgroundColor: "var(--color-brand-bgSurface)" }}
-      >
-        {setting.options!.map((opt) => {
-          const isSelected = selected === opt.value;
-          return (
-            <button
-              key={opt.value}
-              onClick={() => setSelected(opt.value)}
-              className="px-2 py-1 rounded text-xs transition-all"
-              style={{
-                color: isSelected
-                  ? "var(--color-brand-textPrimary)"
-                  : "var(--color-brand-textSecondary)",
-                fontWeight: isSelected ? 500 : 400,
-                border: isSelected
-                  ? `1px solid ${PURPLE}`
-                  : "0.5px solid var(--color-brand-border)",
-                backgroundColor: isSelected
-                  ? "var(--color-brand-cardBg)"
-                  : "transparent",
-              }}
-            >
-              {opt.label}
-            </button>
-          );
-        })}
+    <div>
+      <SettingLabel setting={setting} />
+      <div className="mt-1.5">
+        <div className="flex gap-0.5 rounded-md p-0.5" style={{ backgroundColor: "var(--color-brand-bgSurface)" }}>
+          {setting.options!.map((opt) => {
+            const isSelected = selected === opt.value;
+            return (
+              <button
+                key={opt.value}
+                onClick={() => setSelected(opt.value)}
+                className="px-2 py-1 rounded text-[10px] leading-tight transition-all"
+                style={{
+                  color: isSelected
+                    ? PURPLE
+                    : "var(--color-brand-textTertiary)",
+                  fontWeight: isSelected ? 500 : 400,
+                  border: isSelected
+                    ? `1px solid ${PURPLE}`
+                    : "1px solid var(--color-brand-border)",
+                  backgroundColor: isSelected
+                    ? `color-mix(in srgb, ${PURPLE} 10%, transparent)`
+                    : "transparent",
+                }}
+              >
+                {opt.label}
+              </button>
+            );
+          })}
+        </div>
       </div>
     </div>
   );
@@ -243,22 +299,23 @@ function ToggleRow({ setting }: { setting: SettingRow }) {
   const [on, setOn] = useState(setting.value as boolean);
 
   return (
-    <div className="flex items-center justify-between">
-      <span className="text-xs text-brand-textSecondary">
-        {setting.label}
-      </span>
+    <div className="flex items-center justify-between gap-2">
+      <SettingLabel setting={setting} />
       <button
         onClick={() => setOn(!on)}
-        className="w-9 h-5 rounded-full flex items-center px-0.5 transition-colors"
+        className="relative w-8 h-[18px] rounded-full transition-colors duration-200 flex-shrink-0"
         style={{
           backgroundColor: on
             ? "var(--color-brand-accentCleaned)"
-            : "var(--color-brand-borderSolid)",
+            : "var(--color-brand-bgSurface)",
+          border: on
+            ? "1px solid var(--color-brand-accentCleaned)"
+            : "1px solid var(--color-brand-border)",
         }}
       >
         <div
-          className="w-4 h-4 rounded-full bg-white transition-transform"
-          style={{ transform: on ? "translateX(16px)" : "translateX(0)" }}
+          className="absolute top-[2px] w-3 h-3 rounded-full bg-white transition-all duration-200"
+          style={{ left: on ? "calc(100% - 14px)" : "2px" }}
         />
       </button>
     </div>

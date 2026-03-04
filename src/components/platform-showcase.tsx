@@ -14,14 +14,14 @@ const TOGGLE_ACTIVE_STYLE = {
 const macBullets: string[] = [
   "Translates AI formatting silently in the background.",
   "Smart notifications detail exact formatting adjustments.",
-  "Restores original content instantly with one click.",
+  "Refine pasted text with on-device Apple Intelligence.",
   "Configure granular processing rules from the menu.",
 ];
 
 const iosBullets: string[] = [
   "Translates formatting natively inside any active app.",
   "Review categorized text transformations before applying.",
-  "Resolve specific categories or clean everything instantly.",
+  "Refine text tone with built-in Apple Intelligence.",
   "On-device processing guarantees absolute data privacy.",
 ];
 

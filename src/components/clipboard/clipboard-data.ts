@@ -30,6 +30,8 @@ export interface SettingRow {
   type: "picker" | "toggle";
   options?: SettingOption[];
   value: string | boolean;
+  icon?: string;      // lucide icon name
+  subtitle?: string;  // description text below label
 }
 
 export interface SettingsSection {
@@ -80,17 +82,21 @@ export const SETTINGS_SECTIONS: SettingsSection[] = [
     subtitle: "How UnreckAI processes your clipboard",
     settings: [
       {
-        label: "Em dashes",
+        label: "Em Dashes",
+        icon: "minus-circle",
+        subtitle: "Replace — dashes in AI text",
         type: "picker",
         options: [
-          { label: "Keep", value: "keep" },
-          { label: "Remove", value: "remove" },
           { label: "Hyphen", value: "hyphen" },
+          { label: "Semi", value: "semi" },
+          { label: "Comma", value: "comma" },
         ],
-        value: "remove",
+        value: "hyphen",
       },
       {
-        label: "Smart quotes",
+        label: "Smart Quotes",
+        icon: "quote",
+        subtitle: "Straighten curly quotes",
         type: "picker",
         options: [
           { label: "Off", value: "off" },
@@ -100,23 +106,42 @@ export const SETTINGS_SECTIONS: SettingsSection[] = [
         value: "code-only",
       },
       {
-        label: "Bold handling",
+        label: "Code Context",
+        icon: "code-2",
+        subtitle: "How to handle code-like content",
         type: "picker",
         options: [
-          { label: "Conservative", value: "conservative" },
-          { label: "Aggressive", value: "aggressive" },
+          { label: "Auto", value: "auto" },
+          { label: "Never", value: "never" },
+          { label: "Always", value: "always" },
         ],
-        value: "conservative",
+        value: "auto",
       },
       {
-        label: "AI style detection",
+        label: "AI Style Detection",
+        icon: "text-search",
+        subtitle: "Spot AI writing habits",
         type: "picker",
         options: [
           { label: "Off", value: "off" },
-          { label: "Standard", value: "standard" },
-          { label: "Aggressive", value: "aggressive" },
+          { label: "Flag only", value: "flag" },
+          { label: "Auto-fix", value: "autofix" },
         ],
-        value: "standard",
+        value: "flag",
+      },
+      {
+        label: "PDF Repair",
+        icon: "file-text",
+        subtitle: "Fix broken lines from PDFs",
+        type: "toggle",
+        value: true,
+      },
+      {
+        label: "AI Slop Removal",
+        icon: "sparkles",
+        subtitle: "Strip chatbot intros & closers",
+        type: "toggle",
+        value: true,
       },
     ],
   },

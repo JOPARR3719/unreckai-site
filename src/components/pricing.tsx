@@ -27,10 +27,10 @@ const tiers = [
   },
   {
     name: "Pro Annual",
-    price: 3.49,
+    price: 4.99,
     period: "/month",
     subtitle: "billed annually",
-    description: "Advanced style & formatting, 30% less.",
+    description: "Full formatting intelligence, 30% less.",
     cta: "Get Best Value",
     ctaStyle: "primary" as const,
     popular: true,
@@ -40,16 +40,16 @@ const tiers = [
       { text: "Format translation (native HTML)", included: true },
       { text: "Em dash, quote & bold handling", included: true },
       { text: "AI writing style detection", included: true },
-      { text: "All issue types fixed", included: true },
-      { text: "Emoji bullet detection", included: true },
+      { text: "Apple Intelligence (Summaries & Tone)", included: true },
+      { text: "One license for Mac & iOS", included: true },
     ] as Feature[],
   },
   {
     name: "Pro Monthly",
-    price: 4.99,
+    price: 6.99,
     period: "/month",
     subtitle: "",
-    description: "Advanced style & formatting, billed monthly.",
+    description: "Full formatting intelligence, billed monthly.",
     cta: "Start Pro Trial",
     ctaStyle: "ghost" as const,
     popular: false,
@@ -58,8 +58,8 @@ const tiers = [
       { text: "Format translation (native HTML)", included: true },
       { text: "Em dash, quote & bold handling", included: true },
       { text: "AI writing style detection", included: true },
-      { text: "All issue types fixed", included: true },
-      { text: "Emoji bullet detection", included: true },
+      { text: "Apple Intelligence (Summaries & Tone)", included: true },
+      { text: "One license for Mac & iOS", included: true },
     ] as Feature[],
   },
 ];
@@ -83,7 +83,7 @@ export function Pricing() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 sm:gap-6 max-w-5xl mx-auto items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 sm:gap-6 max-w-6xl mx-auto items-center">
             {tiers.map((tier, i) => {
               const cardContent = (
                 <>
