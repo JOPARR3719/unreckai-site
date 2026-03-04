@@ -38,7 +38,7 @@ function FaqAccordion() {
 
   return (
     <div className="glow-card">
-      <div className="glow-card-inner dot-br rounded-[calc(2rem-1.5px)] p-8 shadow-2xl">
+      <div className="glow-card-inner dot-tr rounded-[calc(2rem-1.5px)] p-8 shadow-2xl">
         <div className="mb-10">
           <p className="text-brand-accentPurpleDark font-semibold tracking-[0.15em] text-xs uppercase mb-3">
             Quick Answers

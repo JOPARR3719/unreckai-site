@@ -47,9 +47,11 @@ function ScatterDots({ size = 16 }: { size?: number }) {
 function GradientCard({
   children,
   className = "",
+  innerBg = "bg-brand-cardBg",
 }: {
   children: React.ReactNode;
   className?: string;
+  innerBg?: string;
 }) {
   return (
     <div
@@ -59,7 +61,7 @@ function GradientCard({
           "linear-gradient(135deg, var(--color-brand-accentCleaned), var(--color-brand-accentFormatting))",
       }}
     >
-      <div className="rounded-[calc(0.75rem-0.7px)] bg-brand-cardBg">
+      <div className={`rounded-[calc(0.75rem-0.7px)] ${innerBg}`}>
         {children}
       </div>
     </div>
@@ -122,7 +124,7 @@ function SegmentedPicker({
   onChange: (v: string) => void;
 }) {
   return (
-    <div className="flex gap-0.5 bg-brand-bgSurface rounded-md p-0.5">
+    <div className="flex gap-0.5 bg-brand-cardBg rounded-md p-0.5">
       {options.map((opt) => {
         const isActive = opt.value === value;
         return (
@@ -171,7 +173,7 @@ function GridPicker({
   onChange: (v: string) => void;
 }) {
   return (
-    <div className="grid grid-cols-3 gap-1 bg-brand-bgSurface rounded-md p-1">
+    <div className="grid grid-cols-3 gap-1 bg-brand-cardBg rounded-md p-1">
       {options.map((opt) => {
         const isActive = opt.value === value;
         return (
@@ -223,7 +225,7 @@ function Toggle({
       style={{
         backgroundColor: value
           ? "var(--color-brand-accentCleaned)"
-          : "var(--color-brand-bgSurface)",
+          : "var(--color-brand-cardBg)",
         border: value
           ? "1px solid var(--color-brand-accentCleaned)"
           : "1px solid var(--color-brand-border)",
@@ -644,7 +646,7 @@ export function IosDashboard() {
   );
 
   return (
-    <div className="flex flex-col bg-brand-bg">
+    <div className="flex flex-col" style={{ backgroundColor: "#0d1114" }}>
       <div className="px-3 pt-1 pb-1 overflow-y-auto" style={{ height: CONTENT_HEIGHT }}>
         {activeTab === "dashboard" ? <DashboardView /> : <SettingsView />}
       </div>

@@ -1,4 +1,4 @@
-import { Download, Play, Smartphone } from "lucide-react";
+import { Download } from "lucide-react";
 import { InteractiveToast } from "@/components/toast/interactive-toast";
 
 export function Hero() {
@@ -9,7 +9,7 @@ export function Hero() {
     >
       <div className="max-w-7xl mx-auto px-5 sm:px-8 w-full">
         <div className="glow-card">
-        <div className="glow-card-inner dot-br pt-5 sm:pt-7 md:pt-9 px-6 sm:px-10 md:px-12 pb-6 sm:pb-10 md:pb-12">
+        <div className="glow-card-inner dot-bl pt-5 sm:pt-7 md:pt-9 px-6 sm:px-10 md:px-12 pb-6 sm:pb-10 md:pb-12">
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           {/* Left column */}
           <div className="space-y-6 sm:space-y-8 text-center lg:text-left">
@@ -25,31 +25,36 @@ export function Hero() {
               AI tools wreck your formatting. UnreckAI translates it back.
             </p>
 
-            <div className="flex flex-wrap gap-3 sm:gap-4 justify-center lg:justify-start">
+            <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 justify-center lg:justify-start">
               <a
                 href="#pricing"
-                className="flex items-center gap-2.5 bg-brand-accentCleaned text-brand-bg font-semibold px-5 sm:px-6 py-3 rounded-xl transition-all duration-300 hover:brightness-110 hover:shadow-[0_0_20px_rgba(59,232,176,0.3)] hover:-translate-y-1 active:translate-y-0 text-sm sm:text-[15px]"
+                className="group relative rounded-full transition-all duration-300 hover:-translate-y-1 active:translate-y-0 p-[1px]"
+                style={{ background: "linear-gradient(135deg, #3be8b0, #1aafd0, #9B8FFF)" }}
               >
-                <Download size={18} />
-                Download for macOS
+                <span className="flex items-center gap-2 bg-[#1a2230] rounded-full px-5 py-2.5 text-sm font-medium text-brand-tagLabel group-hover:text-brand-textPrimary transition-colors">
+                  Download for <span className="text-white">macOS</span>
+                  <Download size={15} />
+                </span>
               </a>
               <a
                 href="#pricing"
-                className="flex items-center gap-2.5 border border-brand-borderSolid text-brand-textPrimary font-medium px-5 sm:px-6 py-3 rounded-xl transition-all duration-300 hover:border-brand-borderLight hover:-translate-y-1 hover:shadow-[0_0_16px_rgba(255,255,255,0.05)] active:translate-y-0 text-sm sm:text-[15px]"
+                className="group relative rounded-full transition-all duration-300 hover:-translate-y-1 active:translate-y-0 p-[1px]"
+                style={{ background: "linear-gradient(135deg, #3be8b0, #1aafd0, #9B8FFF)" }}
               >
-                <Smartphone size={16} />
-                Get on iOS
-              </a>
-              <a
-                href="#visual-proof"
-                className="flex items-center gap-2.5 border border-brand-borderSolid text-brand-textPrimary font-medium px-5 sm:px-6 py-3 rounded-xl transition-all duration-300 hover:border-brand-borderLight hover:-translate-y-1 hover:shadow-[0_0_16px_rgba(255,255,255,0.05)] active:translate-y-0 text-sm sm:text-[15px]"
-              >
-                <Play size={16} />
-                See how it works
+                <span className="flex items-center gap-2 bg-[#1a2230] rounded-full px-5 py-2.5 text-sm font-medium text-brand-tagLabel group-hover:text-brand-textPrimary transition-colors">
+                  Download for <span className="text-white">iOS</span>
+                  <Download size={15} />
+                </span>
               </a>
             </div>
 
-            <p className="text-xs sm:text-sm text-brand-textSecondary">
+            <p
+              className="text-xs sm:text-sm font-medium bg-clip-text text-transparent"
+              style={{
+                backgroundImage: "linear-gradient(90deg, #3be8b0, #1aafd0, #9B8FFF)",
+                opacity: 0.55,
+              }}
+            >
               Local Intelligence. Total Privacy. One app for Mac &amp; iOS.
             </p>
           </div>
