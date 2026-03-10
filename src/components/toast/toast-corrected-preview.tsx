@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, PenLine } from "lucide-react";
 
 const GLOW_GRADIENT =
   "linear-gradient(135deg, var(--color-brand-accentCleaned), var(--color-brand-accentFormatting))";
@@ -27,7 +27,7 @@ export function CorrectedPreviewCard({
         backgroundClip: "padding-box, border-box",
       }}
     >
-      <HighlighterIcon size={14} />
+      <PenLine size={14} strokeWidth={2.2} className="text-brand-textPrimary shrink-0" />
       <span
         className="font-semibold text-brand-textPrimary flex-1"
         style={{ fontSize: "12.5px" }}
