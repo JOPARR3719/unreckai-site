@@ -82,7 +82,7 @@ export const FAQ_CATEGORIES: FAQCategory[] = [
       {
         question: "Why should I choose Pro Annual?",
         answer:
-          "Pro Annual gives you the same full Pro experience at 30% off — $41.88 per year ($3.49/month) instead of $4.99/month. Same features, same format translation, just a better price.",
+          "Pro Annual gives you the same full Pro experience at 30% off: $41.88 per year ($3.49/month) instead of $4.99/month. Same features, same format translation, just a better price.",
       },
     ],
   },

@@ -180,7 +180,7 @@ export function ClipboardViewer() {
                           </div>
                           <p className="text-brand-textSecondary text-[0.95rem] leading-relaxed">
                             Refine pasted text with on-device AI. Choose Concise, Professional,
-                            or Friendly tone — then UnreckAI cleans the output automatically.
+                            or Friendly tone, then UnreckAI cleans the output automatically.
                           </p>
                     </div>
                   </div>
