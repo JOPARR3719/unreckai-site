@@ -261,7 +261,7 @@ const CATEGORIES: CategoryRow[] = [
     icon: Wand2,
     iconSize: 14,
     color: "var(--color-brand-accentCleaned)",
-    count: 7,
+    count: 412,
   },
   {
     id: "formatting",
@@ -269,7 +269,7 @@ const CATEGORIES: CategoryRow[] = [
     icon: Type,
     iconSize: 14,
     color: "var(--color-brand-accentFormatting)",
-    count: 22,
+    count: 1197,
   },
   {
     id: "ai-content",
@@ -277,7 +277,7 @@ const CATEGORIES: CategoryRow[] = [
     icon: RobotIcon,
     iconSize: 12,
     color: "var(--color-brand-accentAi)",
-    count: 7,
+    count: 318,
   },
   {
     id: "document",
@@ -285,7 +285,7 @@ const CATEGORIES: CategoryRow[] = [
     icon: Layers,
     iconSize: 14,
     color: "var(--color-brand-accentDocument)",
-    count: 8,
+    count: 478,
   },
 ];
 
@@ -295,7 +295,7 @@ const CATEGORIES: CategoryRow[] = [
 
 function DashboardView() {
   return (
-    <div className="flex flex-col gap-2.5 mt-2">
+    <div className="flex flex-col gap-3 mt-2">
       {/* Header */}
       <div className="flex items-center gap-1.5 mt-5">
         <ScatterDots size={16} />
@@ -311,6 +311,26 @@ function DashboardView() {
         >
           PRO
         </span>
+        <div className="flex-1" />
+        <div
+          className="flex items-center justify-center"
+          style={{
+            width: 24,
+            height: 24,
+            borderRadius: 6,
+            background: "linear-gradient(135deg, rgba(59,232,176,0.08), rgba(155,143,255,0.08))",
+            border: "1px solid color-mix(in srgb, #3be8b0 40%, #9B8FFF)",
+          }}
+        >
+          <span
+            className="text-[13px] bg-clip-text text-transparent"
+            style={{
+              backgroundImage: "linear-gradient(135deg, #3be8b0, #1aafd0, #9B8FFF)",
+            }}
+          >
+            &#x2728;
+          </span>
+        </div>
       </div>
 
       {/* Hero card */}
@@ -323,7 +343,7 @@ function DashboardView() {
             2,405
           </GradientText>
           <div className="mt-1">
-            <GradientPill>Today: 0</GradientPill>
+            <GradientPill>Today: 112</GradientPill>
           </div>
         </div>
       </GradientCard>
@@ -337,76 +357,38 @@ function DashboardView() {
               Pastes Cleaned
             </span>
             <div className="mt-0.5">
-              <GradientPill>Today: 0</GradientPill>
+              <GradientPill>Today: 5</GradientPill>
             </div>
           </div>
         </GradientCard>
         <GradientCard>
           <div className="flex flex-col items-center py-4 px-2 gap-0.5">
             <span className="text-2xl font-bold leading-none text-brand-textPrimary">
-              2,405
+              19
             </span>
             <span className="text-[10px]" style={{ color: "var(--color-brand-accentDocument)" }}>
-              Issues Fixed
+              Avg per Paste
             </span>
             <div className="mt-0.5">
-              <GradientPill>Today: 0</GradientPill>
+              <GradientPill>Avg today: 38</GradientPill>
             </div>
           </div>
         </GradientCard>
       </div>
 
-      {/* Apple Intelligence badge */}
-      <GradientCard>
-        <div className="flex items-center gap-2 px-3 py-2.5">
-          {/* Hidden SVG gradient def for icon stroke */}
-          <svg width="0" height="0" style={{ position: "absolute" }}>
-            <defs>
-              <linearGradient id="ios-brand-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#3be8b0" />
-                <stop offset="50%" stopColor="#1aafd0" />
-                <stop offset="100%" stopColor="#9B8FFF" />
-              </linearGradient>
-            </defs>
-          </svg>
-          <Sparkles
-            size={14}
-            strokeWidth={2}
-            className="flex-shrink-0"
-            style={{ stroke: "url(#ios-brand-grad)" }}
-          />
-          <span
-            className="text-[12px] font-medium flex-1 bg-clip-text text-transparent"
-            style={{
-              backgroundImage: "linear-gradient(135deg, #3be8b0, #1aafd0, #9B8FFF)",
-            }}
-          >
-            Apple Intelligence
-          </span>
-          <span
-            className="text-[12px] font-bold bg-clip-text text-transparent"
-            style={{
-              backgroundImage: "linear-gradient(135deg, var(--color-brand-accentCleaned), var(--color-brand-accentFormatting))",
-            }}
-          >
-            23
-          </span>
-        </div>
-      </GradientCard>
-
       {/* Category Breakdown */}
-      <div className="mt-1.5">
+      <div className="mt-4">
         <h3 className="text-xs font-semibold text-brand-textPrimary mb-3">
           Category Breakdown
         </h3>
-        <div className="flex flex-col gap-1.5">
+        <div className="flex flex-col gap-2.5">
           {CATEGORIES.map((cat) => {
             const Icon = cat.icon;
             const isRobot = cat.id === "ai-content";
             return (
               <div
                 key={cat.id}
-                className="flex items-center gap-2 px-3 py-2 rounded-lg"
+                className="flex items-center gap-2 px-3 py-3 rounded-lg"
                 style={{
                   backgroundColor: `color-mix(in srgb, ${cat.color} 6%, transparent)`,
                   border: `1px solid color-mix(in srgb, ${cat.color} 20%, transparent)`,
