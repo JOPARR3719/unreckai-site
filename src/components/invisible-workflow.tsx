@@ -14,14 +14,14 @@ const features = [
     color: "text-brand-accentFormatting",
     title: "Removes AI footprints",
     description:
-      'Strips sycophantic openers, chatbot closers, invisible characters, and formatting artifacts that scream "AI wrote this."',
+      'Strips AI chat openers, chatbot closers, invisible characters, and formatting artifacts that scream "AI wrote this."',
   },
   {
     icon: Undo2,
     color: "text-brand-accentAi",
     title: "One-click undo",
     description:
-      "Changed your mind? Hit Undo in the toast notification to instantly restore your original clipboard. No data lost, ever.",
+      "Changed your mind? Hit Undo to instantly restore your original text. Works on Mac and iOS. No data lost, ever.",
   },
 ];
 

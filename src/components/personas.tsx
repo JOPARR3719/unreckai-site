@@ -9,7 +9,7 @@ const personas = [
     subtitle: "Clean PRDs directly into Notion.",
     features: [
       "Preserves native bulleting.",
-      "Strips ChatGPT intros.",
+      "Strips AI chat intros.",
     ],
   },
   {

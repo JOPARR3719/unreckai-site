@@ -45,7 +45,7 @@ export function Privacy() {
                     Private by default.
                   </h2>
                   <p className="text-brand-textSecondary text-base sm:text-lg leading-relaxed">
-                    Every transformation happens on your device. No servers, no telemetry, no cloud calls. Your clipboard data stays exactly where it belongs.
+                    Every transformation happens on your Mac or iPhone. No servers, no telemetry, no cloud calls. Your clipboard data stays exactly where it belongs.
                   </p>
                 </div>
 
