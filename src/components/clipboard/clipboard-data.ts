@@ -202,7 +202,7 @@ export const SETTINGS_SECTIONS: SettingsSection[] = [
   {
     id: "changelog",
     title: "Changelog",
-    subtitle: "v0.9.0 \u2014 Feb 23, 2026",
+    subtitle: "v1.1.0 \u2014 Mar 10, 2026",
     settings: [],
     standalone: true,
   },
