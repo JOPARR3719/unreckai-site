@@ -75,7 +75,7 @@ export function ToastHeader({
       </div>
 
       {/* Row 2: Timer + Details */}
-      <div className="flex items-center mt-3 px-4 pb-3">
+      <div className="flex items-center mt-3 px-4 pb-1">
         <span className="text-xs text-brand-textSecondary">
           timer paused while viewing
         </span>

@@ -4,7 +4,6 @@ import {
   Wand2,
   Type,
   Layers,
-  ChevronRight,
 } from "lucide-react";
 import { RobotIcon } from "../robot-icon";
 import type { CategoryData } from "./toast-data";
@@ -36,60 +35,63 @@ export function ToastCategories({
   clickTarget,
 }: ToastCategoriesProps) {
   return (
-    <div className="px-3 py-1">
-      {categories.map((cat, i) => {
+    <div className="flex flex-col gap-2">
+      {categories.map((cat) => {
         const Icon = ICON_MAP[cat.icon];
         const accent = ACCENT_CSS[cat.accentColor];
 
         return (
-          <div key={cat.id}>
-            <button
-              onClick={() => onDrill(cat)}
-              className="w-full flex items-center gap-2.5 px-3 py-2.5 rounded-lg transition-colors hover:bg-white/[0.03] group text-left"
-              style={{
-                animation: clickTarget === `category-${cat.id}` ? "toast-click-pulse 900ms ease-out" : undefined,
-              }}
+          <button
+            key={cat.id}
+            onClick={() => onDrill(cat)}
+            className="w-full flex items-center gap-2.5 rounded-lg transition-colors hover:bg-white/[0.03] group text-left"
+            style={{
+              padding: "9px 12px",
+              backgroundColor: "var(--color-brand-fixCardBg)",
+              border: "0.5px solid var(--color-brand-border)",
+              animation: clickTarget === `category-${cat.id}` ? "toast-click-pulse 900ms ease-out" : undefined,
+            }}
+          >
+            {/* Icon */}
+            <div className="shrink-0" style={{ color: accent }}>
+              {Icon && <Icon size={cat.icon === "RobotIcon" ? 14 : 16} strokeWidth={2.2} />}
+            </div>
+
+            {/* Name */}
+            <span
+              className="font-semibold flex-1 min-w-0"
+              style={{ fontSize: "12.5px", color: accent }}
             >
-              {/* Icon — offset up to align with title, not subtitle */}
-              <div className="shrink-0 -translate-y-[6px] -translate-x-[3px]" style={{ color: accent }}>
-                {Icon && <Icon size={cat.icon === "RobotIcon" ? 14 : 16} strokeWidth={2.2} />}
-              </div>
+              {cat.name}
+            </span>
 
-              {/* Name + subtitle */}
-              <div className="flex-1 min-w-0">
-                <div
-                  className="font-semibold leading-tight"
-                  style={{ fontSize: "12.5px", color: accent }}
-                >
-                  {cat.name}
-                </div>
-                <div className="text-xs text-brand-textSecondary mt-0.5">
-                  {cat.subtitle}
-                </div>
-              </div>
+            {/* Count */}
+            <span
+              className="text-xs font-bold shrink-0"
+              style={{ fontSize: 13, color: accent }}
+            >
+              {cat.fixCount}
+            </span>
 
-              {/* Count badge */}
-              <span
-                className="text-xs font-bold px-1.5 py-0.5 rounded shrink-0"
-                style={{
-                  fontSize: 11,
-                  color: accent,
-                  backgroundColor: `color-mix(in srgb, ${accent} 12%, transparent)`,
-                }}
-              >
-                {cat.fixCount}
-              </span>
-
-              {/* Chevron */}
-              <ChevronRight
-                size={14}
-                className="text-brand-tagLabel shrink-0 opacity-60 group-hover:opacity-100 transition-opacity"
-              />
-            </button>
-            {i < categories.length - 1 && (
-              <div className="h-px bg-white/[0.08] mx-3" />
-            )}
-          </div>
+            {/* Filled gradient checkmark circle */}
+            <svg
+              width={18}
+              height={18}
+              viewBox="0 0 24 24"
+              fill="none"
+              className="shrink-0"
+            >
+              <defs>
+                <linearGradient id={`check-grad-${cat.id}`} x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stopColor="#3be8b0" />
+                  <stop offset="50%" stopColor="#1aafd0" />
+                  <stop offset="100%" stopColor="#9B8FFF" />
+                </linearGradient>
+              </defs>
+              <circle cx="12" cy="12" r="11" fill={`url(#check-grad-${cat.id})`} />
+              <path d="m9 12 2 2 4-4" stroke="var(--color-brand-bgSurface)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </button>
         );
       })}
     </div>

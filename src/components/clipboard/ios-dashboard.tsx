@@ -37,8 +37,8 @@ function ScatterDots({ size = 16 }: { size?: number }) {
       {Array.from({ length: 9 }).map((_, i) => (
         <div
           key={i}
-          className="rounded-[1px] bg-brand-textPrimary"
-          style={{ width: s, height: s }}
+          className="bg-brand-textPrimary"
+          style={{ width: s, height: s, borderRadius: s * 0.30 }}
         />
       ))}
     </div>

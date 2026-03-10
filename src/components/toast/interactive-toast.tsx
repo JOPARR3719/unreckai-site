@@ -2,12 +2,15 @@
 
 import { useState, useCallback, useRef, useEffect } from "react";
 import { ToastHeader } from "./toast-header";
+import { ToastIconBar } from "./toast-icon-bar";
 import { ToastCategories } from "./toast-categories";
 import { ToastDrill } from "./toast-drill";
 import { ToastFooter } from "./toast-footer";
+import { CorrectedPreviewCard, CorrectedPreviewDrill } from "./toast-corrected-preview";
+import { IntelligenceSummaryCard, IntelligenceSummaryDrill } from "./toast-intelligence-summary";
 import { TOAST_DATA, type CategoryData } from "./toast-data";
 
-type ToastView = "categories" | "drill";
+type ToastView = "categories" | "drill" | "correctedPreview" | "intelligenceSummary";
 
 const GLOW_GRADIENT =
   "linear-gradient(135deg, var(--color-brand-accentCleaned), var(--color-brand-accentFormatting))";
@@ -101,7 +104,7 @@ export function InteractiveToast({ autoStart = false }: { autoStart?: boolean })
 
   const applyStep = (step: CycleStep) => {
     setDetailsOpen(step.detailsOpen);
-    setView(step.view);
+    setView(step.view as ToastView);
     setActiveCategory(step.categoryId ? FORMATTING_CATEGORY : null);
     setCompareType(step.compareType);
     setClickTarget(step.clickTarget);
@@ -172,12 +175,13 @@ export function InteractiveToast({ autoStart = false }: { autoStart?: boolean })
   const handleDrill = useCallback(
     (category: CategoryData) => {
       markUserControlled();
+      if (!detailsOpen) setDetailsOpen(true);
       setActiveCategory(category);
       setView("drill");
       setCompareType(null);
       setPreviewIndex(0);
     },
-    [markUserControlled]
+    [markUserControlled, detailsOpen]
   );
 
   const handleBack = useCallback(() => {
@@ -214,6 +218,27 @@ export function InteractiveToast({ autoStart = false }: { autoStart?: boolean })
     });
   }, [markUserControlled]);
 
+  const handleCorrectedPreview = useCallback(() => {
+    markUserControlled();
+    setView("correctedPreview");
+  }, [markUserControlled]);
+
+  const handleIntelligenceSummary = useCallback(() => {
+    markUserControlled();
+    if (!detailsOpen) setDetailsOpen(true);
+    setView("intelligenceSummary");
+  }, [markUserControlled, detailsOpen]);
+
+  const handleBackToCategories = useCallback(() => {
+    markUserControlled();
+    setView("categories");
+  }, [markUserControlled]);
+
+  const fixedCount = TOAST_DATA.categories.reduce(
+    (sum, cat) => sum + cat.fixCount,
+    0
+  );
+
   return (
     <div
       onPointerEnter={handlePointerEnter}
@@ -238,7 +263,6 @@ export function InteractiveToast({ autoStart = false }: { autoStart?: boolean })
           className="rounded-[calc(0.75rem-1px)] overflow-hidden flex flex-col"
           style={{
             backgroundColor: "var(--color-brand-bgSurface)",
-            maxHeight: 560,
           }}
         >
           {/* Header card with gradient border */}
@@ -256,10 +280,17 @@ export function InteractiveToast({ autoStart = false }: { autoStart?: boolean })
                 onToggleDetails={handleToggleDetails}
                 clickTarget={clickTarget}
               />
+              {/* Icon bar — always visible in header */}
+              <ToastIconBar
+                categories={TOAST_DATA.categories}
+                activeCategory={activeCategory?.id ?? null}
+                onCategoryClick={handleDrill}
+                onIntelligenceClick={handleIntelligenceSummary}
+              />
             </div>
           </div>
 
-          {/* Categories / Drill — animated height via grid-rows */}
+          {/* Details panel — animated height via grid-rows */}
           <div
             style={{
               display: "grid",
@@ -271,11 +302,11 @@ export function InteractiveToast({ autoStart = false }: { autoStart?: boolean })
             <div style={{ overflow: "hidden" }}>
               <div
                 className="mx-2.5 mt-3 rounded-xl p-px"
-                style={{ background: GLOW_GRADIENT }}
+                style={{ background: "linear-gradient(135deg, rgba(59,232,176,0.35), rgba(155,143,255,0.35))" }}
               >
                 <div className="rounded-[calc(0.75rem-1px)] bg-brand-cardBg overflow-hidden">
-                  <div className="flex-1 overflow-y-auto overflow-x-hidden slack-scroll relative">
-                    {/* Categories view */}
+                  <div className="flex-1 overflow-hidden relative">
+                    {/* Categories view (with icon bar + preview/summary cards) */}
                     <div
                       className="transition-all duration-700 ease-in-out"
                       style={{
@@ -293,11 +324,22 @@ export function InteractiveToast({ autoStart = false }: { autoStart?: boolean })
                           view === "categories" ? "auto" : "none",
                       }}
                     >
-                      <ToastCategories
-                        categories={TOAST_DATA.categories}
-                        onDrill={handleDrill}
-                        clickTarget={clickTarget}
-                      />
+                      {/* All 6 cards — uniform height and spacing */}
+                      <div className="px-2.5 pt-2 pb-2 flex flex-col gap-2">
+                        <CorrectedPreviewCard
+                          fixedCount={fixedCount}
+                          onClick={handleCorrectedPreview}
+                        />
+                        <IntelligenceSummaryCard
+                          summaryText={TOAST_DATA.summaryText}
+                          onClick={handleIntelligenceSummary}
+                        />
+                        <ToastCategories
+                          categories={TOAST_DATA.categories}
+                          onDrill={handleDrill}
+                          clickTarget={clickTarget}
+                        />
+                      </div>
                     </div>
 
                     {/* Drill view */}
@@ -329,6 +371,54 @@ export function InteractiveToast({ autoStart = false }: { autoStart?: boolean })
                         />
                       )}
                     </div>
+
+                    {/* Corrected Preview drill-in */}
+                    <div
+                      className="transition-all duration-700 ease-in-out"
+                      style={{
+                        transform:
+                          view === "correctedPreview"
+                            ? "translateX(0)"
+                            : "translateX(100%)",
+                        opacity: view === "correctedPreview" ? 1 : 0,
+                        position:
+                          view === "correctedPreview" ? "relative" : "absolute",
+                        top: 0,
+                        left: 0,
+                        width: "100%",
+                        pointerEvents: view === "correctedPreview" ? "auto" : "none",
+                      }}
+                    >
+                      <CorrectedPreviewDrill
+                        originalText={TOAST_DATA.originalText}
+                        cleanedText={TOAST_DATA.cleanedText}
+                        onBack={handleBackToCategories}
+                      />
+                    </div>
+
+                    {/* Intelligence Summary drill-in */}
+                    <div
+                      className="transition-all duration-700 ease-in-out"
+                      style={{
+                        transform:
+                          view === "intelligenceSummary"
+                            ? "translateX(0)"
+                            : "translateX(100%)",
+                        opacity: view === "intelligenceSummary" ? 1 : 0,
+                        position:
+                          view === "intelligenceSummary" ? "relative" : "absolute",
+                        top: 0,
+                        left: 0,
+                        width: "100%",
+                        pointerEvents: view === "intelligenceSummary" ? "auto" : "none",
+                      }}
+                    >
+                      <IntelligenceSummaryDrill
+                        categories={TOAST_DATA.categories}
+                        summaryText={TOAST_DATA.summaryText}
+                        onBack={handleBackToCategories}
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -336,7 +426,11 @@ export function InteractiveToast({ autoStart = false }: { autoStart?: boolean })
           </div>
 
           {/* Footer */}
-          <ToastFooter sourceApp={TOAST_DATA.sourceApp} />
+          <ToastFooter
+            sourceApp={TOAST_DATA.sourceApp}
+            detailsOpen={detailsOpen}
+            onIntelligenceClick={handleIntelligenceSummary}
+          />
         </div>
       </div>
     </div>

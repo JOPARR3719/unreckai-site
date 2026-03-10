@@ -27,10 +27,23 @@ export interface CategoryData {
 export interface ToastData {
   sourceApp: string;
   categories: CategoryData[];
+  originalText: string;
+  cleanedText: string;
+  summaryText: string;
 }
+
+export const CATEGORY_DESCRIPTIONS: Record<string, string> = {
+  "Deep Clean": "Invisible characters, whitespace normalization, and encoding fixes that silently break formatting across apps.",
+  "Formatting": "Em dashes, smart quotes, and typographic artifacts that AI tools insert but most destinations don't handle well.",
+  "AI Content": "Chatbot greetings, filler phrases, sycophantic openers, and AI writing patterns that make text feel generated.",
+  "Structure": "Structure translation for headings, lists, code blocks, and tables so they render as native formatting.",
+};
 
 export const TOAST_DATA: ToastData = {
   sourceApp: "ChatGPT",
+  originalText: "Great question! Here\u2019s a comprehensive guide to boosting your remote work productivity.\n\n## **Key Strategies for Success**\n\n1. **Time Blocking** \u2014 Dedicate specific\u200B hours to deep work. It\u2019s the most effective way to maintain focus.\n\n2. **Environment Design** \u2014 Create a dedicated workspace that\u2019s free from distractions.\n\n3. **Communication Tools** \u2014 Use platforms like Slack and Notion to stay connected.\n\nLet me know if you have any questions!",
+  cleanedText: "Key Strategies for Success\n\n1. Time Blocking - Dedicate specific hours to deep work. It's the most effective way to maintain focus.\n\n2. Environment Design - Create a dedicated workspace that's free from distractions.\n\n3. Communication Tools - Use platforms like Slack and Notion to stay connected.",
+  summaryText: "UnreckAI found 44 issues in this paste. Formatting corrections account for 50%, followed by Structure at 18%.",
   categories: [
     {
       id: "cleaned",

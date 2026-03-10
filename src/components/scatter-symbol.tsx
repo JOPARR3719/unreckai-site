@@ -1,7 +1,7 @@
 export function ScatterSymbol({ size = 20, className = "", mono = false }: { size?: number; className?: string; mono?: boolean }) {
   const gap = size * 0.075;
   const sq = (size - gap * 2) / 3;
-  const r = sq * 0.22;
+  const r = sq * 0.30;
   const strokeWidth = Math.max(size * 0.05, 0.5);
   const fillColor = "#1A2028";
 
