@@ -4,7 +4,7 @@ import { ScatterSymbol } from "@/components/scatter-symbol";
 
 export function ClipboardHeader() {
   return (
-    <div className="px-4 pt-4 pb-3">
+    <div className="px-4 pt-5 pb-3">
       <div className="flex items-center">
         <div className="flex items-center gap-2">
           <ScatterSymbol size={20} className="text-brand-textPrimary shrink-0" />
@@ -22,15 +22,6 @@ export function ClipboardHeader() {
           </span>
         </div>
         <div className="flex-1" />
-        <div className="flex items-center gap-3">
-          {/* Toggle — on state */}
-          <div
-            className="w-9 h-5 rounded-full flex items-center px-0.5"
-            style={{ backgroundColor: "var(--color-brand-accentCleaned)" }}
-          >
-            <div className="w-4 h-4 rounded-full bg-white ml-auto" />
-          </div>
-        </div>
       </div>
     </div>
   );

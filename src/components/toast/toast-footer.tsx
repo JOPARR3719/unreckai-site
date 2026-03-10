@@ -69,7 +69,7 @@ export function ToastFooter({ sourceApp }: ToastFooterProps) {
           className="text-xs font-medium text-brand-tagLabel"
           style={{ fontSize: 10 }}
         >
-          Private &amp; local &middot; Never leaves your Mac
+          On-device intelligence &middot; Private &amp; local
         </span>
       </div>
     </div>

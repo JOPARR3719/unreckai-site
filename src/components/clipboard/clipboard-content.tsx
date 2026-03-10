@@ -84,7 +84,7 @@ export function ClipboardContent({
 
 function Overview({ onDrill }: { onDrill: (id: string) => void }) {
   return (
-    <div className="space-y-4 px-4 pb-3">
+    <div className="space-y-5 px-4 pb-3">
       {/* Stats card */}
       <div
         className="rounded-xl p-[0.7px]"
@@ -93,7 +93,7 @@ function Overview({ onDrill }: { onDrill: (id: string) => void }) {
             "linear-gradient(135deg, var(--color-brand-accentCleaned), var(--color-brand-accentFormatting))",
         }}
       >
-        <div className="rounded-[calc(0.75rem-1px)] bg-brand-cardBg p-5">
+        <div className="rounded-[calc(0.75rem-1px)] bg-brand-cardBg py-7 px-5">
           <div className="grid grid-cols-2 divide-x divide-brand-border">
             <div className="text-center pr-4">
               <p className="text-[26px] font-semibold text-brand-textPrimary leading-tight">
@@ -146,7 +146,7 @@ function Overview({ onDrill }: { onDrill: (id: string) => void }) {
           </div>
 
           {/* Category rows */}
-          <div className="space-y-0">
+          <div className="space-y-1 mt-1">
             {TOAST_DATA.categories.map((cat, i) => {
               const color = ACCENT_CSS[cat.accentColor];
               return (
@@ -171,7 +171,7 @@ function Overview({ onDrill }: { onDrill: (id: string) => void }) {
                     </span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className="text-sm font-bold" style={{ color }}>
+                    <span className="text-xs font-bold" style={{ color }}>
                       {cat.fixCount}
                     </span>
                     <ChevronRight

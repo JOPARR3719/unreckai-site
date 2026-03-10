@@ -74,7 +74,7 @@ const CYCLE_STEPS: CycleStep[] = [
 
 const START_STEP = 0; // categories visible
 
-export function InteractiveToast() {
+export function InteractiveToast({ autoStart = false }: { autoStart?: boolean }) {
   const [view, setView] = useState<ToastView>("categories");
   const [activeCategory, setActiveCategory] = useState<CategoryData | null>(null);
   const [compareType, setCompareType] = useState<string | null>(null);
@@ -123,14 +123,24 @@ export function InteractiveToast() {
     }, delayMs);
   };
 
-  /* ── Start cycle + float on mount ── */
+  /* ── Float on mount, start cycle only when autoStart fires ── */
+  const cycleStartedRef = useRef(false);
+
   useEffect(() => {
     setIsFloating(true);
+    applyStep(CYCLE_STEPS[START_STEP]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    if (!autoStart || cycleStartedRef.current || isUserControlledRef.current) return;
+    cycleStartedRef.current = true;
+    stepIndexRef.current = START_STEP;
     applyStep(CYCLE_STEPS[START_STEP]);
     scheduleNext(CYCLE_STEPS[START_STEP].dwell);
     return clearTimer;
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [autoStart]);
 
   /* ── Hover handlers ── */
   const handlePointerEnter = useCallback(() => {

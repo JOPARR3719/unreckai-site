@@ -1,7 +1,7 @@
 import { Download } from "lucide-react";
 import { InteractiveToast } from "@/components/toast/interactive-toast";
 
-export function Hero() {
+export function Hero({ splashDone = false }: { splashDone?: boolean }) {
   return (
     <section
       id="hero"
@@ -63,7 +63,7 @@ export function Hero() {
               never bounces when the toast expands/collapses */}
           <div className="flex justify-center items-center" style={{ minHeight: 580 }}>
             <div className="w-[360px] max-w-full">
-              <InteractiveToast />
+              <InteractiveToast autoStart={splashDone} />
             </div>
           </div>
         </div>

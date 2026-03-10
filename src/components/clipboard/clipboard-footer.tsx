@@ -4,7 +4,7 @@ import { Lock } from "lucide-react";
 
 export function ClipboardFooter() {
   return (
-    <div className="flex items-center justify-center gap-1.5 px-4 pb-3 pt-1">
+    <div className="flex items-center justify-center gap-1.5 px-4 pb-4 pt-2">
       <Lock size={10} className="text-brand-textTertiary" />
       <span
         className="text-[10px] font-medium"
@@ -16,7 +16,7 @@ export function ClipboardFooter() {
           backgroundClip: "text",
         }}
       >
-        Private &amp; local &middot; Never leaves your Mac
+        On-device intelligence &middot; Private &amp; local
       </span>
     </div>
   );

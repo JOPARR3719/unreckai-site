@@ -375,7 +375,12 @@ function DashboardView() {
             className="flex-shrink-0"
             style={{ stroke: "url(#ios-brand-grad)" }}
           />
-          <span className="text-[12px] font-medium text-brand-textPrimary flex-1">
+          <span
+            className="text-[12px] font-medium flex-1 bg-clip-text text-transparent"
+            style={{
+              backgroundImage: "linear-gradient(135deg, #3be8b0, #1aafd0, #9B8FFF)",
+            }}
+          >
             Apple Intelligence
           </span>
           <span

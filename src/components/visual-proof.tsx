@@ -286,7 +286,16 @@ function ChatGPTDirtyGmail() {
       <div className={`h-5 w-full ${s.artifactBg} border ${s.artifactBorder} rounded mb-2 flex items-center justify-center`}>
         <span className={`text-[10px] ${s.textColor} uppercase tracking-widest font-semibold`}>Extra Spacing Artifact</span>
       </div>
+      <div className="space-y-1 mb-4">
+        <p><span className={`${s.textColor} font-bold`}>1.</span> Social Media Assets <span className={`${s.emDashBg} rounded px-1`}>&mdash;</span> All graphics are approved and ready for launch</p>
+        <p><span className={`${s.textColor} font-bold`}>2.</span> Email Sequences <span className={`${s.emDashBg} rounded px-1`}>&mdash;</span> Copywriting is 90% complete; pending final review</p>
+        <p><span className={`${s.textColor} font-bold`}>3.</span> Landing Pages <span className={`${s.emDashBg} rounded px-1`}>&mdash;</span> Staging links are available at [Campaign Staging](https://staging.example.com)</p>
+      </div>
 
+      <p className="font-bold mb-1">Next Steps for Tomorrow</p>
+      <div className={`h-5 w-full ${s.artifactBg} border ${s.artifactBorder} rounded mb-2 flex items-center justify-center`}>
+        <span className={`text-[10px] ${s.textColor} uppercase tracking-widest font-semibold`}>Extra Spacing Artifact</span>
+      </div>
       <p className="mb-1"><span className={`${s.bulletBg} font-bold px-1 rounded mr-1`}>&bull; &bull;</span> Review the updated budget allocations</p>
       <p className="mb-1"><span className={`${s.bulletBg} font-bold px-1 rounded mr-1`}>&bull; &bull;</span> Finalize the target audience segments</p>
       <p className="mb-4"><span className={`${s.bulletBg} font-bold px-1 rounded mr-1`}>&bull; &bull;</span> Sign off on the A/B testing strategy</p>

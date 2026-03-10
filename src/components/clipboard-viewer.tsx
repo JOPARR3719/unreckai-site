@@ -57,7 +57,7 @@ export function ClipboardViewer() {
       <div className="max-w-7xl mx-auto px-5 sm:px-8">
         <div className="glow-card overflow-visible">
           <div className="glow-card-inner dot-tl pt-4 sm:pt-5 md:pt-6 px-6 sm:px-10 md:px-12 pb-4 sm:pb-6 md:pb-8 overflow-visible">
-            <div className="space-y-8 sm:space-y-12">
+            <div className="space-y-6 sm:space-y-8">
               {/* Header */}
               <div className="space-y-3">
                 <p className="text-xs font-semibold tracking-widest uppercase text-brand-accentBlue">
@@ -76,7 +76,7 @@ export function ClipboardViewer() {
               <Reveal>
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                   {/* Left: 2x2 category cards */}
-                  <div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-5">
+                  <div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-7">
                     {categories.map((cat) => {
                       const Icon = cat.icon;
                       return (
@@ -225,9 +225,9 @@ export function ClipboardViewer() {
                       </div>
                     </div>
                     {/* Absolute on desktop: bottom-aligns with cards, overflows upward. Cards determine row height. */}
-                    <div className={`flex flex-col items-center lg:absolute lg:right-0 ${platform === "macos" ? "lg:top-[42%] lg:-translate-y-1/2" : "lg:top-[36%] lg:-translate-y-1/2"}`}>
+                    <div className={`flex flex-col items-center lg:absolute lg:right-0 ${platform === "macos" ? "lg:top-[44%] lg:-translate-y-1/2" : "lg:top-[36%] lg:-translate-y-1/2"}`}>
                       {/* Toggle (desktop only — mobile version above) */}
-                      <div className="hidden lg:flex flex-col items-center gap-2 mb-3">
+                      <div className="hidden lg:flex flex-col items-center gap-2 mb-6">
                         <div className="inline-flex items-center bg-brand-cardBg rounded-full p-1 border border-brand-borderSolid">
                           <button
                             onClick={() => setPlatform("macos")}

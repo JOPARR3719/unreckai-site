@@ -32,7 +32,7 @@ export default function Home() {
       >
         <Nav />
         <main className="bg-brand-bg">
-          <Hero />
+          <Hero splashDone={splashDone} />
 
           <Reveal>
             <Marquee />
