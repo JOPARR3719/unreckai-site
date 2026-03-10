@@ -655,7 +655,7 @@ function FloatingTabBar({
 }
 
 // ---------------------------------------------------------------------------
-// Intelligence Summary (iOS)
+// Intelligence (iOS)
 // ---------------------------------------------------------------------------
 
 const IOS_CATEGORY_DESCRIPTIONS: Record<string, string> = {
@@ -700,8 +700,16 @@ function IosIntelligenceSummary({ onBack }: { onBack: () => void }) {
         >
           &#x2728;
         </span>
-        <span className="text-[13px] font-normal text-brand-textPrimary">
-          Intelligence Summary
+        <span
+          className="text-[13px] font-normal"
+          style={{
+            background: "linear-gradient(135deg, #3be8b0, #1aafd0, #9B8FFF)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            backgroundClip: "text",
+          }}
+        >
+          Intelligence
         </span>
       </div>
 
@@ -783,7 +791,7 @@ export function IosDashboard() {
             >
               <DashboardView onIntelligenceClick={() => setShowIntelligence(true)} />
             </div>
-            {/* Intelligence Summary */}
+            {/* Intelligence */}
             <div
               className="transition-all duration-300 ease-in-out"
               style={{

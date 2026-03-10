@@ -1,4 +1,4 @@
-export function ScatterSymbol({ size = 20, className = "", mono = false }: { size?: number; className?: string; mono?: boolean }) {
+export function ScatterSymbol({ size = 20, className = "", mono = false, filled = false }: { size?: number; className?: string; mono?: boolean; filled?: boolean }) {
   const gap = size * 0.075;
   const sq = (size - gap * 2) / 3;
   const r = sq * 0.30;
@@ -15,9 +15,14 @@ export function ScatterSymbol({ size = 20, className = "", mono = false }: { siz
     }
   }
 
+  // filled mode: currentColor fill + gradient stroke (for Corrected Preview card)
+  // mono mode: transparent fill + currentColor stroke
+  // default: dark fill + gradient stroke
+  const useGradient = !mono;
+
   return (
     <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} className={className}>
-      {!mono && (
+      {useGradient && (
         <defs>
           <linearGradient id={`scatter-grad-${size}`} x1="0" y1="0" x2="1" y2="1">
             <stop offset="15%" stopColor="#3be8b0" />
@@ -34,7 +39,7 @@ export function ScatterSymbol({ size = 20, className = "", mono = false }: { siz
           width={sq}
           height={sq}
           rx={r}
-          fill={mono ? "transparent" : fillColor}
+          fill={mono ? "transparent" : filled ? "currentColor" : fillColor}
           stroke={mono ? "currentColor" : `url(#scatter-grad-${size})`}
           strokeWidth={strokeWidth}
         />

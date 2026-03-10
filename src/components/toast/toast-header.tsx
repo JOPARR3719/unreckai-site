@@ -1,6 +1,6 @@
 "use client";
 
-import { X, ChevronDown, ChevronUp } from "lucide-react";
+import { X, ChevronDown, ChevronUp, Moon } from "lucide-react";
 import { ScatterSymbol } from "@/components/scatter-symbol";
 
 import type { ClickTarget } from "./interactive-toast";
@@ -22,7 +22,7 @@ export function ToastHeader({
     <div>
       {/* Row 1: Logo + title + badge + undo + close */}
       <div className="flex items-center gap-1.5 px-4 pt-3.5">
-        <ScatterSymbol size={20} mono className="text-brand-textPrimary shrink-0" />
+        <ScatterSymbol size={20} className="shrink-0" />
         <span className="font-semibold text-sm text-brand-textPrimary">
           UnreckAI
         </span>
@@ -36,7 +36,7 @@ export function ToastHeader({
             border: "1px solid rgba(59, 232, 176, 0.2)",
           }}
         >
-          {issueCount}
+          {issueCount} issues
         </span>
 
         <div className="flex-1" />
@@ -50,6 +50,16 @@ export function ToastHeader({
           }}
         >
           Undo
+        </button>
+
+        {/* Theme toggle */}
+        <button
+          className="p-1 rounded-md text-brand-tagLabel"
+          style={{
+            border: "1px solid var(--color-brand-borderSolid)",
+          }}
+        >
+          <Moon size={13} />
         </button>
 
         {/* Close button */}
@@ -77,7 +87,7 @@ export function ToastHeader({
       {/* Row 2: Timer + Details */}
       <div className="flex items-center mt-3 px-4 pb-1">
         <span className="text-xs text-brand-textSecondary">
-          timer paused while viewing
+          ‖ paused &mdash; click to resume
         </span>
         <div className="flex-1" />
         <button
@@ -93,9 +103,9 @@ export function ToastHeader({
           <span className="flex items-center justify-center gap-1.5">
             Details
             {detailsOpen ? (
-              <ChevronUp size={12} strokeWidth={2.5} className="ml-0.5" />
-            ) : (
               <ChevronDown size={12} strokeWidth={2.5} className="ml-0.5" />
+            ) : (
+              <ChevronUp size={12} strokeWidth={2.5} className="ml-0.5" />
             )}
           </span>
         </button>

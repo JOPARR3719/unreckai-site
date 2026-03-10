@@ -1,7 +1,7 @@
 "use client";
 
-import { Lock } from "lucide-react";
-import { ScatterSymbol } from "@/components/scatter-symbol";
+import { Lock, Trophy } from "lucide-react";
+
 
 const SOURCE_LOGOS: Record<string, { src: string; invert?: boolean }> = {
   ChatGPT: { src: "/images/openai.svg", invert: true },
@@ -92,7 +92,7 @@ export function ToastFooter({ sourceApp, detailsOpen, onIntelligenceClick }: Toa
             fontSize: 13,
           }}
         >
-          <ScatterSymbol size={14} mono className="text-[#0F1318]" />
+          <Trophy size={14} strokeWidth={2} className="text-[#0F1318]" />
           Accept
         </button>
 
@@ -129,10 +129,10 @@ export function ToastFooter({ sourceApp, detailsOpen, onIntelligenceClick }: Toa
       </div>
 
       {/* Privacy line */}
-      <div className="flex items-center justify-center gap-1.5 mt-2.5">
-        <Lock size={10} className="text-brand-textTertiary" />
+      <div className="flex items-center justify-center gap-1.5 mt-2.5" style={{ opacity: 0.5 }}>
+        <Lock size={10} className="text-brand-textPrimary" />
         <span
-          className="text-xs font-medium text-brand-tagLabel"
+          className="text-xs font-medium text-brand-textPrimary"
           style={{ fontSize: 10 }}
         >
           On-device intelligence &middot; Private &amp; local

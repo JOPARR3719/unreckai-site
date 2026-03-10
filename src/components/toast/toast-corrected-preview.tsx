@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { ScatterSymbol } from "@/components/scatter-symbol";
 
 const GLOW_GRADIENT =
   "linear-gradient(135deg, var(--color-brand-accentCleaned), var(--color-brand-accentFormatting))";
@@ -28,7 +27,7 @@ export function CorrectedPreviewCard({
         backgroundClip: "padding-box, border-box",
       }}
     >
-      <ScatterSymbol size={14} mono className="text-brand-textPrimary" />
+      <HighlighterIcon size={14} />
       <span
         className="font-semibold text-brand-textPrimary flex-1"
         style={{ fontSize: "12.5px" }}

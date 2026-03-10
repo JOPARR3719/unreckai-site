@@ -4,6 +4,7 @@ import {
   Wand2,
   Type,
   Layers,
+  ChevronRight,
 } from "lucide-react";
 import { RobotIcon } from "../robot-icon";
 import type { CategoryData } from "./toast-data";
@@ -73,24 +74,7 @@ export function ToastCategories({
               {cat.fixCount}
             </span>
 
-            {/* Filled gradient checkmark circle */}
-            <svg
-              width={18}
-              height={18}
-              viewBox="0 0 24 24"
-              fill="none"
-              className="shrink-0"
-            >
-              <defs>
-                <linearGradient id={`check-grad-${cat.id}`} x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0%" stopColor="#3be8b0" />
-                  <stop offset="50%" stopColor="#1aafd0" />
-                  <stop offset="100%" stopColor="#9B8FFF" />
-                </linearGradient>
-              </defs>
-              <circle cx="12" cy="12" r="11" fill={`url(#check-grad-${cat.id})`} />
-              <path d="m9 12 2 2 4-4" stroke="var(--color-brand-bgSurface)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
+            <ChevronRight size={18} className="text-brand-tagLabel shrink-0" />
           </button>
         );
       })}

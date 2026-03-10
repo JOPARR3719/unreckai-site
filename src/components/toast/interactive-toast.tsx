@@ -396,7 +396,7 @@ export function InteractiveToast({ autoStart = false }: { autoStart?: boolean })
                       />
                     </div>
 
-                    {/* Intelligence Summary drill-in */}
+                    {/* Intelligence drill-in */}
                     <div
                       className="transition-all duration-700 ease-in-out"
                       style={{

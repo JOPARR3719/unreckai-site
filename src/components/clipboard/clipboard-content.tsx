@@ -79,7 +79,7 @@ export function ClipboardContent({
         )}
       </div>
 
-      {/* Intelligence Summary */}
+      {/* Intelligence */}
       <div
         className="transition-all duration-300 ease-in-out"
         style={{
@@ -221,7 +221,7 @@ function Overview({ onDrill }: { onDrill: (id: string) => void }) {
   );
 }
 
-// ---- Intelligence Summary ----
+// ---- Intelligence ----
 
 const CATEGORY_DESCRIPTIONS: Record<string, string> = {
   "Deep Clean": "Invisible characters, whitespace normalization, and encoding fixes that silently break formatting across apps.",
@@ -272,8 +272,16 @@ function IntelligenceSummary({ onBack }: { onBack?: () => void }) {
         >
           &#x2728;
         </span>
-        <span className="text-sm font-normal text-brand-textPrimary">
-          Intelligence Summary
+        <span
+          className="text-sm font-normal"
+          style={{
+            background: "linear-gradient(135deg, #3be8b0, #1aafd0, #9B8FFF)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            backgroundClip: "text",
+          }}
+        >
+          Intelligence
         </span>
       </div>
 

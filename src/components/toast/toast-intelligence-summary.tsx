@@ -42,10 +42,16 @@ export function IntelligenceSummaryCard({
         &#x2728;
       </span>
       <span
-        className="font-semibold text-brand-textPrimary"
-        style={{ fontSize: "12.5px" }}
+        className="font-semibold"
+        style={{
+          fontSize: "12.5px",
+          background: "linear-gradient(135deg, #3be8b0, #1aafd0, #9B8FFF)",
+          WebkitBackgroundClip: "text",
+          WebkitTextFillColor: "transparent",
+          backgroundClip: "text",
+        }}
       >
-        Intelligence Summary
+        Intelligence
       </span>
       <span className="flex-1" />
       <ChevronRight size={18} className="text-brand-tagLabel shrink-0" />
@@ -99,10 +105,16 @@ export function IntelligenceSummaryDrill({
           &#x2728;
         </span>
         <span
-          className="font-semibold text-brand-textPrimary"
-          style={{ fontSize: 14 }}
+          className="font-semibold"
+          style={{
+            fontSize: 14,
+            background: "linear-gradient(135deg, #3be8b0, #1aafd0, #9B8FFF)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            backgroundClip: "text",
+          }}
         >
-          Intelligence Summary
+          Intelligence
         </span>
       </div>
 
