@@ -61,7 +61,7 @@ export function Hero({ splashDone = false }: { splashDone?: boolean }) {
 
           {/* Right column: Interactive Toast — fixed min-height so the hero card
               never bounces when the toast expands/collapses */}
-          <div className="flex justify-center items-center" style={{ minHeight: 580 }}>
+          <div className="flex justify-center items-center overflow-hidden" style={{ height: 640 }}>
             <div className="w-[360px] max-w-full">
               <InteractiveToast autoStart={splashDone} />
             </div>
