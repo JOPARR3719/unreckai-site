@@ -90,9 +90,20 @@ export const FAQ_CATEGORIES: FAQCategory[] = [
 
 export const CHANGELOG_ENTRIES: ChangelogEntry[] = [
   {
+    version: "v1.1.0",
+    date: "Mar 10, 2026",
+    isLatest: true,
+    items: [
+      "Apple Intelligence integration: refine pasted text with on-device AI (Concise, Professional, Friendly).",
+      "iOS keyboard: Paste & Clean button for one-tap clipboard cleaning directly from the keyboard.",
+      "Issue summary view with per-category breakdown and accent-colored detail cards.",
+      "Chained AI slop removal now catches back-to-back openers and closers in a single pass.",
+    ],
+  },
+  {
     version: "v1.0.0",
     date: "Mar 2, 2026",
-    isLatest: true,
+    isLatest: false,
     items: [
       "iOS keyboard extension for cleaning pastes on iPhone and iPad.",
       "New platform showcase section with macOS and iOS side-by-side.",

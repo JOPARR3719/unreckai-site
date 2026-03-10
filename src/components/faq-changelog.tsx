@@ -146,7 +146,7 @@ function FaqAccordion() {
 /* ------------------------------------------------------------------ */
 
 function ChangelogTimeline() {
-  const [openVersion, setOpenVersion] = useState<number | null>(0);
+  const [openVersion, setOpenVersion] = useState<number | null>(null);
 
   function toggleVersion(idx: number) {
     setOpenVersion((prev) => (prev === idx ? null : idx));
