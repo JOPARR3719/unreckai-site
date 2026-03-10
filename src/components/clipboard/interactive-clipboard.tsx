@@ -13,7 +13,7 @@ export function InteractiveClipboard() {
   const [activeTab, setActiveTab] = useState<ClipboardTabId>("clipboard");
 
   // Clipboard tab drill state
-  const [clipboardView, setClipboardView] = useState<"overview" | "drill">("overview");
+  const [clipboardView, setClipboardView] = useState<"overview" | "drill" | "intelligence">("overview");
   const [clipboardDrillCat, setClipboardDrillCat] = useState<string | null>(null);
   const [compareType, setCompareType] = useState<string | null>(null);
   const [previewIndex, setPreviewIndex] = useState(0);
@@ -67,6 +67,15 @@ export function InteractiveClipboard() {
     });
   }, []);
 
+  // Intelligence handlers
+  const handleIntelligenceClick = useCallback(() => {
+    setClipboardView("intelligence");
+  }, []);
+
+  const handleIntelligenceBack = useCallback(() => {
+    setClipboardView("overview");
+  }, []);
+
   // Excluded handlers
   const handleExcludedDrill = useCallback((sectionId: string) => {
     setExcludedDrillSection(sectionId);
@@ -105,7 +114,7 @@ export function InteractiveClipboard() {
           "0 25px 60px -12px rgba(0, 0, 0, 0.6), 0 0 40px rgba(59, 232, 176, 0.04), 0 0 80px rgba(155, 143, 255, 0.03)",
       }}
     >
-      <ClipboardHeader />
+      <ClipboardHeader onIntelligenceClick={handleIntelligenceClick} />
       <ClipboardTabs activeTab={activeTab} onTabChange={handleTabChange} />
 
       {/* Scrollable content — fixed height so popup never jumps between tabs */}
@@ -123,6 +132,7 @@ export function InteractiveClipboard() {
             onBack={handleClipboardBack}
             onToggleCompare={handleToggleCompare}
             onSetPreviewIndex={setPreviewIndex}
+            onIntelligenceBack={handleIntelligenceBack}
           />
         )}
         {activeTab === "excluded" && (

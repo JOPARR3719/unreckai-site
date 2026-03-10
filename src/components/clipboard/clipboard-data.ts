@@ -6,6 +6,7 @@ import { TOAST_DATA, type CategoryData } from "../toast/toast-data";
 export interface ClipboardStats {
   pastesCleaned: number;
   issuesFixed: number;
+  avgPerPaste: number;
 }
 
 export interface ExclusionApp {
@@ -47,6 +48,7 @@ export interface SettingsSection {
 export const CLIPBOARD_STATS: ClipboardStats = {
   pastesCleaned: 128,
   issuesFixed: 2405,
+  avgPerPaste: 19,
 };
 
 export const CLIPBOARD_CATEGORIES: CategoryData[] = TOAST_DATA.categories;
@@ -204,6 +206,6 @@ export const SETTINGS_SECTIONS: SettingsSection[] = [
     title: "Changelog",
     subtitle: "v1.1.0 \u2014 Mar 10, 2026",
     settings: [],
-    standalone: true,
+    standalone: false,
   },
 ];

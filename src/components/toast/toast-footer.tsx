@@ -22,8 +22,8 @@ export function ToastFooter({ sourceApp }: ToastFooterProps) {
   const logoEntry = SOURCE_LOGOS[sourceApp];
 
   return (
-    <div className="px-4 pb-3.5 pt-0.5">
-      {/* Source badge */}
+    <div className="pb-3.5 pt-0.5" style={{ paddingLeft: 10, paddingRight: 10 }}>
+      {/* Source badge + Intelligence button */}
       <div className="flex items-center gap-2 py-2.5">
         <span className="text-xs text-brand-tagLabel">Source</span>
         <span
@@ -42,6 +42,27 @@ export function ToastFooter({ sourceApp }: ToastFooterProps) {
           )}
           {sourceApp}
         </span>
+        <div className="flex-1" />
+        {/* Apple Intelligence button */}
+        <div
+          className="flex items-center justify-center shrink-0"
+          style={{
+            width: 28,
+            height: 28,
+            borderRadius: 7,
+            background: "linear-gradient(135deg, rgba(59,232,176,0.08), rgba(155,143,255,0.08))",
+            border: "1px solid color-mix(in srgb, #3be8b0 40%, #9B8FFF)",
+          }}
+        >
+          <span
+            className="text-[13px] bg-clip-text text-transparent leading-none"
+            style={{
+              backgroundImage: "linear-gradient(135deg, #3be8b0, #1aafd0, #9B8FFF)",
+            }}
+          >
+            &#x2728;
+          </span>
+        </div>
       </div>
 
       {/* Undo all changes button */}

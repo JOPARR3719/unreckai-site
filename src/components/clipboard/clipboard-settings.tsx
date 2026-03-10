@@ -4,6 +4,7 @@ import { useState } from "react";
 import {
   ChevronLeft,
   ChevronRight,
+  ChevronDown,
   MinusCircle,
   Quote,
   Code2,
@@ -11,8 +12,10 @@ import {
   FileText,
   Sparkles,
   Wand2,
+  Zap,
 } from "lucide-react";
 import { SETTINGS_SECTIONS, type SettingsSection, type SettingRow } from "./clipboard-data";
+import { CHANGELOG_ENTRIES } from "../faq-changelog-data";
 
 const SETTING_ICONS: Record<string, React.ElementType> = {
   "minus-circle": MinusCircle,
@@ -72,7 +75,9 @@ export function ClipboardSettings({
         }}
       >
         {activeSection && (
-          <SettingsDrill section={activeSection} onBack={onBack} />
+          activeSection.id === "changelog"
+            ? <ChangelogDrill onBack={onBack} />
+            : <SettingsDrill section={activeSection} onBack={onBack} />
         )}
       </div>
     </div>
@@ -139,7 +144,7 @@ function SettingsSectionList({ onDrill }: { onDrill: (id: string) => void }) {
                   backgroundColor: `color-mix(in srgb, ${PURPLE} 12%, transparent)`,
                 }}
               >
-                {section.settings.length}
+                {section.id === "changelog" ? CHANGELOG_ENTRIES.length : section.settings.length}
               </span>
               <ChevronRight
                 size={14}
@@ -318,6 +323,131 @@ function ToggleRow({ setting }: { setting: SettingRow }) {
           style={{ left: on ? "calc(100% - 14px)" : "2px" }}
         />
       </button>
+    </div>
+  );
+}
+
+function ChangelogDrill({ onBack }: { onBack: () => void }) {
+  const [openVersion, setOpenVersion] = useState<number | null>(null);
+
+  return (
+    <div className="px-4 pb-3">
+      {/* Back button */}
+      <button
+        onClick={onBack}
+        className="flex items-center gap-1.5 mb-3 px-2 py-1.5 rounded-md transition-colors hover:bg-white/[0.03]"
+        style={{
+          border: "1px solid transparent",
+          backgroundImage: `linear-gradient(var(--color-brand-bgSurface), var(--color-brand-bgSurface)), linear-gradient(135deg, var(--color-brand-accentCleaned), var(--color-brand-accentFormatting))`,
+          backgroundOrigin: "border-box",
+          backgroundClip: "padding-box, border-box",
+        }}
+      >
+        <ChevronLeft size={14} className="text-brand-tagLabel" />
+        <span className="text-xs font-semibold" style={{ color: PURPLE }}>
+          Changelog
+        </span>
+        <span
+          className="text-[10px] font-bold px-1.5 py-0.5 rounded ml-1"
+          style={{
+            backgroundColor: `color-mix(in srgb, ${PURPLE} 12%, transparent)`,
+            color: PURPLE,
+          }}
+        >
+          {CHANGELOG_ENTRIES.length}
+        </span>
+      </button>
+
+      {/* Changelog card */}
+      <div
+        className="rounded-xl p-[0.7px]"
+        style={{
+          background:
+            "linear-gradient(135deg, var(--color-brand-accentCleaned), var(--color-brand-accentFormatting))",
+        }}
+      >
+        <div className="rounded-[calc(0.75rem-0.7px)] bg-brand-cardBg overflow-hidden py-1">
+          {CHANGELOG_ENTRIES.map((entry, idx) => {
+            const isOpen = openVersion === idx;
+            const isLatest = idx === 0;
+
+            return (
+              <div
+                key={entry.version}
+                className={
+                  idx < CHANGELOG_ENTRIES.length - 1
+                    ? "border-b border-brand-border"
+                    : ""
+                }
+              >
+                <button
+                  onClick={() =>
+                    setOpenVersion((prev) => (prev === idx ? null : idx))
+                  }
+                  className="w-full px-3 py-2.5 flex items-center gap-2"
+                >
+                  {/* Gradient dot for latest */}
+                  {isLatest ? (
+                    <div
+                      className="w-2 h-2 rounded-full shrink-0"
+                      style={{
+                        background:
+                          "conic-gradient(from 0deg, #3be8b0, #1aafd0, #9B8FFF, #3be8b0)",
+                        boxShadow:
+                          "0 0 6px rgba(59,232,176,0.4), 0 0 10px rgba(155,143,255,0.2)",
+                      }}
+                    />
+                  ) : (
+                    <div className="w-2 h-2 rounded-full bg-brand-textTertiary shrink-0 opacity-50" />
+                  )}
+
+                  <span
+                    className="text-[11px] font-semibold"
+                    style={{ color: PURPLE }}
+                  >
+                    {entry.version}
+                  </span>
+                  <span className="text-[10px] text-brand-textTertiary">
+                    {entry.date}
+                  </span>
+                  <ChevronDown
+                    size={12}
+                    className={`ml-auto text-brand-textTertiary shrink-0 transition-transform duration-300 ${
+                      isOpen ? "rotate-180" : ""
+                    }`}
+                  />
+                </button>
+
+                {/* Collapsible items */}
+                <div
+                  className={`transition-all duration-300 overflow-hidden ${
+                    isOpen
+                      ? "max-h-[200px] opacity-100"
+                      : "max-h-0 opacity-0"
+                  }`}
+                >
+                  <div className="px-3 pb-2.5 space-y-1.5">
+                    {entry.items.map((item) => (
+                      <div
+                        key={item}
+                        className="flex items-start gap-1.5"
+                      >
+                        <Zap
+                          size={10}
+                          className="text-brand-textTertiary shrink-0 mt-[2px]"
+                        />
+                        <span className="text-[10px] text-brand-textSecondary leading-relaxed">
+                          {item}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
     </div>
   );
 }

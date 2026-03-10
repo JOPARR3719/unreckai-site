@@ -13,6 +13,7 @@ import {
   TextSearch,
   MinusCircle,
   Code2,
+  ChevronLeft,
 } from "lucide-react";
 import { RobotIcon } from "../robot-icon";
 
@@ -293,7 +294,7 @@ const CATEGORIES: CategoryRow[] = [
 // Dashboard View
 // ---------------------------------------------------------------------------
 
-function DashboardView() {
+function DashboardView({ onIntelligenceClick }: { onIntelligenceClick?: () => void }) {
   return (
     <div className="flex flex-col gap-3 mt-2">
       {/* Header */}
@@ -312,8 +313,9 @@ function DashboardView() {
           PRO
         </span>
         <div className="flex-1" />
-        <div
-          className="flex items-center justify-center"
+        <button
+          onClick={onIntelligenceClick}
+          className="flex items-center justify-center transition-transform hover:scale-105"
           style={{
             width: 24,
             height: 24,
@@ -330,7 +332,7 @@ function DashboardView() {
           >
             &#x2728;
           </span>
-        </div>
+        </button>
       </div>
 
       {/* Hero card */}
@@ -653,6 +655,96 @@ function FloatingTabBar({
 }
 
 // ---------------------------------------------------------------------------
+// Intelligence Summary (iOS)
+// ---------------------------------------------------------------------------
+
+const IOS_CATEGORY_DESCRIPTIONS: Record<string, string> = {
+  "Deep Clean": "Invisible characters, whitespace normalization, and encoding fixes that silently break formatting across apps.",
+  "Formatting": "Em dashes, smart quotes, and typographic artifacts that AI tools insert but most destinations don't handle well.",
+  "AI Content": "Chatbot greetings, filler phrases, sycophantic openers, and AI writing patterns that make text feel generated.",
+  "Structure": "Structure translation for headings, lists, code blocks, and tables so they render as native formatting.",
+};
+
+const IOS_CAT_ORDER = [
+  { name: "Formatting", count: 1197, color: "var(--color-brand-accentFormatting)" },
+  { name: "Structure", count: 478, color: "var(--color-brand-accentDocument)" },
+  { name: "Deep Clean", count: 412, color: "var(--color-brand-accentCleaned)" },
+  { name: "AI Content", count: 318, color: "var(--color-brand-accentAi)" },
+];
+
+function IosIntelligenceSummary({ onBack }: { onBack: () => void }) {
+  const total = 2405;
+  const pastes = 128;
+  const topCat = IOS_CAT_ORDER[0];
+  const topPct = Math.round((topCat.count / total) * 100);
+  const secondCat = IOS_CAT_ORDER[1];
+  const secondPct = Math.round((secondCat.count / total) * 100);
+
+  const prose = `UnreckAI has cleaned ${total.toLocaleString()} issues across ${pastes} pastes. ${topCat.name} corrections account for the majority at ${topPct}%, followed by ${secondCat.name} at ${secondPct}%.`;
+
+  return (
+    <div className="flex flex-col gap-3 mt-2 px-1">
+      {/* Back + title inline */}
+      <div className="flex items-center gap-2 mt-5">
+        <button
+          onClick={onBack}
+          className="flex items-center justify-center w-6 h-6 rounded-md transition-colors hover:bg-white/[0.05] shrink-0"
+        >
+          <ChevronLeft size={14} className="text-brand-textSecondary" />
+        </button>
+        <span
+          className="text-xs bg-clip-text text-transparent"
+          style={{
+            backgroundImage: "linear-gradient(135deg, #3be8b0, #1aafd0, #9B8FFF)",
+          }}
+        >
+          &#x2728;
+        </span>
+        <span className="text-[13px] font-normal text-brand-textPrimary">
+          Intelligence Summary
+        </span>
+      </div>
+
+      {/* Summary card */}
+      <GradientCard>
+        <div className="p-3.5 space-y-3">
+          <p className="text-[11px] text-brand-textSecondary leading-relaxed">
+            {prose}
+          </p>
+
+          {/* Gradient divider */}
+          <div
+            className="h-px opacity-40"
+            style={{
+              background:
+                "linear-gradient(to right, var(--color-brand-accentCleaned), var(--color-brand-accentDocument), var(--color-brand-accentFormatting))",
+            }}
+          />
+
+          {/* Per-category sections */}
+          <div className="space-y-2.5">
+            {IOS_CAT_ORDER.map((cat) => {
+              const pct = Math.round((cat.count / total) * 100);
+              return (
+                <div key={cat.name}>
+                  <p className="text-[11px] font-medium" style={{ color: cat.color }}>
+                    {cat.name}: {cat.count} issues - {pct}%
+                  </p>
+                  <p className="text-[10px] text-brand-textSecondary leading-relaxed mt-0.5">
+                    {IOS_CATEGORY_DESCRIPTIONS[cat.name]}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </GradientCard>
+
+    </div>
+  );
+}
+
+// ---------------------------------------------------------------------------
 // Main export
 // ---------------------------------------------------------------------------
 
@@ -664,15 +756,56 @@ export function IosDashboard() {
   const [activeTab, setActiveTab] = useState<"dashboard" | "settings">(
     "dashboard"
   );
+  const [showIntelligence, setShowIntelligence] = useState(false);
+
+  const handleTabChange = (tab: "dashboard" | "settings") => {
+    setShowIntelligence(false);
+    setActiveTab(tab);
+  };
 
   return (
     <div className="flex flex-col">
       <div className="px-3 pt-1 pb-0 overflow-hidden" style={{ height: CONTENT_HEIGHT }}>
-        {activeTab === "dashboard" ? <DashboardView /> : <SettingsView />}
+        {activeTab === "dashboard" ? (
+          <div className="relative overflow-hidden" style={{ height: CONTENT_HEIGHT }}>
+            {/* Dashboard */}
+            <div
+              className="transition-all duration-300 ease-in-out"
+              style={{
+                transform: showIntelligence ? "translateX(-100%)" : "translateX(0)",
+                opacity: showIntelligence ? 0 : 1,
+                position: showIntelligence ? "absolute" : "relative",
+                top: 0,
+                left: 0,
+                width: "100%",
+                pointerEvents: showIntelligence ? "none" : "auto",
+              }}
+            >
+              <DashboardView onIntelligenceClick={() => setShowIntelligence(true)} />
+            </div>
+            {/* Intelligence Summary */}
+            <div
+              className="transition-all duration-300 ease-in-out"
+              style={{
+                transform: showIntelligence ? "translateX(0)" : "translateX(100%)",
+                opacity: showIntelligence ? 1 : 0,
+                position: showIntelligence ? "relative" : "absolute",
+                top: 0,
+                left: 0,
+                width: "100%",
+                pointerEvents: showIntelligence ? "auto" : "none",
+              }}
+            >
+              <IosIntelligenceSummary onBack={() => setShowIntelligence(false)} />
+            </div>
+          </div>
+        ) : (
+          <SettingsView />
+        )}
       </div>
 
       {/* Tab bar pinned at bottom */}
-      <FloatingTabBar activeTab={activeTab} onChange={setActiveTab} />
+      <FloatingTabBar activeTab={activeTab} onChange={handleTabChange} />
     </div>
   );
 }
