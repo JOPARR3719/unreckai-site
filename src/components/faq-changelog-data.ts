@@ -40,6 +40,11 @@ export const FAQ_CATEGORIES: FAQCategory[] = [
         answer:
           "Yes. You can exclude specific apps from both copying and pasting in the Excluded Apps tab. Terminal, code editors, and password managers are excluded by default.",
       },
+      {
+        question: "Does Apple Intelligence send my text to Apple?",
+        answer:
+          "No. Apple Intelligence runs entirely on-device using Apple's local model. Your text never leaves your device — not to Apple, not to us, not to anyone.",
+      },
     ],
   },
   {
@@ -62,6 +67,11 @@ export const FAQ_CATEGORIES: FAQCategory[] = [
         answer:
           "Any app that accepts pasting. Slack, Gmail, Notion, Google Docs, Apple Notes, and more. Your cleaned text automatically uses native formatting in each destination.",
       },
+      {
+        question: "What does Apple Intelligence do in UnreckAI?",
+        answer:
+          "It lets you refine pasted text using Apple's on-device AI. Choose Concise, Professional, or Friendly tone, and the output gets run back through UnreckAI's pipeline to strip any AI filler the model adds. Requires iOS 26 or macOS 26. Pro only.",
+      },
     ],
   },
   {
@@ -70,19 +80,19 @@ export const FAQ_CATEGORIES: FAQCategory[] = [
     color: "text-[#8AB4F8]",
     items: [
       {
-        question: "Do I need internet access to use it?",
-        answer:
-          "No. The app works completely offline. All text processing happens on your device, so it works anywhere.",
-      },
-      {
         question: "What is the difference between Free and Pro?",
         answer:
-          "Free cleans up invisible characters, broken spacing, encoding issues, and removes AI chatbot filler like 'Sure! Here is...'. Pro adds format translation so your bullet points, headings, and tables paste as native formatting in Slack, Gmail, and more.",
+          "Free handles the invisible mess: hidden characters, broken spacing, encoding issues, and AI filler like 'Sure! Here is...'. Pro adds format translation, so your bullet points, headings, and tables paste as native formatting in Slack, Gmail, Notion, and more. Pro also includes Apple Intelligence refinement and AI writing style detection.",
       },
       {
         question: "Why should I choose Pro Annual?",
         answer:
-          "Pro Annual gives you the same full Pro experience at 30% off: $41.88 per year ($3.49/month) instead of $4.99/month. Same features, same format translation, just a better price.",
+          "Same full Pro experience, 30% less. Pro Annual is $4.99/month billed annually ($59.88/year) vs $6.99/month billed monthly. One license covers both your Mac and iOS devices.",
+      },
+      {
+        question: "Do I need internet access?",
+        answer:
+          "No. Everything runs on-device. No servers, no cloud calls, no internet required. Works anywhere.",
       },
     ],
   },

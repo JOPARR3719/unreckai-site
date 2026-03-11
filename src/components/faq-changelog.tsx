@@ -164,7 +164,7 @@ function ChangelogTimeline() {
             Release Notes
           </h3>
           <p className="text-lg text-brand-textSecondary font-normal">
-            Constant updates to handle the latest AI quirks.
+            Every AI tool breaks formatting differently. We keep up.
           </p>
         </div>
 
