@@ -8,7 +8,7 @@ const nodes = [
     accent: "var(--color-brand-accentDocument)",
     accentClass: "text-brand-accentDocument",
     title: "Hidden Signatures",
-    description: "Analyzes the clipboard wrapper.",
+    description: "Analyzes the source formatting.",
     items: [
       "Reads formatting tags.",
       "Spots invisible characters.",

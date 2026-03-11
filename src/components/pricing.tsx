@@ -5,6 +5,7 @@ type Feature = {
   text: string;
   included: boolean;
   section?: string;
+  highlight?: boolean;
 };
 
 const tiers = [
@@ -37,10 +38,10 @@ const tiers = [
     badge: "Best Value — Save 30%",
     features: [
       { text: "Everything in Free, plus:", included: true, section: "free" },
-      { text: "Format translation (native HTML)", included: true },
+      { text: "Format translation (native HTML)", included: true, highlight: true },
       { text: "Em dash, quote & bold handling", included: true },
       { text: "AI writing style detection", included: true },
-      { text: "Apple Intelligence (Summaries & Tone)", included: true },
+      { text: "Apple Intelligence (Summaries & Tone)", included: true, highlight: true },
       { text: "One license for Mac & iOS", included: true },
     ] as Feature[],
   },
@@ -55,10 +56,10 @@ const tiers = [
     popular: false,
     features: [
       { text: "Everything in Free, plus:", included: true, section: "free" },
-      { text: "Format translation (native HTML)", included: true },
+      { text: "Format translation (native HTML)", included: true, highlight: true },
       { text: "Em dash, quote & bold handling", included: true },
       { text: "AI writing style detection", included: true },
-      { text: "Apple Intelligence (Summaries & Tone)", included: true },
+      { text: "Apple Intelligence (Summaries & Tone)", included: true, highlight: true },
       { text: "One license for Mac & iOS", included: true },
     ] as Feature[],
   },
@@ -76,10 +77,10 @@ export function Pricing() {
               Clear Pricing
             </p>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight text-brand-textPrimary">
-              Scale your productivity.
+              Start free. Go Pro anytime.
             </h2>
             <p className="text-brand-textSecondary text-base sm:text-lg leading-relaxed">
-              Start free. Upgrade when AI formatting fights back.
+              Every tier cleans your pastes. Pro unlocks full formatting intelligence.
             </p>
           </div>
 
@@ -125,9 +126,12 @@ export function Pricing() {
                   <button
                     className={`w-full py-3 rounded-xl font-semibold text-sm transition-all duration-300 flex items-center justify-center gap-2 hover:-translate-y-1 hover:scale-[1.02] active:translate-y-0 active:scale-100 ${
                       tier.ctaStyle === "primary"
-                        ? "bg-brand-cardBg text-brand-textPrimary glow-border-active hover:text-white hover:shadow-[0_0_16px_rgba(59,232,176,0.2)]"
+                        ? "text-brand-bg hover:shadow-[0_0_24px_rgba(59,232,176,0.25)]"
                         : "border border-brand-borderSolid text-brand-textPrimary hover:border-brand-borderLight hover:shadow-[0_0_12px_rgba(255,255,255,0.05)]"
                     }`}
+                    {...(tier.ctaStyle === "primary" ? {
+                      style: { background: "linear-gradient(135deg, #3be8b0, #1aafd0, #9B8FFF)" }
+                    } : {})}
                   >
                     {tier.name === "Free" && <Download size={16} />}
                     {tier.cta}
@@ -140,16 +144,16 @@ export function Pricing() {
                         className="flex items-start gap-3"
                       >
                         {feature.section ? (
-                          <span className="text-sm text-brand-accentCleaned font-medium">
+                          <span className="text-sm text-brand-tagLabel font-medium">
                             {feature.text}
                           </span>
                         ) : (
                           <>
                             <Check
                               size={16}
-                              className="text-brand-accentCleaned shrink-0 mt-0.5"
+                              className="text-brand-tagLabel shrink-0 mt-0.5"
                             />
-                            <span className="text-sm text-brand-textSecondary">
+                            <span className={`text-sm ${feature.highlight ? "text-brand-textPrimary" : "text-brand-textSecondary"}`}>
                               {feature.text}
                             </span>
                           </>

@@ -1,6 +1,6 @@
 "use client";
 
-import { EyeOff, Sliders } from "lucide-react";
+import { BarChart3, EyeOff, Sliders } from "lucide-react";
 
 export type ClipboardTabId = "clipboard" | "excluded" | "settings";
 
@@ -10,19 +10,10 @@ interface ClipboardTabsProps {
 }
 
 const TABS: { id: ClipboardTabId; label: string }[] = [
-  { id: "clipboard", label: "Clipboard" },
+  { id: "clipboard", label: "Dashboard" },
   { id: "excluded", label: "Excluded" },
   { id: "settings", label: "Settings" },
 ];
-
-function ClipboardIcon() {
-  return (
-    <svg width="13" height="13" viewBox="0 0 13 13" fill="none" className="shrink-0">
-      <rect x="2" y="3" width="9" height="8" rx="1.5" stroke="currentColor" strokeWidth="1.2" />
-      <path d="M5 1.5h3a1 1 0 011 1V3H4V2.5a1 1 0 011-1z" stroke="currentColor" strokeWidth="1.2" />
-    </svg>
-  );
-}
 
 export function ClipboardTabs({ activeTab, onTabChange }: ClipboardTabsProps) {
   // Calculate underline position based on active tab index
@@ -43,7 +34,7 @@ export function ClipboardTabs({ activeTab, onTabChange }: ClipboardTabsProps) {
                   : "text-brand-textTertiary hover:text-brand-textSecondary"
               }`}
             >
-              {tab.id === "clipboard" && <ClipboardIcon />}
+              {tab.id === "clipboard" && <BarChart3 size={13} />}
               {tab.id === "excluded" && <EyeOff size={13} />}
               {tab.id === "settings" && <Sliders size={13} />}
               {tab.label}

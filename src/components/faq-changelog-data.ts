@@ -26,14 +26,14 @@ export const FAQ_CATEGORIES: FAQCategory[] = [
     color: "text-brand-accentCleaned",
     items: [
       {
-        question: "Does UnreckAI send my clipboard to a server?",
+        question: "Does UnreckAI send my text to a server?",
         answer:
           "Never. Everything runs locally on your device. Your text is processed entirely on-device. No internet connection needed, no data ever leaves your machine.",
       },
       {
         question: "Is UnreckAI reading everything I type?",
         answer:
-          "No. UnreckAI only activates when you copy something to your clipboard. It does not monitor keystrokes, screen content, or anything else.",
+          "No. UnreckAI only activates when you copy text. It does not monitor keystrokes, screen content, or anything else.",
       },
       {
         question: "Can I control which apps it works with?",
@@ -95,7 +95,7 @@ export const CHANGELOG_ENTRIES: ChangelogEntry[] = [
     isLatest: true,
     items: [
       "Apple Intelligence integration: refine pasted text with on-device AI (Concise, Professional, Friendly).",
-      "iOS keyboard: Paste & Clean button for one-tap clipboard cleaning directly from the keyboard.",
+      "iOS keyboard: Paste & Clean button for one-tap text cleaning directly from the keyboard.",
       "Issue summary view with per-category breakdown and accent-colored detail cards.",
       "Chained AI slop removal now catches back-to-back openers and closers in a single pass.",
     ],
@@ -137,7 +137,7 @@ export const CHANGELOG_ENTRIES: ChangelogEntry[] = [
     items: [
       "Native bullet points render in Slack, Gmail, and Notion.",
       "Tables paste correctly across all destination apps.",
-      "One-click undo restores your original clipboard instantly.",
+      "One-click undo restores your original text instantly.",
     ],
   },
 ];

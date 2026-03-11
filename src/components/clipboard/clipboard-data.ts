@@ -81,7 +81,7 @@ export const SETTINGS_SECTIONS: SettingsSection[] = [
   {
     id: "cleaning",
     title: "UnreckAI Rules",
-    subtitle: "How UnreckAI processes your clipboard",
+    subtitle: "How UnreckAI processes your text",
     settings: [
       {
         label: "Em Dashes",
