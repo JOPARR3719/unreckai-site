@@ -54,7 +54,7 @@ export function Privacy() {
                     { text: "Zero server footprint", excluded: false },
                     { text: "Fully offline capable", excluded: false },
                     { text: "Absolute data privacy", excluded: false },
-                    { text: "Never sends data to a server", excluded: true },
+                    { text: "Sends data to a server", excluded: true },
                   ].map((item) => (
                     <div key={item.text} className="flex items-center gap-3">
                       {item.excluded ? (
