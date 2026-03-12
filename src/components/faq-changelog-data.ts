@@ -82,7 +82,7 @@ export const FAQ_CATEGORIES: FAQCategory[] = [
       {
         question: "What is the difference between Free and Pro?",
         answer:
-          "Free handles the invisible mess: hidden characters, broken spacing, encoding issues, and AI filler like 'Sure! Here is...'. Pro adds format translation, so your bullet points, headings, and tables paste as native formatting in Slack, Gmail, Notion, and more. Pro also includes Apple Intelligence refinement and AI writing style detection.",
+          "Free handles the invisible mess: hidden characters, broken spacing, encoding issues, and AI filler like 'Sure! Here is...'. Free also includes Intelligence issue summaries showing everything detected. Pro adds format translation, so your bullet points, headings, and tables paste as native formatting in Slack, Gmail, Notion, and more. Pro also includes Apple Intelligence tone refinement and AI writing style detection.",
       },
       {
         question: "Why should I choose Pro Annual?",

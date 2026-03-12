@@ -43,7 +43,7 @@ export const TOAST_DATA: ToastData = {
   sourceApp: "ChatGPT",
   originalText: "Great question! Here\u2019s a comprehensive guide to boosting your remote work productivity.\n\n## **Key Strategies for Success**\n\n1. **Time Blocking** \u2014 Dedicate specific\u200B hours to deep work. It\u2019s the most effective way to maintain focus.\n\n2. **Environment Design** \u2014 Create a dedicated workspace that\u2019s free from distractions.\n\n3. **Communication Tools** \u2014 Use platforms like Slack and Notion to stay connected.\n\nLet me know if you have any questions!",
   cleanedText: "Key Strategies for Success\n\n1. Time Blocking - Dedicate specific hours to deep work. It's the most effective way to maintain focus.\n\n2. Environment Design - Create a dedicated workspace that's free from distractions.\n\n3. Communication Tools - Use platforms like Slack and Notion to stay connected.",
-  summaryText: "UnreckAI found 44 issues in this paste. Formatting corrections account for 50%, followed by Structure at 18%.",
+  summaryText: "UnreckAI found 42 issues in this paste. Formatting corrections account for 52%, followed by Structure at 19%.",
   categories: [
     {
       id: "cleaned",
@@ -223,34 +223,12 @@ export const TOAST_DATA: ToastData = {
       name: "AI Content",
       accentColor: "brand-accentAi",
       icon: "Lightbulb",
-      fixCount: 7,
-      subtitle: "7 fixes applied",
+      fixCount: 5,
+      subtitle: "5 fixes applied",
       issues: [
         {
-          type: "ai-filler",
-          label: "AI filler phrase removed",
-          count: 1,
-          previews: [
-            {
-              before: "Great question!",
-              after: "",
-            },
-          ],
-        },
-        {
-          type: "ai-greeting",
-          label: "AI greeting removed",
-          count: 1,
-          previews: [
-            {
-              before: "Let me know if you have any questions!",
-              after: "",
-            },
-          ],
-        },
-        {
-          type: "emoji-bullet",
-          label: "Emoji bullets",
+          type: "ai-filler-pattern",
+          label: "AI filler phrases removed",
           count: 4,
           previews: [
             {

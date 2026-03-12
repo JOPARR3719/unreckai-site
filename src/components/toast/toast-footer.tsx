@@ -1,6 +1,6 @@
 "use client";
 
-import { Lock, Trophy } from "lucide-react";
+import { Lock, Sparkles } from "lucide-react";
 
 
 const SOURCE_LOGOS: Record<string, { src: string; invert?: boolean }> = {
@@ -22,15 +22,15 @@ const GLOW_GRADIENT =
 interface ToastFooterProps {
   sourceApp: string;
   detailsOpen: boolean;
-  onIntelligenceClick?: () => void;
+  onSummaryClick?: () => void;
 }
 
-export function ToastFooter({ sourceApp, detailsOpen, onIntelligenceClick }: ToastFooterProps) {
+export function ToastFooter({ sourceApp, detailsOpen, onSummaryClick }: ToastFooterProps) {
   const logoEntry = SOURCE_LOGOS[sourceApp];
 
   return (
     <div className="pb-3 pt-0.5" style={{ paddingLeft: 10, paddingRight: 10 }}>
-      {/* Source badge + Intelligence button (collapsed only) */}
+      {/* Source badge (collapsed only) */}
       {!detailsOpen && (
         <div className="flex items-center gap-2 py-2">
           <span className="text-xs text-brand-tagLabel">Source</span>
@@ -51,37 +51,14 @@ export function ToastFooter({ sourceApp, detailsOpen, onIntelligenceClick }: Toa
             {sourceApp}
           </span>
           <div className="flex-1" />
-          {/* Apple Intelligence button */}
-          <button
-            onClick={onIntelligenceClick}
-            className="flex items-center justify-center shrink-0 transition-opacity hover:opacity-80"
-            style={{
-              width: 28,
-              height: 28,
-              borderRadius: 7,
-              background:
-                "linear-gradient(135deg, rgba(59,232,176,0.08), rgba(155,143,255,0.08))",
-              border:
-                "1px solid color-mix(in srgb, #3be8b0 40%, #9B8FFF)",
-            }}
-          >
-            <span
-              className="text-[13px] bg-clip-text text-transparent leading-none"
-              style={{
-                backgroundImage:
-                  "linear-gradient(135deg, #3be8b0, #1aafd0, #9B8FFF)",
-              }}
-            >
-              &#x2728;
-            </span>
-          </button>
         </div>
       )}
 
-      {/* Accept + Undo All buttons */}
+      {/* Summary + Undo All buttons */}
       <div className="flex gap-2.5 mt-3">
-        {/* Accept — gradient fill */}
+        {/* Summary — gradient fill */}
         <button
+          onClick={onSummaryClick}
           className="flex-1 flex items-center justify-center gap-1.5 rounded-lg transition-opacity hover:opacity-90"
           style={{
             height: 32,
@@ -92,8 +69,8 @@ export function ToastFooter({ sourceApp, detailsOpen, onIntelligenceClick }: Toa
             fontSize: 13,
           }}
         >
-          <Trophy size={14} strokeWidth={2} className="text-[#0F1318]" />
-          Accept
+          <Sparkles size={14} color="#0F1318" strokeWidth={2.2} />
+          Summary
         </button>
 
         {/* Undo All — outline */}

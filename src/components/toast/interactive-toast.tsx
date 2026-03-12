@@ -8,9 +8,10 @@ import { ToastDrill } from "./toast-drill";
 import { ToastFooter } from "./toast-footer";
 import { CorrectedPreviewCard, CorrectedPreviewDrill } from "./toast-corrected-preview";
 import { IntelligenceSummaryCard, IntelligenceSummaryDrill } from "./toast-intelligence-summary";
+import { ToastSummaryDrill } from "./toast-summary";
 import { TOAST_DATA, type CategoryData } from "./toast-data";
 
-type ToastView = "categories" | "drill" | "correctedPreview" | "intelligenceSummary";
+type ToastView = "categories" | "drill" | "correctedPreview" | "intelligenceSummary" | "summary";
 
 const GLOW_GRADIENT =
   "linear-gradient(135deg, var(--color-brand-accentCleaned), var(--color-brand-accentFormatting))";
@@ -229,6 +230,12 @@ export function InteractiveToast({ autoStart = false }: { autoStart?: boolean })
     setView("intelligenceSummary");
   }, [markUserControlled, detailsOpen]);
 
+  const handleSummaryClick = useCallback(() => {
+    markUserControlled();
+    if (!detailsOpen) setDetailsOpen(true);
+    setView("summary");
+  }, [markUserControlled, detailsOpen]);
+
   const handleBackToCategories = useCallback(() => {
     markUserControlled();
     setView("categories");
@@ -419,6 +426,30 @@ export function InteractiveToast({ autoStart = false }: { autoStart?: boolean })
                         onBack={handleBackToCategories}
                       />
                     </div>
+
+                    {/* Summary drill-in */}
+                    <div
+                      className="transition-all duration-700 ease-in-out"
+                      style={{
+                        transform:
+                          view === "summary"
+                            ? "translateX(0)"
+                            : "translateX(100%)",
+                        opacity: view === "summary" ? 1 : 0,
+                        position:
+                          view === "summary" ? "relative" : "absolute",
+                        top: 0,
+                        left: 0,
+                        width: "100%",
+                        pointerEvents: view === "summary" ? "auto" : "none",
+                      }}
+                    >
+                      <ToastSummaryDrill
+                        categories={TOAST_DATA.categories}
+                        sourceApp={TOAST_DATA.sourceApp}
+                        onBack={handleBackToCategories}
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -429,7 +460,7 @@ export function InteractiveToast({ autoStart = false }: { autoStart?: boolean })
           <ToastFooter
             sourceApp={TOAST_DATA.sourceApp}
             detailsOpen={detailsOpen}
-            onIntelligenceClick={handleIntelligenceSummary}
+            onSummaryClick={handleSummaryClick}
           />
         </div>
       </div>

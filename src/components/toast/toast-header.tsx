@@ -41,17 +41,6 @@ export function ToastHeader({
 
         <div className="flex-1" />
 
-        {/* Undo button */}
-        <button
-          className="text-xs font-normal px-2.5 py-1 rounded-md text-brand-tagLabel"
-          style={{
-            backgroundColor: "var(--color-brand-undoBtnBg)",
-            border: "1px solid var(--color-brand-undoBtnBorder)",
-          }}
-        >
-          Undo
-        </button>
-
         {/* Theme toggle */}
         <button
           className="p-1 rounded-md text-brand-tagLabel"
