@@ -1,8 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Wand2, Type, Layers, Sparkles } from "lucide-react";
-import { RobotIcon } from "./robot-icon";
+import { Wand2, Type, Layers, Lightbulb, Sparkles } from "lucide-react";
 import { Reveal } from "./reveal";
 import { InteractiveClipboard } from "./clipboard/interactive-clipboard";
 import { InteractiveKeyboard } from "./clipboard/interactive-keyboard";
@@ -31,8 +30,9 @@ const categories = [
   {
     title: "AI Content",
     accent: "var(--color-brand-accentAi)",
-    icon: RobotIcon,
-    iconSize: 18,
+    icon: Lightbulb,
+    iconSize: 20,
+    strokeWidth: 1.5,
     description:
       'Strips the "Sure! Here\'s..." openers that scream AI-generated.',
     tags: ['"Sure! Here\'s..."', '"Let me know..."', "filler phrases", "AI vocabulary"],

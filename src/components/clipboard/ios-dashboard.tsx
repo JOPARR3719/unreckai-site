@@ -14,8 +14,8 @@ import {
   MinusCircle,
   Code2,
   ChevronLeft,
+  Lightbulb,
 } from "lucide-react";
-import { RobotIcon } from "../robot-icon";
 
 // ---------------------------------------------------------------------------
 // Inline helpers
@@ -275,8 +275,8 @@ const CATEGORIES: CategoryRow[] = [
   {
     id: "ai-content",
     name: "AI Content",
-    icon: RobotIcon,
-    iconSize: 12,
+    icon: Lightbulb,
+    iconSize: 14,
     color: "var(--color-brand-accentAi)",
     count: 318,
   },

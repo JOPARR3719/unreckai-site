@@ -4,16 +4,16 @@ import {
   Wand2,
   Type,
   Layers,
+  Lightbulb,
   ChevronRight,
 } from "lucide-react";
-import { RobotIcon } from "../robot-icon";
 import type { CategoryData } from "./toast-data";
 import type { ClickTarget } from "./interactive-toast";
 
 const ICON_MAP: Record<string, React.ElementType> = {
   Wand2,
   Type,
-  RobotIcon,
+  Lightbulb,
   Layers,
 };
 
@@ -55,7 +55,7 @@ export function ToastCategories({
           >
             {/* Icon */}
             <div className="shrink-0" style={{ color: accent }}>
-              {Icon && <Icon size={cat.icon === "RobotIcon" ? 14 : 16} strokeWidth={2.2} />}
+              {Icon && <Icon size={16} strokeWidth={2.2} />}
             </div>
 
             {/* Name */}

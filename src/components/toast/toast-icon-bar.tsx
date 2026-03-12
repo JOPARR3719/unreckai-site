@@ -1,13 +1,12 @@
 "use client";
 
-import { Wand2, Type, Layers } from "lucide-react";
-import { RobotIcon } from "../robot-icon";
+import { Wand2, Type, Layers, Lightbulb } from "lucide-react";
 import type { CategoryData } from "./toast-data";
 
 const ICON_MAP: Record<string, React.ElementType> = {
   Wand2,
   Type,
-  RobotIcon,
+  Lightbulb,
   Layers,
 };
 
@@ -66,8 +65,8 @@ export function ToastIconBar({
           >
             {Icon && (
               <Icon
-                size={cat.icon === "RobotIcon" ? 16 : 18}
-                strokeWidth={cat.icon === "RobotIcon" ? undefined : 1.8}
+                size={18}
+                strokeWidth={1.8}
               />
             )}
           </button>

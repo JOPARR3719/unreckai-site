@@ -222,7 +222,7 @@ export const TOAST_DATA: ToastData = {
       id: "ai-content",
       name: "AI Content",
       accentColor: "brand-accentAi",
-      icon: "RobotIcon",
+      icon: "Lightbulb",
       fixCount: 7,
       subtitle: "7 fixes applied",
       issues: [

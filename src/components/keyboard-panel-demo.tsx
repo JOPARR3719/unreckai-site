@@ -1,8 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Wand2, Type, Layers } from "lucide-react";
-import { RobotIcon } from "./robot-icon";
+import { Wand2, Type, Layers, Lightbulb } from "lucide-react";
 import { ScatterSymbol } from "./scatter-symbol";
 import { TOAST_DATA, type CategoryData } from "./toast/toast-data";
 
@@ -15,7 +14,7 @@ interface CategoryIconConfig {
 const CATEGORY_ICONS: Record<string, CategoryIconConfig> = {
   cleaned: { icon: Wand2, size: 22, strokeWidth: 1.5 },
   formatting: { icon: Type, size: 22, strokeWidth: 1.5 },
-  "ai-content": { icon: RobotIcon, size: 20 },
+  "ai-content": { icon: Lightbulb, size: 20 },
   document: { icon: Layers, size: 22, strokeWidth: 1.5 },
 };
 
