@@ -10,9 +10,9 @@ const nodes = [
     title: "Hidden Signatures",
     description: "Analyzes the source formatting.",
     items: [
-      "Reads formatting tags.",
-      "Spots invisible characters.",
-      "Identifies app footprints.",
+      "Reads formatting tags",
+      "Spots invisible characters",
+      "Identifies app footprints",
     ],
   },
   {
@@ -23,9 +23,9 @@ const nodes = [
     title: "Strict Rules",
     description: "Logic, not guesswork.",
     items: [
-      "Zero AI scanning.",
-      "Predictable local logic.",
-      "Instant exact results.",
+      "Zero AI scanning",
+      "Predictable local logic",
+      "Instant exact results",
     ],
   },
   {
@@ -36,9 +36,9 @@ const nodes = [
     title: "Pure Formatting",
     description: "Fixes, never polices.",
     items: [
-      "Zero plagiarism checks.",
-      "Repairs broken layouts.",
-      "Cleans chatbot slop.",
+      "Zero plagiarism checks",
+      "Repairs broken layouts",
+      "Cleans chatbot slop",
     ],
   },
 ];

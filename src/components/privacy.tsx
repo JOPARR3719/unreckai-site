@@ -1,4 +1,4 @@
-import { LockKeyhole, Leaf, Search, Cloud, Check, X } from "lucide-react";
+import { LockKeyhole, Leaf, Search, Cloud, Shield, Check, X } from "lucide-react";
 import { Reveal } from "./reveal";
 
 const privacyFeatures = [
@@ -17,7 +17,13 @@ const privacyFeatures = [
   {
     icon: Search,
     title: "No content tracking",
-    description: "We never read, store, or share your pastes",
+    description: "We never read, store, or transmit your clipboard content",
+    enabled: true,
+  },
+  {
+    icon: Shield,
+    title: "Credential protection",
+    description: "Skips passwords, secrets, and secure fields",
     enabled: true,
   },
   {
@@ -45,7 +51,7 @@ export function Privacy() {
                     Private by default.
                   </h2>
                   <p className="text-brand-textSecondary text-base sm:text-lg leading-relaxed">
-                    Every transformation happens on your Mac or iPhone. No servers, no telemetry, no cloud calls. Your data stays exactly where it belongs.
+                    Every transformation happens on your Mac or iPhone. Your text never touches a server. Optional anonymous analytics can be turned off in one tap.
                   </p>
                 </div>
 
@@ -54,6 +60,7 @@ export function Privacy() {
                     { text: "Zero server footprint", excluded: false },
                     { text: "Fully offline capable", excluded: false },
                     { text: "Absolute data privacy", excluded: false },
+                    { text: "Password manager aware", excluded: false },
                     { text: "Sends data to a server", excluded: true },
                   ].map((item) => (
                     <div key={item.text} className="flex items-center gap-3">
@@ -73,6 +80,15 @@ export function Privacy() {
                       </span>
                     </div>
                   ))}
+                </div>
+
+                <div className="space-y-2 pt-1">
+                  <p className="text-brand-textSecondary text-sm leading-relaxed">
+                    Unlike browser extensions, UnreckAI never proxies your text through external servers.
+                  </p>
+                  <a href="/privacy" className="text-brand-accentCleaned text-sm hover:underline inline-block">
+                    Read our privacy policy &rarr;
+                  </a>
                 </div>
               </div>
 
@@ -138,6 +154,7 @@ export function Privacy() {
                 ))}
               </div>
             </div>
+
           </div>
         </div>
       </div>

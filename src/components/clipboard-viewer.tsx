@@ -179,8 +179,9 @@ export function ClipboardViewer() {
                             </span>
                           </div>
                           <p className="text-brand-textSecondary text-[0.95rem] leading-relaxed">
-                            Refine pasted text with on-device AI. Choose Concise, Professional,
-                            or Friendly tone, then UnreckAI cleans the output automatically.
+                            Pick a tone: Concise, Professional, or Friendly. Apple Intelligence
+                            rewrites entirely on-device, then UnreckAI runs it back through the
+                            pipeline so the tone changes but the AI fingerprint doesn't survive.
                           </p>
                     </div>
                   </div>

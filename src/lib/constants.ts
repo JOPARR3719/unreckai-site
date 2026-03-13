@@ -22,5 +22,5 @@ export const NAV_LINKS = [
   { label: "Features", href: "#features" },
   { label: "How it Works", href: "#visual-proof" },
   { label: "Pricing", href: "#pricing" },
-  { label: "Changelog", href: "#support" },
+  { label: "Support", href: "#support" },
 ];
