@@ -15,6 +15,11 @@ import {
   Code2,
   ChevronLeft,
   Lightbulb,
+  BarChart3,
+  Zap,
+  Shield,
+  Mail,
+  ExternalLink,
 } from "lucide-react";
 
 // ---------------------------------------------------------------------------
@@ -436,6 +441,7 @@ function SettingsView() {
   const [codeContext, setCodeContext] = useState("auto");
   const [pdfRepair, setPdfRepair] = useState(true);
   const [aiSlop, setAiSlop] = useState(true);
+  const [shareAnalytics, setShareAnalytics] = useState(true);
 
   return (
     <div className="flex flex-col gap-2.5">
@@ -513,9 +519,102 @@ function SettingsView() {
               <Toggle value={pdfRepair} onChange={setPdfRepair} />
             </SettingRow>
 
-            <SettingRow label="AI Slop Removal" subtitle="Strip chatbot intros & closers" icon={Sparkles} inline last>
+            <SettingRow label="AI Slop Removal" subtitle="Strip chatbot intros & closers" icon={Sparkles} inline last={false}>
               <Toggle value={aiSlop} onChange={setAiSlop} />
             </SettingRow>
+
+            <SettingRow label="Share analytics" subtitle="Anonymous usage events via TelemetryDeck" icon={BarChart3} inline last>
+              <Toggle value={shareAnalytics} onChange={setShareAnalytics} />
+            </SettingRow>
+          </div>
+        </GradientCard>
+      </div>
+
+      {/* Changelog section */}
+      <div>
+        <div className="flex items-center gap-1.5 mb-2">
+          <Zap
+            size={14}
+            style={{ color: "var(--color-brand-textSecondary)" }}
+            strokeWidth={2}
+          />
+          <span
+            className="text-xs font-semibold"
+            style={{ color: "var(--color-brand-textSecondary)" }}
+          >
+            Changelog
+          </span>
+        </div>
+        <GradientCard>
+          <div className="flex items-center gap-2.5 px-3 py-2.5">
+            <Zap
+              size={11}
+              style={{ color: "var(--color-brand-accentFormatting)" }}
+              strokeWidth={2}
+              className="flex-shrink-0"
+            />
+            <span className="text-[11px] font-medium text-brand-textPrimary flex-1">
+              v1.1.0
+            </span>
+            <span className="text-[9px] text-brand-textTertiary mr-1">View on website</span>
+            <ExternalLink
+              size={10}
+              className="text-brand-textTertiary flex-shrink-0"
+              strokeWidth={2}
+            />
+          </div>
+        </GradientCard>
+      </div>
+
+      {/* Support section */}
+      <div>
+        <div className="flex items-center gap-1.5 mb-2">
+          <Shield
+            size={14}
+            style={{ color: "var(--color-brand-textSecondary)" }}
+            strokeWidth={2}
+          />
+          <span
+            className="text-xs font-semibold"
+            style={{ color: "var(--color-brand-textSecondary)" }}
+          >
+            Support
+          </span>
+        </div>
+        <GradientCard>
+          <div className="py-0.5">
+            <div className="flex items-center gap-2.5 px-3 py-2.5 border-b border-brand-border">
+              <Shield
+                size={11}
+                style={{ color: "var(--color-brand-accentFormatting)" }}
+                strokeWidth={2}
+                className="flex-shrink-0"
+              />
+              <span className="text-[11px] font-medium text-brand-textPrimary flex-1">
+                Privacy Policy
+              </span>
+              <ExternalLink
+                size={10}
+                className="text-brand-textTertiary flex-shrink-0"
+                strokeWidth={2}
+              />
+            </div>
+            <div className="flex items-center gap-2.5 px-3 py-2.5">
+              <Mail
+                size={11}
+                style={{ color: "var(--color-brand-accentFormatting)" }}
+                strokeWidth={2}
+                className="flex-shrink-0"
+              />
+              <span className="text-[11px] font-medium text-brand-textPrimary flex-1">
+                Contact Support
+              </span>
+              <ExternalLink
+                size={10}
+                className="text-brand-textTertiary flex-shrink-0"
+                strokeWidth={2}
+              />
+            </div>
           </div>
         </GradientCard>
       </div>

@@ -28,7 +28,7 @@ export interface SettingOption {
 
 export interface SettingRow {
   label: string;
-  type: "picker" | "toggle";
+  type: "picker" | "toggle" | "link";
   options?: SettingOption[];
   value: string | boolean;
   icon?: string;      // lucide icon name
@@ -36,7 +36,7 @@ export interface SettingRow {
 }
 
 export interface SettingsSection {
-  id: "account" | "cleaning" | "behavior" | "changelog";
+  id: "account" | "cleaning" | "behavior" | "changelog" | "support";
   title: string;
   subtitle: string;
   settings: SettingRow[];
@@ -192,6 +192,11 @@ export const SETTINGS_SECTIONS: SettingsSection[] = [
         ],
         value: "top-right",
       },
+      {
+        label: "Share analytics",
+        type: "toggle",
+        value: true,
+      },
     ],
   },
   {
@@ -204,8 +209,18 @@ export const SETTINGS_SECTIONS: SettingsSection[] = [
   {
     id: "changelog",
     title: "Changelog",
-    subtitle: "v1.1.0 \u2014 Mar 10, 2026",
+    subtitle: "v1.1.0 \u00b7 Mar 10, 2026",
     settings: [],
+    standalone: false,
+  },
+  {
+    id: "support",
+    title: "Support",
+    subtitle: "Privacy and help",
+    settings: [
+      { label: "Privacy Policy", type: "link", value: "https://unreckai.com/privacy", icon: "shield" },
+      { label: "Contact Support", type: "link", value: "mailto:support@unreckai.com", icon: "mail" },
+    ],
     standalone: false,
   },
 ];

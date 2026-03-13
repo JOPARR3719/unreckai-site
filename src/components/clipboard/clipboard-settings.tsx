@@ -13,6 +13,9 @@ import {
   Sparkles,
   Wand2,
   Zap,
+  Shield,
+  Mail,
+  ExternalLink,
 } from "lucide-react";
 import { SETTINGS_SECTIONS, type SettingsSection, type SettingRow } from "./clipboard-data";
 import { CHANGELOG_ENTRIES } from "../faq-changelog-data";
@@ -24,6 +27,8 @@ const SETTING_ICONS: Record<string, React.ElementType> = {
   "text-search": TextSearch,
   "file-text": FileText,
   "sparkles": Sparkles,
+  "shield": Shield,
+  "mail": Mail,
 };
 
 const PURPLE = "var(--color-brand-accentFormatting)";
@@ -77,6 +82,8 @@ export function ClipboardSettings({
         {activeSection && (
           activeSection.id === "changelog"
             ? <ChangelogDrill onBack={onBack} />
+            : activeSection.id === "support"
+            ? <SupportDrill onBack={onBack} />
             : <SettingsDrill section={activeSection} onBack={onBack} />
         )}
       </div>
@@ -323,6 +330,81 @@ function ToggleRow({ setting }: { setting: SettingRow }) {
           style={{ left: on ? "calc(100% - 14px)" : "2px" }}
         />
       </button>
+    </div>
+  );
+}
+
+function SupportDrill({ onBack }: { onBack: () => void }) {
+  const links = [
+    { label: "Privacy Policy", icon: Shield, href: "https://unreckai.com/privacy" },
+    { label: "Contact Support", icon: Mail, href: "mailto:support@unreckai.com" },
+  ];
+
+  return (
+    <div className="px-4 pb-3">
+      {/* Back button */}
+      <button
+        onClick={onBack}
+        className="flex items-center gap-1.5 mb-3 px-2 py-1.5 rounded-md transition-colors hover:bg-white/[0.03]"
+        style={{
+          border: "1px solid transparent",
+          backgroundImage: `linear-gradient(var(--color-brand-bgSurface), var(--color-brand-bgSurface)), linear-gradient(135deg, var(--color-brand-accentCleaned), var(--color-brand-accentFormatting))`,
+          backgroundOrigin: "border-box",
+          backgroundClip: "padding-box, border-box",
+        }}
+      >
+        <ChevronLeft size={14} className="text-brand-tagLabel" />
+        <span className="text-xs font-semibold" style={{ color: PURPLE }}>
+          Support
+        </span>
+        <span
+          className="text-[10px] font-bold px-1.5 py-0.5 rounded ml-1"
+          style={{
+            backgroundColor: `color-mix(in srgb, ${PURPLE} 12%, transparent)`,
+            color: PURPLE,
+          }}
+        >
+          {links.length}
+        </span>
+      </button>
+
+      {/* Support card */}
+      <div
+        className="rounded-xl p-[0.7px]"
+        style={{
+          background:
+            "linear-gradient(135deg, var(--color-brand-accentCleaned), var(--color-brand-accentFormatting))",
+        }}
+      >
+        <div className="rounded-[calc(0.75rem-0.7px)] bg-brand-cardBg overflow-hidden py-1">
+          {links.map((link, i) => {
+            const Icon = link.icon;
+            return (
+              <div
+                key={link.label}
+                className={`flex items-center gap-2.5 px-3 py-2.5 ${
+                  i < links.length - 1 ? "border-b border-brand-border" : ""
+                }`}
+              >
+                <Icon
+                  size={11}
+                  style={{ color: PURPLE }}
+                  strokeWidth={2}
+                  className="flex-shrink-0"
+                />
+                <span className="text-[11px] font-medium text-brand-textPrimary flex-1">
+                  {link.label}
+                </span>
+                <ExternalLink
+                  size={10}
+                  className="text-brand-textTertiary flex-shrink-0"
+                  strokeWidth={2}
+                />
+              </div>
+            );
+          })}
+        </div>
+      </div>
     </div>
   );
 }
