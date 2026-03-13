@@ -19,8 +19,8 @@ export const DEST_APPS = [
 ];
 
 export const NAV_LINKS = [
-  { label: "Features", href: "#features" },
-  { label: "How it Works", href: "#visual-proof" },
-  { label: "Pricing", href: "#pricing" },
-  { label: "Support", href: "#support" },
+  { label: "Features", href: "/#features" },
+  { label: "How it Works", href: "/#visual-proof" },
+  { label: "Pricing", href: "/#pricing" },
+  { label: "Support", href: "/#support" },
 ];
