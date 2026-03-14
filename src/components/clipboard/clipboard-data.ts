@@ -63,6 +63,7 @@ export const EXCLUSION_SECTIONS: ExclusionSection[] = [
       { name: "VS Code", icon: "code" },
       { name: "Xcode", icon: "hammer" },
       { name: "1Password", icon: "lock" },
+      { name: "Bitwarden", icon: "lock" },
     ],
   },
   {
