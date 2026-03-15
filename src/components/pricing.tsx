@@ -36,7 +36,7 @@ const tiers = [
     cta: "Get Best Value",
     ctaStyle: "primary" as const,
     popular: true,
-    badge: "Best Value — Save 30%",
+    badge: "Best Value \u00b7 Save 30%",
     features: [
       { text: "Everything in Free, plus:", included: true, section: "free" },
       { text: "Format translation (native HTML)", included: true, highlight: true },
@@ -169,10 +169,9 @@ export function Pricing() {
                 <Reveal key={tier.name} delay={i * 100}>
                   {tier.popular ? (
                     <div
-                      className="rounded-2xl p-[1.5px] transition-transform duration-300 hover:-translate-y-2"
+                      className="rounded-2xl p-[1.5px] transition-transform duration-300 hover:-translate-y-2 lg:scale-[1.04]"
                       style={{
                         background: "linear-gradient(135deg, rgba(59, 232, 176, 0.5), rgba(155, 143, 255, 0.5))",
-                        transform: "scale(1.04)",
                         filter: "drop-shadow(0 8px 32px rgba(59, 232, 176, 0.15)) drop-shadow(0 4px 16px rgba(155, 143, 255, 0.1))",
                       }}
                     >

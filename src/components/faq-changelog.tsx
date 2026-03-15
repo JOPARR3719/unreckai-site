@@ -67,6 +67,8 @@ function FaqAccordion() {
                   type="button"
                   onClick={() => toggleCategory(catIdx)}
                   className="w-full px-5 py-4 flex items-center cursor-pointer"
+                  aria-expanded={isCatOpen}
+                  aria-controls={`faq-cat-${catIdx}`}
                 >
                   <Icon className={`w-[22px] h-[22px] mr-3 flex-shrink-0 ${category.color}${category.icon === "lock" ? " animate-wiggle" : ""}`} />
                   <span className="font-medium text-[15px] text-brand-textPrimary">
@@ -81,8 +83,10 @@ function FaqAccordion() {
 
                 {/* Inner question cards (revealed when category is open) */}
                 <div
+                  id={`faq-cat-${catIdx}`}
+                  role="region"
                   className={`transition-all duration-300 overflow-hidden ${
-                    isCatOpen ? "max-h-[800px] opacity-100" : "max-h-0 opacity-0"
+                    isCatOpen ? "max-h-[2000px] opacity-100" : "max-h-0 opacity-0"
                   }`}
                 >
                   <div className="px-4 pb-4 space-y-2">
@@ -107,6 +111,8 @@ function FaqAccordion() {
                                 toggleQuestion(key);
                               }}
                               className="w-full px-4 py-3 flex justify-between items-center cursor-pointer"
+                              aria-expanded={isQOpen}
+                              aria-controls={`faq-q-${key}`}
                             >
                               <span className="font-medium text-[15px] text-brand-tagLabel pr-3 text-left">
                                 {item.question}
@@ -118,6 +124,8 @@ function FaqAccordion() {
                               />
                             </button>
                             <div
+                              id={`faq-q-${key}`}
+                              role="region"
                               className={`px-4 text-[15px] text-brand-textSecondary leading-relaxed transition-all duration-300 overflow-hidden ${
                                 isQOpen
                                   ? "max-h-48 opacity-100 pb-3"
@@ -211,6 +219,8 @@ function ChangelogTimeline() {
                     type="button"
                     onClick={() => toggleVersion(idx)}
                     className="flex items-center w-full cursor-pointer"
+                    aria-expanded={isOpen}
+                    aria-controls={`changelog-${idx}`}
                   >
                     <span className="text-brand-textPrimary font-semibold text-lg mr-3">
                       {entry.version}
@@ -227,6 +237,8 @@ function ChangelogTimeline() {
 
                   {/* Items (collapsible) */}
                   <div
+                    id={`changelog-${idx}`}
+                    role="region"
                     className={`transition-all duration-300 overflow-hidden ${
                       isOpen
                         ? "max-h-[300px] opacity-100"

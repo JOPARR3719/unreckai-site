@@ -193,6 +193,7 @@ export function ClipboardViewer() {
                       <div className="inline-flex items-center bg-brand-cardBg rounded-full p-1 border border-brand-borderSolid">
                         <button
                           onClick={() => setPlatform("macos")}
+                          aria-pressed={platform === "macos"}
                           className={`w-16 py-1.5 rounded-full text-xs font-medium transition-all text-center ${
                             platform === "macos"
                               ? "text-brand-textPrimary"
@@ -209,6 +210,7 @@ export function ClipboardViewer() {
                         </button>
                         <button
                           onClick={() => setPlatform("ios")}
+                          aria-pressed={platform === "ios"}
                           className={`w-16 py-1.5 rounded-full text-xs font-medium transition-all text-center ${
                             platform === "ios"
                               ? "text-brand-textPrimary"
@@ -232,6 +234,7 @@ export function ClipboardViewer() {
                         <div className="inline-flex items-center bg-brand-cardBg rounded-full p-1 border border-brand-borderSolid">
                           <button
                             onClick={() => setPlatform("macos")}
+                            aria-pressed={platform === "macos"}
                             className={`w-16 py-1.5 rounded-full text-xs font-medium transition-all text-center ${
                               platform === "macos"
                                 ? "text-brand-textPrimary"
@@ -248,6 +251,7 @@ export function ClipboardViewer() {
                           </button>
                           <button
                             onClick={() => setPlatform("ios")}
+                            aria-pressed={platform === "ios"}
                             className={`w-16 py-1.5 rounded-full text-xs font-medium transition-all text-center ${
                               platform === "ios"
                                 ? "text-brand-textPrimary"

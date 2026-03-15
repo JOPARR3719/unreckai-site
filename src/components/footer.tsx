@@ -19,11 +19,11 @@ export function Footer() {
             <span>UnreckAI</span>
           </div>
           <div className="flex items-center gap-4">
-            <a href="#" className="hover:text-brand-textSecondary transition-colors">
+            <a href="/privacy" className="hover:text-brand-textSecondary transition-colors">
               Privacy
             </a>
             <span>&middot;</span>
-            <a href="#" className="hover:text-brand-textSecondary transition-colors">
+            <a href="/terms" className="hover:text-brand-textSecondary transition-colors">
               Terms
             </a>
           </div>

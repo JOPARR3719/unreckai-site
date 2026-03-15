@@ -47,6 +47,7 @@ export function ToastHeader({
           style={{
             border: "1px solid var(--color-brand-borderSolid)",
           }}
+          aria-label="Toggle theme"
         >
           <Moon size={13} />
         </button>
@@ -57,6 +58,7 @@ export function ToastHeader({
           style={{
             border: "1px solid var(--color-brand-borderSolid)",
           }}
+          aria-label="Close toast"
         >
           <X size={13} />
         </button>
@@ -76,11 +78,12 @@ export function ToastHeader({
       {/* Row 2: Timer + Details */}
       <div className="flex items-center mt-3 px-4 pb-1">
         <span className="text-xs text-brand-textSecondary">
-          ‖ paused &mdash; click to resume
+          ‖ paused: click to resume
         </span>
         <div className="flex-1" />
         <button
           onClick={onToggleDetails}
+          aria-expanded={detailsOpen}
           className="text-xs font-normal text-brand-tagLabel rounded-md px-3 py-1"
           style={{
             width: 92,

@@ -28,7 +28,7 @@ export const FAQ_CATEGORIES: FAQCategory[] = [
       {
         question: "Does UnreckAI send my text to a server?",
         answer:
-          "Never. Everything runs locally on your device. Your text is processed entirely on-device. No internet connection needed, no data ever leaves your machine.",
+          "Never. Your text is processed entirely on-device and never leaves your machine. UnreckAI collects anonymous usage events (like which features you use) through TelemetryDeck, a privacy-first analytics provider hosted in the EU. These events contain no text content and no personal data. You can turn analytics off in Settings.",
       },
       {
         question: "Is UnreckAI reading everything I type?",
@@ -43,7 +43,7 @@ export const FAQ_CATEGORIES: FAQCategory[] = [
       {
         question: "Does Apple Intelligence send my text to Apple?",
         answer:
-          "No. Apple Intelligence runs entirely on-device using Apple's local model. Your text never leaves your device — not to Apple, not to us, not to anyone.",
+          "No. Apple Intelligence runs entirely on-device using Apple's local model. Your text never leaves your device: not to Apple, not to us, not to anyone.",
       },
     ],
   },
@@ -92,7 +92,7 @@ export const FAQ_CATEGORIES: FAQCategory[] = [
       {
         question: "Do I need internet access?",
         answer:
-          "No. Everything runs on-device. No servers, no cloud calls, no internet required. Works anywhere.",
+          "Not for text cleaning. Everything runs on-device with no cloud calls. An internet connection is only needed for subscription verification and optional anonymous analytics, both of which can be disabled.",
       },
     ],
   },

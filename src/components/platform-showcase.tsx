@@ -103,6 +103,7 @@ function PlatformToggle({
             : "text-brand-textSecondary hover:text-brand-textPrimary border border-transparent"
         }`}
         style={platform === "macos" ? TOGGLE_ACTIVE_STYLE : undefined}
+        aria-pressed={platform === "macos"}
       >
         macOS
       </button>
@@ -114,6 +115,7 @@ function PlatformToggle({
             : "text-brand-textSecondary hover:text-brand-textPrimary border border-transparent"
         }`}
         style={platform === "ios" ? TOGGLE_ACTIVE_STYLE : undefined}
+        aria-pressed={platform === "ios"}
       >
         iOS
       </button>
@@ -178,11 +180,11 @@ export function PlatformShowcase() {
                           The invisible translation layer between AI and your Mac.
                         </p>
                       </div>
-                      <div className="space-y-6">
+                      <ul className="space-y-6 list-none p-0 m-0">
                         {macBullets.map((b) => (
-                          <GradientBullet key={b} text={b} />
+                          <li key={b}><GradientBullet text={b} /></li>
                         ))}
-                      </div>
+                      </ul>
                     </div>
                   </div>
 
@@ -208,11 +210,11 @@ export function PlatformShowcase() {
                           Brings flawless formatting natively to every mobile app.
                         </p>
                       </div>
-                      <div className="space-y-6">
+                      <ul className="space-y-6 list-none p-0 m-0">
                         {iosBullets.map((b) => (
-                          <GradientBullet key={b} text={b} />
+                          <li key={b}><GradientBullet text={b} /></li>
                         ))}
-                      </div>
+                      </ul>
                     </div>
                   </div>
                 </div>
